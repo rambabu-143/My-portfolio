@@ -1,12 +1,15 @@
 import Herosection from "@/components/herosection";
-import Projects from "@/components/projects";
+import Footer from "@/components/footer";
+import Tabs from "@/components/tabs";
 
 export default function Home() {
   return (
     <>
-    <Herosection/>
-    <hr />
-    <Projects/>
+      <Herosection />
+      <hr />
+      <Tabs />
+      <hr />
+      <Footer />
     </>
   );
 }
