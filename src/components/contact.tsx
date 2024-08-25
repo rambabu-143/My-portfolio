@@ -1,6 +1,6 @@
 const Contact = () => {
     return (
-      <div className="bg-gray-900 p-8 w-full h-fit flex flex-col justify-center items-center">
+      <div id="contact" className="bg-gray-900 p-8 w-full h-fit flex flex-col justify-center items-center">
         <h1 className="text-3xl text-white mb-8">Contact Me</h1>
         <form
           action="/api/contact" 
@@ -17,15 +17,7 @@ const Contact = () => {
               className="bg-gray-700 text-gray-300 p-3 rounded-lg border border-gray-600"
             />
           </div>
-          <div className="flex flex-col mb-4">
-            <label htmlFor="phone" className="text-gray-300 mb-2">Phone</label>
-            <input
-              type="tel"
-              id="phone"
-              name="phone"
-              className="bg-gray-700 text-gray-300 p-3 rounded-lg border border-gray-600"
-            />
-          </div>
+          
           <div className="flex flex-col mb-4">
             <label htmlFor="email" className="text-gray-300 mb-2">Email</label>
             <input
@@ -36,28 +28,20 @@ const Contact = () => {
               className="bg-gray-700 text-gray-300 p-3 rounded-lg border border-gray-600"
             />
           </div>
-          <div className="flex flex-col mb-4">
-            <label htmlFor="subject" className="text-gray-300 mb-2">Subject</label>
-            <input
-              type="text"
-              id="subject"
-              name="subject"
-              required
-              className="bg-gray-700 text-gray-300 p-3 rounded-lg border border-gray-600"
-            />
-          </div>
+          
           <div className="flex flex-col mb-4">
             <label htmlFor="message" className="text-gray-300 mb-2">Message</label>
             <textarea
               id="message"
               name="message"
+              rows={4}
               required
               className="bg-gray-700 text-gray-300 p-3 rounded-lg border border-gray-600"
             />
           </div>
           <button
             type="submit"
-            className="bg-red-600 text-white py-2 px-6 rounded-full hover:bg-red-700 transition"
+            className="bg-red-600 text-white py-2 px-6 my-4 rounded-full hover:bg-red-700 transition"
           >
             Send Message
           </button>
