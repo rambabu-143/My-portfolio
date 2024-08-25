@@ -8,3 +8,20 @@ body {
   background: #161317
 }
 
+::-webkit-scrollbar {
+  width: 5px; 
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #161317; 
+}
+
+::-webkit-scrollbar-thumb {
+  background: #efefef; 
+  border-radius: 4px; 
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #636363; 
+}
