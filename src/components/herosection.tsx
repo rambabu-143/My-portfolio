@@ -23,7 +23,7 @@ const HeroSection = () => {
         </div>
       </div>
       <div className="w-96 h-96 rounded-full overflow-hidden relative">
-        <Image src="/hero.png" alt="Rambabu" fill className="object-cover" />
+        <Image src="./hero.png" alt="Rambabu" fill className="object-cover" />
       </div>
     </div>
   );
