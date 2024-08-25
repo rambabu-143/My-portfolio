@@ -22,7 +22,7 @@ const Tabs = () => {
   };
 
   return (
-    <div className="w-full p-8 bg-gray-900 overflow-hidden">
+    <div className="w-full  bg-gray-900 overflow-hidden">
       <div className="flex space-x-4 border-b border-gray-800 mb-4">
         <button
           className={`py-2 px-4 ${activeTab === "projects" ? "border-b-2 border-red-600" : "text-gray-400"} hover:text-white`}
@@ -43,7 +43,7 @@ const Tabs = () => {
           Contact
         </button>
       </div>
-      <div className="bg-gray-900 p-8 rounded-lg">
+      <div className="rounded-lg w-full">
         <AnimatePresence>
           {activeTab === "projects" && (
             <motion.div
