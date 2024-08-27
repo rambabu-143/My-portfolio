@@ -2,8 +2,8 @@ const Skills = () => {
   return (
     <div className="p-4 text-white">
       {/* Add your skills content here */}
-      <h2 className="text-2xl font-bold mb-4">Skills</h2>
-      <ul className="list-none flex  justify-center items-center gap-8 flex-wrap pl-5">
+      <h2 className="text-2xl w-full flex justify-center text-center font-bold mb-4">Skills</h2>
+      <ul className="list-none flex  justify-center items-center gap-8  flex-wrap p-5">
         <li className="bg-gray-700 px-4 py-2 rounded-xl">C</li>
         <li className="bg-gray-700 px-4 py-2 rounded-xl">Java</li>
         <li className="bg-gray-700 px-4 py-2 rounded-xl">Python</li>
