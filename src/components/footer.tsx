@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 const Footer = () => {
   return (
-    <footer className="bg-gray-900 flex justify-center items-center text-gray-300 py-6">
+    <footer className="bg-black flex justify-center items-center text-gray-300 py-6">
       <div className="flex flex-col justify-center text-center items-center">
         <p className="text-sm mb-4">
           © {new Date().getFullYear()} Rambabu. All rights reserved.

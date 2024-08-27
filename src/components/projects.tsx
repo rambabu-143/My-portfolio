@@ -20,7 +20,7 @@ const Projects = () => {
   ];
 
   return (
-    <div className="bg-gray-900 flex flex-col justify-evenly items-center  p-8 gap-8 w-full lg:h-screen sm:h-fit">
+    <div className="bg-black flex flex-col justify-evenly items-center  p-8 gap-8 w-full lg:h-screen sm:h-fit">
       <h1 className="text-3xl text-white flex justify-center items-center">
         Projects
       </h1>
