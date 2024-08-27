@@ -1,9 +1,11 @@
+// tabs.js
 "use client";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import Projects from "./projects";
 import Experience from "./experience";
 import Contact from "./contact";
+import Skills from "./skills"; // Import the Skills component
 
 const Tabs = () => {
   const [activeTab, setActiveTab] = useState("projects");
@@ -16,16 +18,18 @@ const Tabs = () => {
         return <Experience />;
       case "contact":
         return <Contact />;
+      case "skills":
+        return <Skills />;
       default:
         return <Projects />;
     }
   };
 
   return (
-    <div className="w-full bg-gray-900 overflow-hidden">
+    <div className="w-full bg-black overflow-hidden">
       <div className="flex justify-center py-8 items-center space-x-4 border-b border-gray-800 mb-4">
         <button
-          className={`py-2 px-4 text-lg  ${
+          className={`py-2 px-4 text-lg ${
             activeTab === "projects"
               ? "border-b-2 border-red-600"
               : "text-gray-400"
@@ -35,7 +39,7 @@ const Tabs = () => {
           Projects
         </button>
         <button
-          className={`py-2 px-4 text-lg  ${
+          className={`py-2 px-4 text-lg ${
             activeTab === "experience"
               ? "border-b-2 border-red-600"
               : "text-gray-400"
@@ -45,7 +49,17 @@ const Tabs = () => {
           Experience
         </button>
         <button
-          className={`py-2 px-4 text-lg  ${
+          className={`py-2 px-4 text-lg ${
+            activeTab === "skills"
+              ? "border-b-2 border-red-600"
+              : "text-gray-400"
+          } hover:text-white`}
+          onClick={() => setActiveTab("skills")}
+        >
+          Skills
+        </button>
+        <button
+          className={`py-2 px-4 text-lg ${
             activeTab === "contact"
               ? "border-b-2 border-red-600"
               : "text-gray-400"
@@ -56,7 +70,7 @@ const Tabs = () => {
         </button>
       </div>
       <motion.div
-        className="bg-gray-900 rounded-lg"
+        className="bg-black rounded-lg"
         key={activeTab}
         initial={{ opacity: 0, x: -100 }}
         animate={{ opacity: 1, x: 0 }}

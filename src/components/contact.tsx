@@ -1,6 +1,6 @@
 const Contact = () => {
     return (
-      <div id="contact" className="bg-gray-900 p-8 w-full h-fit flex flex-col justify-center items-center">
+      <div id="contact" className=" p-8 w-full h-fit flex flex-col justify-center items-center">
         <h1 className="text-3xl text-white mb-8">Contact Me</h1>
         <form
           action="/api/contact" 

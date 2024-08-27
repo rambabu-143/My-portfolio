@@ -4,7 +4,7 @@
 
 body {
   color: #efefef;
-  background: #161317;
+  /* background: #161317; */
 }
 
 ::-webkit-scrollbar {
@@ -25,3 +25,6 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: #636363; 
 }
+
+
+

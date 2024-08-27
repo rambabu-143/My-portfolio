@@ -17,7 +17,7 @@ const Experience = () => {
     ];
   
     return (
-      <div className="bg-gray-900 p-8 w-full h-fit flex flex-col justify-center items-center">
+      <div className=" p-8 w-full h-fit flex flex-col justify-center items-center">
         <h1 className="text-3xl text-white mb-8">Experience</h1>
         <div className="space-y-8 w-full max-w-3xl">
           {experiences.map((experience, index) => (
