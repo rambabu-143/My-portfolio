@@ -29,7 +29,7 @@ const Tabs = () => {
     <div className="w-full bg-black overflow-hidden">
       <div className="flex justify-center py-8 items-center space-x-4 border-b border-gray-800 mb-4">
         <button
-          className={`py-2 px-4 text-lg ${
+          className={`py-2 px-4  ${
             activeTab === "projects"
               ? "border-b-2 border-red-600"
               : "text-gray-400"
@@ -39,7 +39,7 @@ const Tabs = () => {
           Projects
         </button>
         <button
-          className={`py-2 px-4 text-lg ${
+          className={`py-2 px-4  ${
             activeTab === "experience"
               ? "border-b-2 border-red-600"
               : "text-gray-400"
@@ -49,7 +49,7 @@ const Tabs = () => {
           Experience
         </button>
         <button
-          className={`py-2 px-4 text-lg ${
+          className={`py-2 px-4  ${
             activeTab === "skills"
               ? "border-b-2 border-red-600"
               : "text-gray-400"
@@ -59,7 +59,7 @@ const Tabs = () => {
           Skills
         </button>
         <button
-          className={`py-2 px-4 text-lg ${
+          className={`py-2 px-4  ${
             activeTab === "contact"
               ? "border-b-2 border-red-600"
               : "text-gray-400"
