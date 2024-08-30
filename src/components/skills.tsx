@@ -3,7 +3,7 @@ const Skills = () => {
     <div className="p-4 text-white">
       {/* Add your skills content here */}
       <h2 className="text-2xl w-full flex justify-center text-center font-bold mb-4">Skills</h2>
-      <ul className="list-none  grid lg:grid-cols-5 md:grid-cols-3 sm:grid-cols-2 text-center max-sm:grid-cols-2 max-md:grid-cols-3  place-items-center gap-8  p-5">
+      <ul className="list-none flex flex-wrap gap-8  px-8 py-6 items-center justify-center">
         <li className="bg-gray-700 px-4 py-2 w-fit rounded-xl">C</li>
         <li className="bg-gray-700 px-4 py-2 w-fit rounded-xl">Java</li>
         <li className="bg-gray-700 px-4 py-2 w-fit rounded-xl">Python</li>
