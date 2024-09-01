@@ -12,7 +12,7 @@ export default function Component() {
             My Skills
           </h2>
           <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-            I'm proficient in a variety of web development tools and
+            I&apos;m proficient in a variety of web development tools and
             technologies.
           </p>
         </div>
