@@ -1,8 +1,4 @@
-/**
- * v0 by Vercel.
- * @see https://v0.dev/t/bMuzpo3K7T4
- * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
- */
+
 export default function Component() {
   return (
     <section className="w-full py-12 md:py-24 lg:py-32 text-white">
