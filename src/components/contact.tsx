@@ -41,7 +41,7 @@ const ContactForm = () => {
         className="w-full max-w-lg bg-gray-800  p-6 rounded-lg shadow-lg space-y-6"
       >
         <h2 className="text-2xl font-bold w-full flex justify-start  text-white mb-4">Contact Me</h2>
-        <p className='w-full text-white text-start'>Have a question or want to work together? Fill out the form below and we'll get back to you as soon as possible.</p>
+        <p className='w-full text-white text-start'>Have a question or want to work together? Fill out the form below and we&apos;ll get back to you as soon as possible.</p>
         <input
           type="text"
           name="name"
