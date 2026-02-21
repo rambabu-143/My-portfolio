@@ -64,7 +64,7 @@ export default function Skills() {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
+        viewport={{ once: true, margin: "-50px" }}
         transition={{ duration: 0.5 }}
         className="text-center mb-12"
       >
@@ -82,8 +82,8 @@ export default function Skills() {
             key={category.title}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: catIndex * 0.1, duration: 0.4 }}
+            viewport={{ once: true, margin: "-30px" }}
+            transition={{ delay: catIndex * 0.05, duration: 0.4 }}
             className="glass rounded-xl p-5 border border-white/10"
           >
             <h3 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
@@ -103,7 +103,7 @@ export default function Skills() {
                       initial={{ width: 0 }}
                       whileInView={{ width: `${skill.level}%` }}
                       viewport={{ once: true }}
-                      transition={{ duration: 0.8, delay: skillIndex * 0.05 }}
+                      transition={{ duration: 0.6, delay: skillIndex * 0.03 }}
                     />
                   </div>
                 </div>
@@ -118,7 +118,7 @@ export default function Skills() {
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
-        transition={{ delay: 0.5 }}
+        transition={{ delay: 0.3 }}
         className="text-center mt-10"
       >
         <div className="inline-flex items-center gap-3 glass px-5 py-3 rounded-full border border-white/10">

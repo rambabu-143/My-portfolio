@@ -49,8 +49,8 @@ const ContactForm = () => {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{ duration: 0.5 }}
         className="text-center mb-12"
       >
         <h2 className="text-3xl md:text-4xl font-bold mb-4 gradient-text">
@@ -67,8 +67,8 @@ const ContactForm = () => {
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            viewport={{ once: true, margin: "-30px" }}
+            transition={{ duration: 0.4 }}
             className="md:col-span-2 space-y-6"
           >
             <div className="glass rounded-2xl p-6 border border-white/10">
@@ -131,8 +131,8 @@ const ContactForm = () => {
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            viewport={{ once: true, margin: "-30px" }}
+            transition={{ duration: 0.4, delay: 0.1 }}
             className="md:col-span-3"
           >
             <form

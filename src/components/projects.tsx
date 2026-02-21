@@ -1,5 +1,4 @@
 'use client';
-import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 
@@ -42,12 +41,11 @@ const Projects = () => {
             key={project.title}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-30px" }}
             transition={{ delay: index * 0.1, duration: 0.4 }}
-            whileHover={{ y: -4 }}
             className="group"
           >
-            <div className="glass rounded-2xl p-6 border border-white/10 hover:border-white/20 transition-all duration-300">
+            <div className="glass rounded-2xl p-6 border border-white/10 hover:border-white/20 transition-colors duration-300">
               <div className="flex flex-col md:flex-row md:items-start gap-4">
                 <div className="flex-1">
                   {/* Header */}
