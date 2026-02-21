@@ -65,7 +65,7 @@ const Experience = () => {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
+        viewport={{ once: true, margin: "-50px" }}
         transition={{ duration: 0.5 }}
         className="text-center mb-12"
       >
@@ -86,7 +86,7 @@ const Experience = () => {
             key={experience.company}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-30px" }}
             transition={{ delay: index * 0.1, duration: 0.4 }}
             className={`relative flex flex-col md:flex-row items-start gap-6 mb-8 ${
               index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
