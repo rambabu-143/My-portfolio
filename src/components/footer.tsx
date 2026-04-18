@@ -42,7 +42,7 @@ const Footer = () => {
       {/* Background decorations */}
       <div className="absolute inset-0 bg-grid opacity-30 pointer-events-none" />
       <motion.div
-        className="absolute bottom-0 left-1/4 w-64 h-64 bg-cyan-500/10 rounded-full blur-3xl"
+        className="absolute bottom-0 left-1/4 w-64 h-64 bg-blue-500/8 rounded-full blur-3xl"
         animate={{
           scale: [1, 1.2, 1],
           opacity: [0.3, 0.5, 0.3],
@@ -54,7 +54,7 @@ const Footer = () => {
         }}
       />
       <motion.div
-        className="absolute bottom-0 right-1/4 w-64 h-64 bg-purple-500/10 rounded-full blur-3xl"
+        className="absolute bottom-0 right-1/4 w-64 h-64 bg-blue-400/5 rounded-full blur-3xl"
         animate={{
           scale: [1.2, 1, 1.2],
           opacity: [0.5, 0.3, 0.5],

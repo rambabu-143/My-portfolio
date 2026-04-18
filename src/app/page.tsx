@@ -1,5 +1,6 @@
 import Herosection from "@/components/herosection";
 import Skills from "@/components/skills";
+import Services from "@/components/services";
 import Projects from "@/components/projects";
 import Experience from "@/components/experience";
 import ContactForm from "@/components/contact";
@@ -12,9 +13,8 @@ export default function Home() {
       {/* Animated background gradient */}
       <div className="fixed inset-0 -z-10">
         <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-background" />
-        <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-cyan-900/20 via-transparent to-transparent" />
-        <div className="absolute bottom-0 right-0 w-full h-full bg-[radial-gradient(ellipse_at_bottom_right,_var(--tw-gradient-stops))] from-purple-900/20 via-transparent to-transparent" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-pink-900/10 via-transparent to-transparent" />
+        <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-950/30 via-transparent to-transparent" />
+        <div className="absolute bottom-0 right-0 w-full h-full bg-[radial-gradient(ellipse_at_bottom_right,_var(--tw-gradient-stops))] from-blue-950/20 via-transparent to-transparent" />
       </div>
 
       {/* Navigation Tabs */}
@@ -36,6 +36,14 @@ export default function Home() {
       {/* Divider */}
       <div className="w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
 
+      {/* Services Section */}
+      <section id="services" className="py-20 px-6">
+        <Services />
+      </section>
+
+      {/* Divider */}
+      <div className="w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+
       {/* Projects Section */}
       <section id="projects" className="py-20 px-6">
         <div className="text-center mb-12">
@@ -43,7 +51,7 @@ export default function Home() {
             Projects
           </h2>
           <p className="text-gray-400 max-w-xl mx-auto">
-            Featured projects showcasing my work in GenAI and full-stack development
+            Production-shipped projects real systems used by real businesses
           </p>
         </div>
         <Projects />

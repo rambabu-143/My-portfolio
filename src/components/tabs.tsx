@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 const tabs = [
   { id: "hero", label: "Home" },
   { id: "skills", label: "Skills" },
+  { id: "services", label: "Services" },
   { id: "projects", label: "Projects" },
   { id: "experience", label: "Experience" },
   { id: "contact", label: "Contact" },
