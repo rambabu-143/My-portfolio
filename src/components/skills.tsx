@@ -18,6 +18,8 @@ const skillCategories = [
       { name: "LangChain", level: 80 },
       { name: "LangGraph", level: 80 },
       { name: "PydanticAI", level: 75 },
+      { name: "MCP Servers", level: 80 },
+      { name: "RAG Systems", level: 82 },
     ],
   },
   {
@@ -87,7 +89,7 @@ export default function Skills() {
             className="glass rounded-xl p-5 border border-white/10"
           >
             <h3 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-cyan-500" />
+              <span className="w-2 h-2 rounded-full bg-blue-500" />
               {category.title}
             </h3>
             <div className="space-y-3">
@@ -99,7 +101,7 @@ export default function Skills() {
                   </div>
                   <div className="h-1.5 bg-background rounded-full overflow-hidden">
                     <motion.div
-                      className="h-full bg-gradient-to-r from-cyan-500 to-purple-500"
+                      className="h-full bg-blue-500"
                       initial={{ width: 0 }}
                       whileInView={{ width: `${skill.level}%` }}
                       viewport={{ once: true }}
@@ -122,7 +124,7 @@ export default function Skills() {
         className="text-center mt-10"
       >
         <div className="inline-flex items-center gap-3 glass px-5 py-3 rounded-full border border-white/10">
-          <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+          <span className="w-2 h-2 rounded-full bg-blue-400 animate-pulse" />
           <span className="text-gray-400 text-sm">
             Currently Learning: <span className="text-white font-medium">Kubernetes</span> (deployments, services, scaling)
           </span>

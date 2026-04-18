@@ -3,6 +3,20 @@ import { motion } from "framer-motion";
 
 const experiences = [
   {
+    company: "Arohak.inc",
+    role: "Gen AI Engineer",
+    duration: "Apr 2026 - Present",
+    description:
+      "Building production-ready Gen AI systems and automation workflows. Designing and shipping AI-powered features, LLM pipelines, and agentic tools that drive real business outcomes.",
+    highlights: [
+      "Gen AI Engineering",
+      "AI Automation",
+      "Production LLM Systems",
+      "Current Role",
+    ],
+    color: "orange",
+  },
+  {
     company: "Cyepro Solutions",
     role: "Contract GenAI & Backend Engineer",
     duration: "Jul 2025 - Feb 2026",
@@ -79,7 +93,7 @@ const Experience = () => {
 
       <div className="relative max-w-3xl mx-auto">
         {/* Timeline line */}
-        <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-cyan-500 via-purple-500 to-pink-500 transform md:-translate-x-1/2 hidden md:block" />
+        <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-blue-500 via-white/20 to-transparent transform md:-translate-x-1/2 hidden md:block" />
 
         {experiences.map((experience, index) => (
           <motion.div
@@ -94,13 +108,7 @@ const Experience = () => {
           >
             {/* Timeline dot */}
             <div className={`absolute left-0 md:left-1/2 w-3 h-3 rounded-full transform -translate-x-1/2 z-10 hidden md:block ${
-              experience.color === "cyan"
-                ? "bg-cyan-500"
-                : experience.color === "purple"
-                ? "bg-purple-500"
-                : experience.color === "pink"
-                ? "bg-pink-500"
-                : "bg-teal-500"
+              experience.color === "orange" ? "bg-blue-500" : "bg-white/40"
             }`} />
 
             {/* Content */}
@@ -108,13 +116,9 @@ const Experience = () => {
               <div className="glass rounded-xl p-5 border border-white/10 hover:border-white/20 transition-colors">
                 {/* Duration badge */}
                 <span className={`inline-block px-3 py-1 rounded-full text-xs font-medium mb-3 ${
-                  experience.color === "cyan"
-                    ? "bg-cyan-500/20 text-cyan-400"
-                    : experience.color === "purple"
-                    ? "bg-purple-500/20 text-purple-400"
-                    : experience.color === "pink"
-                    ? "bg-pink-500/20 text-pink-400"
-                    : "bg-teal-500/20 text-teal-400"
+                  experience.color === "orange"
+                    ? "bg-blue-500/20 text-blue-400"
+                    : "bg-white/8 text-gray-400"
                 }`}>
                   {experience.duration}
                 </span>
@@ -123,13 +127,7 @@ const Experience = () => {
                   {experience.company}
                 </h3>
                 <h4 className={`text-sm font-semibold mb-2 ${
-                  experience.color === "cyan"
-                    ? "text-cyan-400"
-                    : experience.color === "purple"
-                    ? "text-purple-400"
-                    : experience.color === "pink"
-                    ? "text-pink-400"
-                    : "text-teal-400"
+                  experience.color === "orange" ? "text-blue-400" : "text-gray-400"
                 }`}>
                   {experience.role}
                 </h4>
@@ -144,13 +142,9 @@ const Experience = () => {
                     <span
                       key={highlight}
                       className={`px-2 py-0.5 text-xs font-medium rounded-full ${
-                        experience.color === "cyan"
-                          ? "bg-cyan-500/10 text-cyan-300"
-                          : experience.color === "purple"
-                          ? "bg-purple-500/10 text-purple-300"
-                          : experience.color === "pink"
-                          ? "bg-pink-500/10 text-pink-300"
-                          : "bg-teal-500/10 text-teal-300"
+                        experience.color === "orange"
+                          ? "bg-blue-500/10 text-blue-300"
+                          : "bg-white/5 text-gray-400"
                       }`}
                     >
                       {highlight}
