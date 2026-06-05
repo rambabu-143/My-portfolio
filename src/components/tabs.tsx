@@ -9,7 +9,7 @@ const tabs = [
   { id: "services", label: "Services" },
   { id: "projects", label: "Projects" },
   { id: "experience", label: "Experience" },
-  { id: "contact", label: "Contact" },
+  { id: "contact", label: "Connect" },
 ];
 
 const Tabs = () => {
@@ -55,14 +55,14 @@ const Tabs = () => {
               onClick={() => handleTabClick(tab.id)}
               className={`relative px-4 py-2 text-sm font-medium rounded-full transition-colors whitespace-nowrap ${
                 activeTab === tab.id
-                  ? "text-white"
-                  : "text-gray-400 hover:text-white"
+                  ? "text-violet-200"
+                  : "text-gray-500 hover:text-gray-200"
               }`}
             >
               {activeTab === tab.id && (
                 <motion.div
                   layoutId="activeTab"
-                  className="absolute inset-0 bg-white/10 rounded-full"
+                  className="absolute inset-0 bg-violet-500/20 rounded-full shadow-[0_0_10px_rgba(139,92,246,0.3)]"
                   transition={{ type: "spring", duration: 0.3 }}
                 />
               )}
