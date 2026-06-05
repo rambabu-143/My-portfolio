@@ -398,7 +398,7 @@ const Herosection = () => {
               <div className="absolute -inset-4 rounded-full bg-violet-600/20 blur-2xl animate-pulse-slow" />
               <div className="absolute -inset-0.5 rounded-full bg-gradient-to-br from-violet-500/40 via-transparent to-violet-500/20" />
               <div className="relative w-72 h-72 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border border-violet-500/25">
-                <Image src="/hero.png" alt="Rambabu" fill className="object-cover" priority />
+                <Image src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ''}/hero.png`} alt="Rambabu" fill className="object-cover" priority />
               </div>
             </div>
           </motion.div>
