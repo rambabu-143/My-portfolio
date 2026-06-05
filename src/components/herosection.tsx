@@ -92,10 +92,10 @@ const SEGS = P1.flatMap((coords, i) => [
 const tickPitch = (i: number) => Math.round(380 + i * 30);
 
 // ── Timing (ms) ───────────────────────────────────────────────────────────────
-const STAGGER    = 68;   // ms between each edge
-const SNAP       = 82;   // ms to draw each edge (snappy easeIn)
-const LOCK_AT    = 100 + (SEGS.length - 1) * STAGGER + SNAP + 180; // ~1970ms
-const DONE_AT    = LOCK_AT + 1300;                                   // ~3270ms
+const STAGGER    = 42;   // ms between each edge
+const SNAP       = 55;   // ms to draw each edge (snappy easeIn)
+const LOCK_AT    = 100 + (SEGS.length - 1) * STAGGER + SNAP + 80;  // ~1190ms
+const DONE_AT    = LOCK_AT + 500;                                    // ~1690ms
 
 // ── Component ─────────────────────────────────────────────────────────────────
 const Herosection = () => {
@@ -106,28 +106,34 @@ const Herosection = () => {
 
   const skip = () => setSplashDone(true);
 
+  // Unlock AudioContext on first tap/click (handles hard-refresh autoplay block)
+  useEffect(() => {
+    const unlock = () => {
+      const ctx = audioRef.current;
+      if (ctx?.state === 'suspended') ctx.resume().catch(() => {});
+    };
+    window.addEventListener('pointerdown', unlock, { once: true });
+    return () => window.removeEventListener('pointerdown', unlock);
+  }, []);
+
   useEffect(() => {
     const ctx = initAudio(audioRef);
     const T: ReturnType<typeof setTimeout>[] = [];
 
-    // Kick off drawing
     T.push(setTimeout(() => setStarted(true), 100));
 
-    // Electric tick per edge
-    SEGS.forEach((_, i) => {
+    SEGS.forEach((_, i) =>
       T.push(setTimeout(
         () => { if (ctx) snapTick(ctx, tickPitch(i)); },
         100 + i * STAGGER + 5
-      ));
-    });
+      ))
+    );
 
-    // Lock-in at the end
     T.push(setTimeout(() => {
       setLocked(true);
       if (ctx) lockSound(ctx);
     }, LOCK_AT));
 
-    // Fade out splash
     T.push(setTimeout(() => setSplashDone(true), DONE_AT));
 
     return () => T.forEach(clearTimeout);
@@ -146,7 +152,7 @@ const Herosection = () => {
             initial={{ opacity: 1 }}
             exit={{ opacity: 0, scale: 1.02 }}
             transition={{ duration: 0.6, ease: 'easeInOut' }}
-            className="fixed inset-0 z-50 flex items-center justify-center bg-[#04040f] overflow-hidden cursor-pointer select-none"
+            className="fixed inset-0 z-50 flex items-center justify-center bg-[#06060e] overflow-hidden cursor-pointer select-none"
             onClick={skip}
           >
             {/* subtle CRT scanlines */}
@@ -163,7 +169,7 @@ const Herosection = () => {
               className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[420px] h-[420px] rounded-full pointer-events-none"
               style={{
                 background:
-                  'radial-gradient(circle, rgba(59,130,246,0.4) 0%, rgba(96,165,250,0.15) 50%, transparent 70%)',
+                  'radial-gradient(circle, rgba(139,92,246,0.45) 0%, rgba(124,58,237,0.18) 50%, transparent 70%)',
                 filter: 'blur(55px)',
               }}
               animate={{ opacity: locked ? 1 : 0 }}
@@ -176,7 +182,7 @@ const Herosection = () => {
               style={{ border: 'none', outline: 'none', background: 'transparent' }}
               animate={{
                 filter: locked
-                  ? 'drop-shadow(0 0 12px rgba(59,130,246,0.8)) drop-shadow(0 0 30px rgba(96,165,250,0.4))'
+                  ? 'drop-shadow(0 0 12px rgba(139,92,246,0.9)) drop-shadow(0 0 32px rgba(167,139,250,0.45))'
                   : 'none',
               }}
               transition={{ duration: 0.5 }}
@@ -193,13 +199,13 @@ const Herosection = () => {
                   {/* Gradients in userSpaceOnUse so colour is consistent per position */}
                   <linearGradient id="sn_g1" x1="0" y1="0" x2="152" y2="188" gradientUnits="userSpaceOnUse">
                     <stop offset="0%"   stopColor="#ffffff" />
-                    <stop offset="50%"  stopColor="#93c5fd" />
-                    <stop offset="100%" stopColor="#3b82f6" />
+                    <stop offset="50%"  stopColor="#ddd6fe" />
+                    <stop offset="100%" stopColor="#8b5cf6" />
                   </linearGradient>
                   <linearGradient id="sn_g2" x1="152" y1="0" x2="0" y2="188" gradientUnits="userSpaceOnUse">
-                    <stop offset="0%"   stopColor="#e2e8f0" />
-                    <stop offset="50%"  stopColor="#60a5fa" />
-                    <stop offset="100%" stopColor="#2563eb" />
+                    <stop offset="0%"   stopColor="#f5f3ff" />
+                    <stop offset="50%"  stopColor="#c4b5fd" />
+                    <stop offset="100%" stopColor="#7c3aed" />
                   </linearGradient>
                 </defs>
 
@@ -255,8 +261,9 @@ const Herosection = () => {
       ══════════════════════════════════════════════════════════ */}
 
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-40 -right-40 w-96 h-96 rounded-full bg-blue-500/8 blur-3xl" />
-        <div className="absolute -bottom-40 -left-40 w-96 h-96 rounded-full bg-blue-400/5 blur-3xl" />
+        <div className="absolute -top-40 -right-40 w-[500px] h-[500px] rounded-full bg-violet-600/10 blur-3xl" />
+        <div className="absolute -bottom-40 -left-40 w-[500px] h-[500px] rounded-full bg-violet-500/8 blur-3xl" />
+        <div className="absolute top-1/3 left-1/4 w-64 h-64 rounded-full bg-amber-500/5 blur-3xl" />
       </div>
 
       <div className="relative z-10 container mx-auto px-6 py-20">
@@ -275,8 +282,8 @@ const Herosection = () => {
               transition={{ delay: 0.3 }}
               className="inline-block mb-6"
             >
-              <span className="px-4 py-2 rounded-full text-sm font-medium glass border border-blue-500/30 text-blue-400 flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse" />
+              <span className="px-4 py-2 rounded-full text-sm font-medium bg-amber-500/10 border border-amber-500/30 text-amber-300 flex items-center gap-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
                 Gen AI Engineer · Building production AI systems
               </span>
             </motion.div>
@@ -302,9 +309,9 @@ const Herosection = () => {
               </h2>
               <p className="text-gray-400 text-lg leading-relaxed max-w-xl mx-auto lg:mx-0">
                 I build{" "}
-                <span className="text-blue-400 font-medium">AI automation systems</span>,{" "}
-                <span className="text-white font-medium">voice agents</span>, and{" "}
-                production-grade full-stack apps {" "}
+                <span className="text-violet-300 font-semibold">AI automation systems</span>,{" "}
+                <span className="text-amber-300 font-semibold">voice agents</span>, and{" "}
+                production-grade full-stack apps{" "}
                 shipped to real users, not just demos.
               </p>
             </motion.div>
@@ -358,7 +365,7 @@ const Herosection = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.1 }}
-                  className="w-12 h-12 rounded-xl glass flex items-center justify-center text-gray-400 hover:text-white transition-colors border border-white/10 hover:border-white/30"
+                  className="w-12 h-12 rounded-xl glass flex items-center justify-center text-gray-400 hover:text-violet-300 transition-colors border border-white/8 hover:border-violet-500/40"
                 >
                   {social.icon === "github" && (
                     <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -388,9 +395,10 @@ const Herosection = () => {
             className="lg:w-1/2 flex justify-center"
           >
             <div className="relative">
-              <div className="absolute -inset-1 rounded-full bg-blue-500/20 blur-xl" />
-              <div className="relative w-72 h-72 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border border-white/10">
-                <Image src="/My-portfolio/hero.png" alt="Rambabu" fill className="object-cover" priority />
+              <div className="absolute -inset-4 rounded-full bg-violet-600/20 blur-2xl animate-pulse-slow" />
+              <div className="absolute -inset-0.5 rounded-full bg-gradient-to-br from-violet-500/40 via-transparent to-violet-500/20" />
+              <div className="relative w-72 h-72 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border border-violet-500/25">
+                <Image src="/hero.png" alt="Rambabu" fill className="object-cover" priority />
               </div>
             </div>
           </motion.div>

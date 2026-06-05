@@ -4,61 +4,56 @@ import { motion } from "framer-motion";
 const skillCategories = [
   {
     title: "Languages",
-    skills: [
-      { name: "Python", level: 90 },
-      { name: "TypeScript", level: 88 },
-      { name: "JavaScript", level: 90 },
-    ],
+    skills: ["Python", "TypeScript", "JavaScript"],
+    color: "sky",
   },
   {
-    title: "Agentic/GenAI",
-    skills: [
-      { name: "Vercel AI SDK", level: 85 },
-      { name: "Mastra AI", level: 85 },
-      { name: "LangChain", level: 80 },
-      { name: "LangGraph", level: 80 },
-      { name: "PydanticAI", level: 75 },
-      { name: "MCP Servers", level: 80 },
-      { name: "RAG Systems", level: 82 },
-    ],
+    title: "Agentic / GenAI",
+    skills: ["Vercel AI SDK", "Mastra AI", "LangChain", "LangGraph", "PydanticAI", "MCP Servers", "RAG Systems"],
+    color: "violet",
   },
   {
     title: "Backend",
-    skills: [
-      { name: "Node.js", level: 85 },
-      { name: "Express.js", level: 85 },
-      { name: "FastAPI", level: 80 },
-      { name: "REST APIs", level: 90 },
-    ],
+    skills: ["Node.js", "Express.js", "FastAPI", "REST APIs"],
+    color: "emerald",
   },
   {
     title: "Frontend",
-    skills: [
-      { name: "React", level: 90 },
-      { name: "Next.js", level: 88 },
-      { name: "Tailwind CSS", level: 92 },
-      { name: "React Native", level: 75 },
-    ],
+    skills: ["React", "Next.js", "Tailwind CSS", "React Native"],
+    color: "cyan",
   },
   {
     title: "Databases",
-    skills: [
-      { name: "PostgreSQL", level: 80 },
-      { name: "Supabase", level: 82 },
-      { name: "Firebase", level: 85 },
-      { name: "MongoDB", level: 78 },
-    ],
+    skills: ["PostgreSQL", "Supabase", "Firebase", "MongoDB"],
+    color: "amber",
   },
   {
     title: "DevOps",
-    skills: [
-      { name: "Docker", level: 75 },
-      { name: "Vercel", level: 90 },
-      { name: "Git", level: 88 },
-      { name: "Kubernetes", level: 50 },
-    ],
+    skills: ["Docker", "Vercel", "Git"],
+    color: "pink",
+  },
+  {
+    title: "Automations",
+    skills: ["n8n", "Make.com", "Zapier"],
+    color: "orange",
   },
 ];
+
+const colorConfig: Record<string, {
+  dot: string;
+  title: string;
+  leftBorder: string;
+  pillHover: string;
+  cardBorder: string;
+}> = {
+  sky:     { dot: "bg-sky-400",     title: "text-sky-400",     leftBorder: "border-l-sky-500/50",     pillHover: "hover:border-sky-500/40 hover:text-sky-300",     cardBorder: "border-sky-500/10 hover:border-sky-500/25"     },
+  violet:  { dot: "bg-violet-400",  title: "text-violet-400",  leftBorder: "border-l-violet-500/50",  pillHover: "hover:border-violet-500/40 hover:text-violet-300",  cardBorder: "border-violet-500/10 hover:border-violet-500/25"  },
+  emerald: { dot: "bg-emerald-400", title: "text-emerald-400", leftBorder: "border-l-emerald-500/50", pillHover: "hover:border-emerald-500/40 hover:text-emerald-300", cardBorder: "border-emerald-500/10 hover:border-emerald-500/25" },
+  cyan:    { dot: "bg-cyan-400",    title: "text-cyan-400",    leftBorder: "border-l-cyan-500/50",    pillHover: "hover:border-cyan-500/40 hover:text-cyan-300",    cardBorder: "border-cyan-500/10 hover:border-cyan-500/25"    },
+  amber:   { dot: "bg-amber-400",   title: "text-amber-400",   leftBorder: "border-l-amber-500/50",   pillHover: "hover:border-amber-500/40 hover:text-amber-300",   cardBorder: "border-amber-500/10 hover:border-amber-500/25"   },
+  pink:    { dot: "bg-pink-400",    title: "text-pink-400",    leftBorder: "border-l-pink-500/50",    pillHover: "hover:border-pink-500/40 hover:text-pink-300",    cardBorder: "border-pink-500/10 hover:border-pink-500/25"    },
+  orange:  { dot: "bg-orange-400",  title: "text-orange-400",  leftBorder: "border-l-orange-500/50",  pillHover: "hover:border-orange-500/40 hover:text-orange-300",  cardBorder: "border-orange-500/10 hover:border-orange-500/25"  },
+};
 
 export default function Skills() {
   return (
@@ -78,44 +73,37 @@ export default function Skills() {
         </p>
       </motion.div>
 
-      <div className="max-w-5xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {skillCategories.map((category, catIndex) => (
-          <motion.div
-            key={category.title}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-30px" }}
-            transition={{ delay: catIndex * 0.05, duration: 0.4 }}
-            className="glass rounded-xl p-5 border border-white/10"
-          >
-            <h3 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-blue-500" />
-              {category.title}
-            </h3>
-            <div className="space-y-3">
-              {category.skills.map((skill, skillIndex) => (
-                <div key={skill.name}>
-                  <div className="flex justify-between text-sm mb-1">
-                    <span className="text-gray-300">{skill.name}</span>
-                    <span className="text-gray-500">{skill.level}%</span>
-                  </div>
-                  <div className="h-1.5 bg-background rounded-full overflow-hidden">
-                    <motion.div
-                      className="h-full bg-blue-500"
-                      initial={{ width: 0 }}
-                      whileInView={{ width: `${skill.level}%` }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.6, delay: skillIndex * 0.03 }}
-                    />
-                  </div>
-                </div>
-              ))}
-            </div>
-          </motion.div>
-        ))}
+      <div className="max-w-5xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+        {skillCategories.map((category, catIndex) => {
+          const cfg = colorConfig[category.color];
+          return (
+            <motion.div
+              key={category.title}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-30px" }}
+              transition={{ delay: catIndex * 0.05, duration: 0.4 }}
+              className={`glass rounded-xl p-5 border-l-2 border ${cfg.leftBorder} ${cfg.cardBorder} transition-all duration-300`}
+            >
+              <h3 className={`text-sm font-semibold mb-4 flex items-center gap-2 uppercase tracking-wider ${cfg.title}`}>
+                <span className={`w-1.5 h-1.5 rounded-full ${cfg.dot}`} />
+                {category.title}
+              </h3>
+              <div className="flex flex-wrap gap-2">
+                {category.skills.map((skill) => (
+                  <span
+                    key={skill}
+                    className={`px-3 py-1.5 text-sm text-gray-400 bg-white/4 border border-white/8 rounded-lg transition-all duration-200 cursor-default ${cfg.pillHover}`}
+                  >
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </motion.div>
+          );
+        })}
       </div>
 
-      {/* Currently Learning */}
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
@@ -123,10 +111,10 @@ export default function Skills() {
         transition={{ delay: 0.3 }}
         className="text-center mt-10"
       >
-        <div className="inline-flex items-center gap-3 glass px-5 py-3 rounded-full border border-white/10">
-          <span className="w-2 h-2 rounded-full bg-blue-400 animate-pulse" />
+        <div className="inline-flex items-center gap-3 glass px-5 py-3 rounded-full border border-violet-500/15">
+          <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
           <span className="text-gray-400 text-sm">
-            Currently Learning: <span className="text-white font-medium">Kubernetes</span> (deployments, services, scaling)
+            Currently deep in: <span className="text-white font-medium">AI Agents</span>, multi-agent systems, and voice AI pipelines
           </span>
         </div>
       </motion.div>
