@@ -152,7 +152,7 @@ const Herosection = () => {
             initial={{ opacity: 1 }}
             exit={{ opacity: 0, scale: 1.02 }}
             transition={{ duration: 0.6, ease: 'easeInOut' }}
-            className="fixed inset-0 z-50 flex items-center justify-center bg-[#06060e] overflow-hidden cursor-pointer select-none"
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black overflow-hidden cursor-pointer select-none"
             onClick={skip}
           >
             {/* subtle CRT scanlines */}
@@ -169,7 +169,7 @@ const Herosection = () => {
               className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[420px] h-[420px] rounded-full pointer-events-none"
               style={{
                 background:
-                  'radial-gradient(circle, rgba(139,92,246,0.45) 0%, rgba(124,58,237,0.18) 50%, transparent 70%)',
+                  'radial-gradient(circle, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.05) 50%, transparent 70%)',
                 filter: 'blur(55px)',
               }}
               animate={{ opacity: locked ? 1 : 0 }}
@@ -182,7 +182,7 @@ const Herosection = () => {
               style={{ border: 'none', outline: 'none', background: 'transparent' }}
               animate={{
                 filter: locked
-                  ? 'drop-shadow(0 0 12px rgba(139,92,246,0.9)) drop-shadow(0 0 32px rgba(167,139,250,0.45))'
+                  ? 'drop-shadow(0 0 12px rgba(255,255,255,0.7)) drop-shadow(0 0 32px rgba(255,255,255,0.25))'
                   : 'none',
               }}
               transition={{ duration: 0.5 }}
@@ -199,13 +199,13 @@ const Herosection = () => {
                   {/* Gradients in userSpaceOnUse so colour is consistent per position */}
                   <linearGradient id="sn_g1" x1="0" y1="0" x2="152" y2="188" gradientUnits="userSpaceOnUse">
                     <stop offset="0%"   stopColor="#ffffff" />
-                    <stop offset="50%"  stopColor="#ddd6fe" />
-                    <stop offset="100%" stopColor="#8b5cf6" />
+                    <stop offset="50%"  stopColor="#cccccc" />
+                    <stop offset="100%" stopColor="#888888" />
                   </linearGradient>
                   <linearGradient id="sn_g2" x1="152" y1="0" x2="0" y2="188" gradientUnits="userSpaceOnUse">
-                    <stop offset="0%"   stopColor="#f5f3ff" />
-                    <stop offset="50%"  stopColor="#c4b5fd" />
-                    <stop offset="100%" stopColor="#7c3aed" />
+                    <stop offset="0%"   stopColor="#ffffff" />
+                    <stop offset="50%"  stopColor="#aaaaaa" />
+                    <stop offset="100%" stopColor="#666666" />
                   </linearGradient>
                 </defs>
 
@@ -261,9 +261,8 @@ const Herosection = () => {
       ══════════════════════════════════════════════════════════ */}
 
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-40 -right-40 w-[500px] h-[500px] rounded-full bg-violet-600/10 blur-3xl" />
-        <div className="absolute -bottom-40 -left-40 w-[500px] h-[500px] rounded-full bg-violet-500/8 blur-3xl" />
-        <div className="absolute top-1/3 left-1/4 w-64 h-64 rounded-full bg-amber-500/5 blur-3xl" />
+        <div className="absolute -top-40 -right-40 w-[500px] h-[500px] rounded-full bg-white/5 blur-3xl" />
+        <div className="absolute -bottom-40 -left-40 w-[500px] h-[500px] rounded-full bg-white/3 blur-3xl" />
       </div>
 
       <div className="relative z-10 container mx-auto px-6 py-20">
@@ -282,8 +281,8 @@ const Herosection = () => {
               transition={{ delay: 0.3 }}
               className="inline-block mb-6"
             >
-              <span className="px-4 py-2 rounded-full text-sm font-medium bg-amber-500/10 border border-amber-500/30 text-amber-300 flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
+              <span className="px-4 py-2 rounded-full text-sm font-medium bg-white/8 border border-white/20 text-white/80 flex items-center gap-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
                 Gen AI Engineer · Building production AI systems
               </span>
             </motion.div>
@@ -304,13 +303,13 @@ const Herosection = () => {
               transition={{ delay: 0.5 }}
               className="space-y-4 mb-8"
             >
-              <h2 className="text-xl md:text-2xl font-semibold text-gray-300">
+              <h2 className="text-xl md:text-2xl font-semibold text-white/70">
                 Gen AI Engineer · Full-Stack Builder
               </h2>
-              <p className="text-gray-400 text-lg leading-relaxed max-w-xl mx-auto lg:mx-0">
+              <p className="text-white/50 text-lg leading-relaxed max-w-xl mx-auto lg:mx-0">
                 I build{" "}
-                <span className="text-violet-300 font-semibold">AI automation systems</span>,{" "}
-                <span className="text-amber-300 font-semibold">voice agents</span>, and{" "}
+                <span className="text-white font-semibold">AI automation systems</span>,{" "}
+                <span className="text-white font-semibold">voice agents</span>, and{" "}
                 production-grade full-stack apps{" "}
                 shipped to real users, not just demos.
               </p>
@@ -365,7 +364,7 @@ const Herosection = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.1 }}
-                  className="w-12 h-12 rounded-xl glass flex items-center justify-center text-gray-400 hover:text-violet-300 transition-colors border border-white/8 hover:border-violet-500/40"
+                  className="w-12 h-12 rounded-xl glass flex items-center justify-center text-white/50 hover:text-white transition-colors border border-white/8 hover:border-white/30"
                 >
                   {social.icon === "github" && (
                     <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -395,9 +394,9 @@ const Herosection = () => {
             className="lg:w-1/2 flex justify-center"
           >
             <div className="relative">
-              <div className="absolute -inset-4 rounded-full bg-violet-600/20 blur-2xl animate-pulse-slow" />
-              <div className="absolute -inset-0.5 rounded-full bg-gradient-to-br from-violet-500/40 via-transparent to-violet-500/20" />
-              <div className="relative w-72 h-72 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border border-violet-500/25">
+              <div className="absolute -inset-4 rounded-full bg-white/8 blur-2xl animate-pulse-slow" />
+              <div className="absolute -inset-0.5 rounded-full bg-gradient-to-br from-white/20 via-transparent to-white/10" />
+              <div className="relative w-72 h-72 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border border-white/20">
                 <Image src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ''}/hero.png`} alt="Rambabu" fill className="object-cover" priority />
               </div>
             </div>
