@@ -8,10 +8,10 @@ const socials = [
     description: "Professional updates & AI insights",
     href: "https://www.linkedin.com/in/rambabuarabandi",
     colorClasses: {
-      card: "border-sky-500/15 hover:border-sky-500/35 hover:bg-sky-500/5",
-      icon: "bg-sky-500/12 text-sky-400 group-hover:bg-sky-500/20",
-      label: "text-sky-400",
-      handle: "group-hover:text-sky-300",
+      card: "border-white/8 hover:border-white/25 hover:bg-white/4",
+      icon: "bg-white/8 text-white/60 group-hover:bg-white/12",
+      label: "text-white/50",
+      handle: "group-hover:text-white",
     },
     icon: (
       <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
@@ -25,10 +25,10 @@ const socials = [
     description: "Projects, code & open source work",
     href: "https://github.com/rambabu-143",
     colorClasses: {
-      card: "border-violet-500/15 hover:border-violet-500/35 hover:bg-violet-500/5",
-      icon: "bg-violet-500/12 text-violet-400 group-hover:bg-violet-500/20",
-      label: "text-violet-400",
-      handle: "group-hover:text-violet-300",
+      card: "border-white/8 hover:border-white/25 hover:bg-white/4",
+      icon: "bg-white/8 text-white/60 group-hover:bg-white/12",
+      label: "text-white/50",
+      handle: "group-hover:text-white",
     },
     icon: (
       <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
@@ -42,9 +42,9 @@ const socials = [
     description: "Thoughts on AI, building in public",
     href: "https://x.com/rambabu_143",
     colorClasses: {
-      card: "border-white/10 hover:border-white/25 hover:bg-white/3",
-      icon: "bg-white/8 text-gray-300 group-hover:bg-white/12",
-      label: "text-gray-300",
+      card: "border-white/8 hover:border-white/25 hover:bg-white/4",
+      icon: "bg-white/8 text-white/60 group-hover:bg-white/12",
+      label: "text-white/50",
       handle: "group-hover:text-white",
     },
     icon: (
@@ -59,10 +59,10 @@ const socials = [
     description: "For collaborations & opportunities",
     href: "mailto:rambabuarabandi2001@gmail.com",
     colorClasses: {
-      card: "border-amber-500/15 hover:border-amber-500/35 hover:bg-amber-500/5",
-      icon: "bg-amber-500/12 text-amber-400 group-hover:bg-amber-500/20",
-      label: "text-amber-400",
-      handle: "group-hover:text-amber-300",
+      card: "border-white/8 hover:border-white/25 hover:bg-white/4",
+      icon: "bg-white/8 text-white/60 group-hover:bg-white/12",
+      label: "text-white/50",
+      handle: "group-hover:text-white",
     },
     icon: (
       <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -82,10 +82,10 @@ const Connect = () => {
         transition={{ duration: 0.5 }}
         className="text-center mb-14"
       >
-        <h2 className="text-3xl md:text-4xl font-bold mb-4 gradient-text">
+        <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
           Let&apos;s Connect
         </h2>
-        <p className="text-gray-400 max-w-xl mx-auto">
+        <p className="text-white/50 max-w-xl mx-auto">
           No forms. Just find me where I&apos;m actually active.
         </p>
       </motion.div>
@@ -114,7 +114,7 @@ const Connect = () => {
               <p className={`text-white font-medium truncate transition-colors duration-200 ${social.colorClasses.handle}`}>
                 {social.handle}
               </p>
-              <p className="text-gray-500 text-xs mt-0.5">{social.description}</p>
+              <p className="text-white/30 text-xs mt-0.5">{social.description}</p>
             </div>
             <svg
               className="w-4 h-4 text-gray-600 group-hover:text-gray-400 shrink-0 transition-all duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"

@@ -53,19 +53,13 @@ const Projects = () => {
                     <h3 className="text-xl font-bold text-white group-hover:gradient-text transition-all">
                       {project.title}
                     </h3>
-                    <span className={`px-2 py-0.5 text-xs font-medium rounded-full ${
-                      project.color === "cyan" 
-                        ? "bg-cyan-500/20 text-cyan-400" 
-                        : project.color === "purple"
-                        ? "bg-purple-500/20 text-purple-400"
-                        : "bg-pink-500/20 text-pink-400"
-                    }`}>
+                    <span className="px-2 py-0.5 text-xs font-medium rounded-full bg-white/10 text-white/60">
                       {project.status}
                     </span>
                   </div>
 
                   {/* Description */}
-                  <p className="text-gray-400 text-sm leading-relaxed mb-4">
+                  <p className="text-white/50 text-sm leading-relaxed mb-4">
                     {project.description}
                   </p>
 
@@ -74,13 +68,7 @@ const Projects = () => {
                     {project.tags.map((tag) => (
                       <span
                         key={tag}
-                        className={`px-3 py-1 text-xs font-medium rounded-full border ${
-                          project.color === "cyan"
-                            ? "border-cyan-500/30 text-cyan-400 bg-cyan-500/10"
-                            : project.color === "purple"
-                            ? "border-purple-500/30 text-purple-400 bg-purple-500/10"
-                            : "border-pink-500/30 text-pink-400 bg-pink-500/10"
-                        }`}
+                        className="px-3 py-1 text-xs font-medium rounded-full border border-white/15 text-white/60 bg-white/5"
                       >
                         {tag}
                       </span>
@@ -93,13 +81,7 @@ const Projects = () => {
                       href={project.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={`inline-flex items-center gap-2 text-sm font-medium transition-colors ${
-                        project.color === "cyan"
-                          ? "text-cyan-400 hover:text-cyan-300"
-                          : project.color === "purple"
-                          ? "text-purple-400 hover:text-purple-300"
-                          : "text-pink-400 hover:text-pink-300"
-                      }`}
+                      className="inline-flex items-center gap-2 text-sm font-medium transition-colors text-white/60 hover:text-white"
                     >
                       View Project
                       <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">

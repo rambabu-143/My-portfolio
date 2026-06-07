@@ -69,10 +69,10 @@ const Services = () => {
         transition={{ duration: 0.5 }}
         className="text-center mb-14"
       >
-        <h2 className="text-3xl md:text-4xl font-bold mb-4 gradient-text">
+        <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
           What I Build
         </h2>
-        <p className="text-gray-400 max-w-xl mx-auto">
+        <p className="text-white/50 max-w-xl mx-auto">
           Production AI systems, voice agents, and full-stack apps  shipped to real businesses, not just prototypes.
         </p>
       </motion.div>
@@ -85,17 +85,17 @@ const Services = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-30px" }}
             transition={{ delay: index * 0.08, duration: 0.4 }}
-            className="glass rounded-2xl p-6 border border-white/8 hover:border-blue-500/30 transition-all duration-300 group"
+            className="glass rounded-2xl p-6 border border-white/8 hover:border-white/25 transition-all duration-300 group"
           >
-            <div className="w-11 h-11 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center mb-4 group-hover:bg-blue-500/15 transition-colors">
+            <div className="w-11 h-11 rounded-xl bg-white/8 text-white/70 flex items-center justify-center mb-4 group-hover:bg-white/12 transition-colors">
               {service.icon}
             </div>
             <h3 className="text-lg font-bold text-white mb-2">{service.title}</h3>
-            <p className="text-gray-400 text-sm leading-relaxed mb-4">{service.description}</p>
+            <p className="text-white/50 text-sm leading-relaxed mb-4">{service.description}</p>
             <ul className="space-y-1.5">
               {service.bullets.map((b) => (
-                <li key={b} className="flex items-center gap-2 text-sm text-gray-300">
-                  <span className="w-1 h-1 rounded-full shrink-0 bg-blue-400" />
+                <li key={b} className="flex items-center gap-2 text-sm text-white/70">
+                  <span className="w-1 h-1 rounded-full shrink-0 bg-white/60" />
                   {b}
                 </li>
               ))}
