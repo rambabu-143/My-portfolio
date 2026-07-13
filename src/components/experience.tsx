@@ -3,73 +3,46 @@ import { motion } from "framer-motion";
 
 const experiences = [
   {
-    company: "Arohak.inc",
-    role: "Gen AI Engineer",
+    company: "Arohak Inc. (via Cognizant, J&J)",
+    role: "AI Engineer and Solutions Architect",
     duration: "Mar 2026 - Present",
     description:
-      "Building production-ready Gen AI systems and automation workflows. Designing and shipping AI-powered features, LLM pipelines, and agentic tools that drive real business outcomes.",
+      "Designed the end-to-end architecture for a secure enterprise RAG pipeline retrieval strategy, schema validation, structured output contracts, and multi-stage document workflows. Defined reusable agent architecture standards (tool contracts, output validation, prompt structure) and built n8n automation workflows with webhook-driven agent triggers. Led technical hiring for GenAI engineer roles and mentored junior engineers on production-readiness.",
     highlights: [
-      "Gen AI Engineering",
-      "AI Automation",
-      "Production LLM Systems",
-      "Current Role",
+      "Enterprise RAG Architecture",
+      "Agent Design Standards",
+      "n8n Automation",
+      "Technical Hiring & Mentoring",
     ],
     color: "amber",
   },
   {
     company: "Cyepro Solutions",
-    role: "Contract GenAI & Backend Engineer",
+    role: "Generative AI Engineer",
     duration: "Jul 2025 - Feb 2026",
     description:
-      "Built and shipped Zaya, a real-time dealership voice agent integrated into Cyepro DMS. Implemented tool-using agent workflows with routing, state, and memory-driven steps. Designed structured tool contracts with validation and fallback handling, reducing tool failure cases by 25%.",
+      "Architected and shipped Zaya, a production real-time voice AI agent for a US auto dealership DMS platform, handling 500+ daily customer interactions. Designed the full voice pipeline STT ingestion, LLM tool-calling, TTS delivery, real-time turn management on LiveKit Agents. Built multi-tool agentic workflows with dynamic routing and memory-driven conversations, plus resilience patterns (timeouts, retries, fallback routing) and the full DMS integration layer.",
     highlights: [
-      "Zaya Voice Agent (Beta)",
-      "Vercel AI SDK · LangGraph",
-      "FastAPI · Supabase · Node.js",
-      "25% reduction in failures",
+      "Zaya Voice Agent · 500+ daily calls",
+      "LiveKit Agents · LangGraph",
+      "FastAPI · Supabase · Vercel AI SDK",
+      "DMS Integration & Resilience",
     ],
     color: "cyan",
-  },
-  {
-    company: "Genie AI",
-    role: "GenAI Developer / Product-focused Engineer",
-    duration: "Apr 2025 - Jun 2025",
-    description:
-      "Built agentic product features including routing, tool calling, and structured outputs for production workflows. Implemented streaming UX patterns with timeouts and fallback states, reducing timeouts by 20%.",
-    highlights: [
-      "Agentic features",
-      "Streaming UX",
-      "20% timeout reduction",
-      "Clean API contracts",
-    ],
-    color: "violet",
   },
   {
     company: "Ordermatic Technologies",
     role: "Software Development Engineer II",
     duration: "Apr 2024 - Mar 2025",
     description:
-      "Worked on a live restaurant POS product across billing, CRM, inventory, reporting, and payments. Delivered full-stack features and supported production releases, bug fixes, and stability improvements. Reduced repeated defects by 10% through improved edge-case handling.",
+      "Contributed full-stack to a live restaurant POS system across billing, CRM, and inventory React frontend and Node.js/Express backend. Reduced production defects by 10% through systematic edge-case handling and improved test coverage across core billing flows.",
     highlights: [
       "Full-stack development",
       "POS Product",
       "10% defect reduction",
-      "Production releases",
+      "React · Node.js/Express",
     ],
     color: "pink",
-  },
-  {
-    company: "Gymclan Health & Fitness",
-    role: "Software Development Engineer Intern",
-    duration: "Jan 2024 - Mar 2024",
-    description:
-      "Built UI screens and backend flows. Contributed to production-oriented development and releases.",
-    highlights: [
-      "UI development",
-      "Backend flows",
-      "Production releases",
-    ],
-    color: "teal",
   },
 ];
 
