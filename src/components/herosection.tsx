@@ -3,6 +3,7 @@ import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
+import { P1, P2 } from "./logo";
 
 // ── Audio ─────────────────────────────────────────────────────────────────────
 
@@ -50,37 +51,7 @@ function lockSound(ctx: AudioContext) {
 }
 
 // ── Logo segments ─────────────────────────────────────────────────────────────
-// Each entry: [x1, y1, x2, y2] — derived by parsing the original SVG paths
-
-const P1: [number, number, number, number][] = [
-  [125, 101.5, 125,  35.5 ],  // V 35.5
-  [125,  35.5,  58.5, 0   ],  // L 58.5 0
-  [ 58.5,  0,    0,  35.5 ],  // L 0 35.5
-  [  0,   35.5, 125, 101.5],  // L 125 101.5
-  [125, 101.5,  98, 122.5 ],  // L 98 122.5
-  [ 98, 122.5, 146, 152   ],  // L 146 152
-  [146, 152,   114, 173   ],  // L 114 173
-  [114, 173,    58.5, 144.5], // L 58.5 144.5
-  [ 58.5, 144.5, 0,  181.5],  // L 0 181.5
-  [  0,  181.5,  0,  110  ],  // V 110
-  [  0,  110,   31.5, 88  ],  // L 31.5 88
-  [ 31.5,  88,  98,  122.5],  // L 98 122.5
-];
-
-const P2: [number, number, number, number][] = [
-  [ 27,  86,   27,  152   ],  // L 27 152
-  [ 27, 152,   93.5, 187.5],  // L 93.5 187.5
-  [ 93.5, 187.5, 152, 152 ],  // L 152 152
-  [152, 152,   27,   86   ],  // close
-  [ 27,  86,   54,   65   ],  // L 54 65
-  [ 54,  65,    6,   35.5 ],  // L 6 35.5
-  [  6,  35.5, 38,   14.5 ],  // L 38 14.5
-  [ 38,  14.5, 93.5, 43   ],  // L 93.5 43
-  [ 93.5, 43,  152,   6   ],  // L 152 6
-  [152,   6,   152,  77.5 ],  // L 152 77.5
-  [152,  77.5, 120.5, 99.5],  // L 120.5 99.5
-  [120.5, 99.5, 54,  65   ],  // L 54 65
-];
+// Geometry lives in ./logo (shared with the static nav mark).
 
 // Interleave: p1[0], p2[0], p1[1], p2[1] … so both paths build simultaneously
 const SEGS = P1.flatMap((coords, i) => [
@@ -92,13 +63,50 @@ const SEGS = P1.flatMap((coords, i) => [
 const tickPitch = (i: number) => Math.round(380 + i * 30);
 
 // ── Timing (ms) ───────────────────────────────────────────────────────────────
-const STAGGER    = 42;   // ms between each edge
-const SNAP       = 55;   // ms to draw each edge (snappy easeIn)
-const LOCK_AT    = 100 + (SEGS.length - 1) * STAGGER + SNAP + 80;  // ~1190ms
-const DONE_AT    = LOCK_AT + 500;                                    // ~1690ms
+const STAGGER    = 20;   // ms between each edge
+const SNAP       = 35;   // ms to draw each edge (snappy easeIn)
+const LOCK_AT    = 100 + (SEGS.length - 1) * STAGGER + SNAP + 50;  // ~645ms
+const DONE_AT    = LOCK_AT + 350;                                    // ~995ms
+
+// ── Typewriter (plain hook, no new deps) ────────────────────────────────────
+const ROLES = [
+  "Gen AI Engineer",
+  "Full-Stack Developer",
+  "Solution Architect",
+  "AI Automation Engineer",
+  "Voice AI Developer",
+];
+
+function useTypewriter(words: string[], typeSpeed = 70, deleteSpeed = 40, pause = 1600) {
+  const [text, setText] = useState("");
+  const [wordIndex, setWordIndex] = useState(0);
+  const [deleting, setDeleting] = useState(false);
+
+  useEffect(() => {
+    const current = words[wordIndex % words.length];
+
+    if (!deleting && text === current) {
+      const t = setTimeout(() => setDeleting(true), pause);
+      return () => clearTimeout(t);
+    }
+    if (deleting && text === "") {
+      setDeleting(false);
+      setWordIndex((i) => i + 1);
+      return;
+    }
+
+    const t = setTimeout(() => {
+      setText(current.slice(0, text.length + (deleting ? -1 : 1)));
+    }, deleting ? deleteSpeed : typeSpeed);
+    return () => clearTimeout(t);
+  }, [text, deleting, wordIndex, words, typeSpeed, deleteSpeed, pause]);
+
+  return text;
+}
 
 // ── Component ─────────────────────────────────────────────────────────────────
 const Herosection = () => {
+  const typedRole = useTypewriter(ROLES);
   const [started,    setStarted]    = useState(false);
   const [locked,     setLocked]     = useState(false);
   const [splashDone, setSplashDone] = useState(false);
@@ -303,8 +311,9 @@ const Herosection = () => {
               transition={{ delay: 0.5 }}
               className="space-y-4 mb-8"
             >
-              <h2 className="text-xl md:text-2xl font-semibold text-white/70">
-                Gen AI Engineer · Full-Stack Builder
+              <h2 className="text-xl md:text-2xl font-semibold text-white/70 h-8 md:h-9 flex items-center justify-center lg:justify-start">
+                {typedRole}
+                <span className="inline-block w-[2px] h-5 md:h-6 bg-white/70 ml-1 animate-pulse" />
               </h2>
               <p className="text-white/50 text-lg leading-relaxed max-w-xl mx-auto lg:mx-0">
                 I build{" "}
