@@ -1,96 +1,81 @@
 'use client';
-import Link from "next/link";
 import { motion } from "framer-motion";
 
-const Projects = () => {
-  const projects = [
-    {
-      title: "Zaya - Dealership Voice Agent",
-      description:
-        "Real-time voice agent for dealership workflows integrated into Cyepro DMS. Built tool-driven orchestration with routing, conversation state, and memory-driven steps using Vercel AI SDK + Mastra AI. Implemented structured tool outputs, validation, and fallback handling.",
-      url: "https://cyepro.com",
-      tags: ["Vercel AI SDK", "Mastra AI", "Next.js", "Voice AI"],
-      color: "cyan",
-      status: "Live (Beta)",
-    },
-    {
-      title: "Loop - App Builder",
-      description:
-        "Lovable-inspired builder clone focused on template-first UI generation and fast iteration. Built prompt-driven UI generation and reusable flows for rapid app/site creation with modular, reusable components.",
-      url: "https://github.com/rambabu-143/Loop",
-      tags: ["Next.js", "TypeScript", "AI", "UI Generation"],
-      color: "purple",
-      status: "Open Source",
-    },
-    {
-      title: "Hello Gorgeous - 3D Avatar Commerce",
-      description:
-        "Mobile commerce app where users generate realistic 3D avatars from face images for personalized shopping experiences. Built mobile UI flows and integrated avatar-first journeys into browsing and product discovery.",
-      url: "#",
-      tags: ["React Native", "Expo", "3D Avatars", "Mobile"],
-      color: "pink",
-      status: "Mobile App",
-    },
-  ];
+const projects = [
+  {
+    title: "Zaya: Voice AI Agent for Auto Dealerships",
+    status: "Live · Production",
+    description:
+      "Real-time voice AI agent handling 500+ daily customer calls for a US auto dealership DMS platform. Full STT to LLM tool-calling to TTS pipeline with a sub-400ms latency target and real-time turn management. Built resilience into the call path (timeouts, retries, safe fallback routing) plus the auth/webhook layer connecting the agent to dealership APIs.",
+    tags: ["LiveKit Agents", "Sarvam AI", "FastAPI", "Python"],
+    links: [],
+  },
+  {
+    title: "Hello Gorgeouss: Avatar Try-On Fashion App",
+    status: "Live · Mobile",
+    description:
+      "Solo freelance build, end to end: every app screen in React Native (Expo), the Node.js/Express backend, and a custom avatar system for building a personal avatar and previewing outfits on it.",
+    tags: ["React Native", "Expo", "Node.js", "Express"],
+    links: [
+      { label: "App Store", url: "https://apps.apple.com/in/app/hello-gorgeouss/id6739887399" },
+      { label: "Google Play", url: "https://play.google.com/store/apps/details?id=com.hellogorgeous" },
+    ],
+  },
+  {
+    title: "Trending AI Post",
+    status: "Open source",
+    description:
+      "A scheduled Python bot that finds a trending GitHub repo daily, summarizes it with a local Ollama model, and posts it to LinkedIn via the LinkedIn API, running unattended on a daily launchd job.",
+    tags: ["Python", "LinkedIn API", "Ollama", "launchd"],
+    links: [{ label: "Repo", url: "https://github.com/rambabu-143/Trending-AI-Post" }],
+  },
+];
 
+const Projects = () => {
   return (
     <div className="w-full">
-      <div className="grid gap-6 max-w-4xl mx-auto">
+      <div className="flex items-baseline justify-between mb-12">
+        <h2 className="font-display font-semibold text-3xl sm:text-4xl">Selected work</h2>
+        <span className="eyebrow hidden sm:block">02</span>
+      </div>
+
+      <div className="space-y-5">
         {projects.map((project, index) => (
           <motion.div
             key={project.title}
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-30px" }}
-            transition={{ delay: index * 0.1, duration: 0.4 }}
-            className="group"
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ delay: index * 0.08, duration: 0.5 }}
+            className="glass rounded-2xl p-6 sm:p-8"
           >
-            <div className="glass rounded-2xl p-6 border border-white/10 hover:border-white/20 transition-colors duration-300">
-              <div className="flex flex-col md:flex-row md:items-start gap-4">
-                <div className="flex-1">
-                  {/* Header */}
-                  <div className="flex items-center gap-3 mb-3">
-                    <h3 className="text-xl font-bold text-white group-hover:gradient-text transition-all">
-                      {project.title}
-                    </h3>
-                    <span className="px-2 py-0.5 text-xs font-medium rounded-full bg-white/10 text-white/60">
-                      {project.status}
-                    </span>
-                  </div>
-
-                  {/* Description */}
-                  <p className="text-white/50 text-sm leading-relaxed mb-4">
-                    {project.description}
-                  </p>
-
-                  {/* Tags */}
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {project.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="px-3 py-1 text-xs font-medium rounded-full border border-white/15 text-white/60 bg-white/5"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-
-                  {/* Link */}
-                  {project.url !== "#" && (
-                    <Link
-                      href={project.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 text-sm font-medium transition-colors text-white/60 hover:text-white"
-                    >
-                      View Project
-                      <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                      </svg>
-                    </Link>
-                  )}
-                </div>
-              </div>
+            <div className="flex items-center gap-3 mb-2">
+              <h3 className="text-xl font-semibold">{project.title}</h3>
+              <span className="text-xs font-medium text-muted-foreground glass-tight rounded-full px-2.5 py-0.5">
+                {project.status}
+              </span>
+            </div>
+            <p className="text-muted-foreground leading-relaxed max-w-2xl mb-4">{project.description}</p>
+            <div className="flex flex-wrap items-center gap-2">
+              {project.tags.map((tag) => (
+                <span key={tag} className="text-xs text-muted-foreground glass-tight rounded-full px-2.5 py-1">
+                  {tag}
+                </span>
+              ))}
+              {project.links.length > 0 && (
+                <span className="w-px h-4 bg-border mx-1" />
+              )}
+              {project.links.map((link) => (
+                <a
+                  key={link.label}
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-xs font-medium link-underline text-foreground"
+                >
+                  {link.label} ↗
+                </a>
+              ))}
             </div>
           </motion.div>
         ))}

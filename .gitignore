@@ -34,3 +34,11 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local tooling (not part of the site)
+.mcp.json
+.serena/
+graphify-out/
+src/components/graphify-out/
+Profile (3).pdf
+

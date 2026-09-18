@@ -3,140 +3,75 @@ import { motion } from "framer-motion";
 
 const experiences = [
   {
-    company: "Arohak Inc. (via Cognizant, J&J)",
-    role: "AI Engineer and Solutions Architect",
+    company: "Arohak Inc.",
+    context: "J&J engagement via Cognizant · Hyderabad, India",
+    role: "AI Engineer",
     duration: "Mar 2026 - Present",
-    description:
-      "Designed the end-to-end architecture for a secure enterprise RAG pipeline retrieval strategy, schema validation, structured output contracts, and multi-stage document workflows. Defined reusable agent architecture standards (tool contracts, output validation, prompt structure) and built n8n automation workflows with webhook-driven agent triggers. Led technical hiring for GenAI engineer roles and mentored junior engineers on production-readiness.",
-    highlights: [
-      "Enterprise RAG Architecture",
-      "Agent Design Standards",
-      "n8n Automation",
-      "Technical Hiring & Mentoring",
+    bullets: [
+      "Designed and shipped an internal Go CLI that scaffolds MCP servers end to end (project boilerplate, tool/resource registration, and config wiring), so engineers can stand up a new MCP integration in minutes",
+      "Helped build a GraphRAG pipeline for internal knowledge retrieval, combining vector and graph-based retrieval to improve answer quality on complex, multi-hop queries",
+      "Built and deployed n8n automation systems: multi-step data pipelines with webhook-driven agent triggers and event-based orchestration that replaced manual handoffs and ran unattended in production",
     ],
-    color: "amber",
   },
   {
     company: "Cyepro Solutions",
-    role: "Generative AI Engineer",
+    context: "Generative AI Engineer (Contract) · Hyderabad, India",
+    role: "US auto dealership DMS platform",
     duration: "Jul 2025 - Feb 2026",
-    description:
-      "Architected and shipped Zaya, a production real-time voice AI agent for a US auto dealership DMS platform, handling 500+ daily customer interactions. Designed the full voice pipeline STT ingestion, LLM tool-calling, TTS delivery, real-time turn management on LiveKit Agents. Built multi-tool agentic workflows with dynamic routing and memory-driven conversations, plus resilience patterns (timeouts, retries, fallback routing) and the full DMS integration layer.",
-    highlights: [
-      "Zaya Voice Agent · 500+ daily calls",
-      "LiveKit Agents · LangGraph",
-      "FastAPI · Supabase · Vercel AI SDK",
-      "DMS Integration & Resilience",
+    bullets: [
+      "Architected and shipped Zaya, a production real-time voice AI agent handling 500+ daily dealership calls, with a full STT to LLM tool-calling to TTS pipeline on LiveKit Agents, engineered for a sub-400ms latency target",
+      "Built multi-tool agentic workflows with dynamic routing, memory-driven conversations, and structured tool contracts",
+      "Owned the DMS integration layer: auth flows, webhook handling, and structured data exchange with dealership APIs",
     ],
-    color: "cyan",
   },
   {
     company: "Ordermatic Technologies",
-    role: "Software Development Engineer II",
-    duration: "Apr 2024 - Mar 2025",
-    description:
-      "Contributed full-stack to a live restaurant POS system across billing, CRM, and inventory React frontend and Node.js/Express backend. Reduced production defects by 10% through systematic edge-case handling and improved test coverage across core billing flows.",
-    highlights: [
-      "Full-stack development",
-      "POS Product",
-      "10% defect reduction",
-      "React · Node.js/Express",
+    context: "Live restaurant POS product · Hyderabad, India",
+    role: "Software Development Engineer",
+    duration: "Apr 2024 - Apr 2025",
+    bullets: [
+      "Shipped full-stack features across billing, CRM, and inventory on a live POS system (React, Node.js/Express)",
+      "Reduced production defects through systematic edge-case handling and improved test coverage",
     ],
-    color: "pink",
   },
 ];
 
-const colorMap: Record<string, {
-  dot: string;
-  badge: string;
-  badgeText: string;
-  role: string;
-  highlight: string;
-  highlightText: string;
-  leftBorder: string;
-  cardBorder: string;
-}> = {
-  amber:  { dot: "bg-white/60", badge: "bg-white/8",  badgeText: "text-white/60", role: "text-white/60", highlight: "bg-white/8",  highlightText: "text-white/60", leftBorder: "border-l-white/25", cardBorder: "border-white/8 hover:border-white/20" },
-  cyan:   { dot: "bg-white/60", badge: "bg-white/8",  badgeText: "text-white/60", role: "text-white/60", highlight: "bg-white/8",  highlightText: "text-white/60", leftBorder: "border-l-white/25", cardBorder: "border-white/8 hover:border-white/20" },
-  violet: { dot: "bg-white/60", badge: "bg-white/8",  badgeText: "text-white/60", role: "text-white/60", highlight: "bg-white/8",  highlightText: "text-white/60", leftBorder: "border-l-white/25", cardBorder: "border-white/8 hover:border-white/20" },
-  pink:   { dot: "bg-white/60", badge: "bg-white/8",  badgeText: "text-white/60", role: "text-white/60", highlight: "bg-white/8",  highlightText: "text-white/60", leftBorder: "border-l-white/25", cardBorder: "border-white/8 hover:border-white/20" },
-  teal:   { dot: "bg-white/60", badge: "bg-white/8",  badgeText: "text-white/60", role: "text-white/60", highlight: "bg-white/8",  highlightText: "text-white/60", leftBorder: "border-l-white/25", cardBorder: "border-white/8 hover:border-white/20" },
-};
-
 const Experience = () => {
   return (
-    <div className="w-full py-8">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-50px" }}
-        transition={{ duration: 0.5 }}
-        className="text-center mb-12"
-      >
-        <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
-          Experience
-        </h2>
-        <p className="text-white/50 max-w-xl mx-auto">
-          My professional journey in GenAI and full-stack development
-        </p>
-      </motion.div>
+    <div className="w-full">
+      <div className="flex items-baseline justify-between mb-12">
+        <h2 className="font-display font-semibold text-3xl sm:text-4xl">Experience</h2>
+        <span className="eyebrow hidden sm:block">01</span>
+      </div>
 
-      <div className="relative max-w-3xl mx-auto">
-        {/* Timeline line */}
-        <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-white/30 via-white/10 to-transparent transform md:-translate-x-1/2 hidden md:block" />
+      <div className="space-y-5">
+        {experiences.map((exp, index) => (
+          <motion.div
+            key={exp.company}
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ delay: index * 0.08, duration: 0.5 }}
+            className="glass rounded-2xl grid sm:grid-cols-[180px_1fr] gap-3 sm:gap-10 p-6 sm:p-8"
+          >
+            <div className="text-sm text-muted-foreground">{exp.duration}</div>
 
-        {experiences.map((experience, index) => {
-          const cfg = colorMap[experience.color] ?? colorMap.violet;
-          return (
-            <motion.div
-              key={experience.company}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-30px" }}
-              transition={{ delay: index * 0.1, duration: 0.4 }}
-              className={`relative flex flex-col md:flex-row items-start gap-6 mb-8 ${
-                index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
-              }`}
-            >
-              {/* Timeline dot */}
-              <div className={`absolute left-0 md:left-1/2 w-3 h-3 rounded-full border-2 border-black transform -translate-x-1/2 z-10 hidden md:block shadow-lg ${cfg.dot}`} />
-
-              {/* Content */}
-              <div className={`flex-1 pl-6 md:pl-0 ${index % 2 === 0 ? "md:pr-10 md:text-right" : "md:pl-10 md:text-left"}`}>
-                <div className={`glass rounded-xl p-5 border-l-2 border ${cfg.leftBorder} ${cfg.cardBorder} transition-all duration-300`}>
-                  {/* Duration badge */}
-                  <span className={`inline-block px-3 py-1 rounded-full text-xs font-medium mb-3 ${cfg.badge} ${cfg.badgeText}`}>
-                    {experience.duration}
-                  </span>
-
-                  <h3 className="text-lg font-bold text-white mb-1">
-                    {experience.company}
-                  </h3>
-                  <h4 className={`text-sm font-semibold mb-3 ${cfg.role}`}>
-                    {experience.role}
-                  </h4>
-
-                  <p className="text-white/50 text-sm leading-relaxed mb-3">
-                    {experience.description}
-                  </p>
-
-                  <div className={`flex flex-wrap gap-2 ${index % 2 === 0 ? "md:justify-end" : "md:justify-start"}`}>
-                    {experience.highlights.map((highlight) => (
-                      <span
-                        key={highlight}
-                        className={`px-2.5 py-0.5 text-xs font-medium rounded-full ${cfg.highlight} ${cfg.highlightText}`}
-                      >
-                        {highlight}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              <div className="hidden md:block flex-1" />
-            </motion.div>
-          );
-        })}
+            <div>
+              <h3 className="text-lg font-semibold mb-0.5">
+                {exp.role} · {exp.company}
+              </h3>
+              <p className="text-sm text-muted-foreground mb-4">{exp.context}</p>
+              <ul className="space-y-2.5">
+                {exp.bullets.map((b) => (
+                  <li key={b} className="flex gap-3 text-[15px] leading-relaxed text-foreground/80">
+                    <span className="mt-2.5 w-1 h-1 rounded-full bg-muted-foreground shrink-0" />
+                    {b}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </motion.div>
+        ))}
       </div>
     </div>
   );

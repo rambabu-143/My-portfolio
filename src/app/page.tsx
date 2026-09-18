@@ -1,77 +1,45 @@
 import Herosection from "@/components/herosection";
 import Skills from "@/components/skills";
-import Services from "@/components/services";
 import Projects from "@/components/projects";
 import Experience from "@/components/experience";
-import ContactForm from "@/components/contact";
+import Education from "@/components/education";
+import Contact from "@/components/contact";
 import Footer from "@/components/footer";
 import Tabs from "@/components/tabs";
 
 export default function Home() {
   return (
-    <main className="relative min-h-screen overflow-hidden noise">
-      {/* Background */}
-      <div className="fixed inset-0 -z-10">
-        <div className="absolute inset-0 bg-black" />
-      </div>
+    <main className="relative min-h-screen">
+      <div className="bg-ambient" aria-hidden="true" />
 
-      {/* Navigation Tabs */}
       <Tabs />
 
-      {/* Hero Section */}
       <section id="hero">
         <Herosection />
       </section>
 
-      {/* Divider */}
-      <div className="w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+      <div className="container-page">
+        <section id="experience" className="py-16">
+          <Experience />
+        </section>
 
-      {/* Skills Section */}
-      <section id="skills" className="py-20 px-6">
-        <Skills />
-      </section>
+        <section id="work" className="py-16">
+          <Projects />
+        </section>
 
-      {/* Divider */}
-      <div className="w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+        <section id="skills" className="py-16">
+          <Skills />
+        </section>
 
-      {/* Services Section */}
-      <section id="services" className="py-20 px-6">
-        <Services />
-      </section>
+        <section id="education" className="py-16">
+          <Education />
+        </section>
 
-      {/* Divider */}
-      <div className="w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+        <section id="contact" className="py-16">
+          <Contact />
+        </section>
+      </div>
 
-      {/* Projects Section */}
-      <section id="projects" className="py-20 px-6">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
-            Projects
-          </h2>
-          <p className="text-white/50 max-w-xl mx-auto">
-            Production-shipped projects real systems used by real businesses
-          </p>
-        </div>
-        <Projects />
-      </section>
-
-      {/* Divider */}
-      <div className="w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-
-      {/* Experience Section */}
-      <section id="experience" className="py-20 px-6">
-        <Experience />
-      </section>
-
-      {/* Divider */}
-      <div className="w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-
-      {/* Contact Section */}
-      <section id="contact" className="py-20 px-6">
-        <ContactForm />
-      </section>
-
-      {/* Footer */}
       <Footer />
     </main>
   );
