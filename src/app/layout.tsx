@@ -1,24 +1,28 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+const spaceGrotesk = Space_Grotesk({ subsets: ["latin"], variable: "--font-display", weight: ["500", "600", "700"] });
 
 export const metadata: Metadata = {
-  title: "Rambabu Arabandi | GenAI Developer & Full-Stack Engineer",
+  title: "Rambabu Arabandi | AI Engineer",
   description:
-    "GenAI/Full-stack Engineer building production agentic features using Vercel AI SDK and Mastra AI. Specialized in tool calling, routing, structured outputs, and streaming UX with reliability patterns.",
+    "AI Engineer building agentic systems end to end: MCP tooling, n8n automation, hybrid RAG, and multi-agent workflows, plus a production voice AI deployment.",
   keywords: [
-    "GenAI",
+    "AI Engineer",
+    "Agentic Systems",
+    "MCP Servers",
+    "n8n Automation",
+    "Voice AI",
+    "LiveKit Agents",
+    "RAG",
+    "GraphRAG",
+    "LangGraph",
+    "LangChain",
     "Full-Stack Developer",
     "Next.js",
-    "React",
     "TypeScript",
-    "Python",
-    "Vercel AI SDK",
-    "Mastra AI",
-    "LangChain",
-    "Node.js",
   ],
   authors: [{ name: "Rambabu Arabandi" }],
   creator: "Rambabu Arabandi",
@@ -26,16 +30,16 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "https://rambabu-143.github.io/My-portfolio/",
-    title: "Rambabu Arabandi | GenAI Developer & Full-Stack Engineer",
+    title: "Rambabu Arabandi | AI Engineer",
     description:
-      "GenAI/Full-stack Engineer building production agentic features using Vercel AI SDK and Mastra AI.",
+      "AI Engineer building agentic systems end to end: MCP tooling, n8n automation, hybrid RAG, and multi-agent workflows, plus a production voice AI deployment.",
     siteName: "Rambabu Arabandi Portfolio",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Rambabu Arabandi | GenAI Developer & Full-Stack Engineer",
+    title: "Rambabu Arabandi | AI Engineer",
     description:
-      "GenAI/Full-stack Engineer building production agentic features using Vercel AI SDK and Mastra AI.",
+      "AI Engineer building agentic systems end to end: MCP tooling, n8n automation, hybrid RAG, and multi-agent workflows, plus a production voice AI deployment.",
   },
   robots: {
     index: true,
@@ -49,8 +53,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
-      <body className={`${inter.className} bg-background text-white antialiased`}>
+    <html lang="en" className={`scroll-smooth ${inter.variable} ${spaceGrotesk.variable}`}>
+      <body className="font-sans bg-background text-foreground antialiased">
         {children}
       </body>
     </html>

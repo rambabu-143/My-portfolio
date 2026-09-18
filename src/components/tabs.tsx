@@ -1,20 +1,18 @@
 'use client';
 
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
 import { Logo } from "./logo";
 
 const tabs = [
-  { id: "hero", label: "Home" },
-  { id: "skills", label: "Skills" },
-  { id: "services", label: "Services" },
-  { id: "projects", label: "Projects" },
   { id: "experience", label: "Experience" },
-  { id: "contact", label: "Connect" },
+  { id: "work", label: "Work" },
+  { id: "skills", label: "Skills" },
+  { id: "education", label: "Education" },
+  { id: "contact", label: "Contact" },
 ];
 
 const Tabs = () => {
-  const [activeTab, setActiveTab] = useState("hero");
+  const [activeTab, setActiveTab] = useState("");
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -28,73 +26,57 @@ const Tabs = () => {
 
       const scrollPosition = window.scrollY + window.innerHeight / 3;
 
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const section = sections[i];
+      let current = "";
+      for (const section of sections) {
         if (section.element && section.element.offsetTop <= scrollPosition) {
-          setActiveTab(section.id);
-          break;
+          current = section.id;
         }
       }
+      setActiveTab(current);
     };
 
+    handleScroll();
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const handleTabClick = (tabId: string) => {
-    setActiveTab(tabId);
-    const element = document.getElementById(tabId);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
+    document.getElementById(tabId)?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
-    <nav className="fixed top-4 inset-x-0 z-50 flex justify-center px-4 pointer-events-none">
-      <motion.div
-        layout
-        transition={{ type: "spring", stiffness: 300, damping: 30 }}
-        className={`pointer-events-auto flex items-center glass rounded-full border border-white/10 ${
-          scrolled
-            ? "justify-center gap-1 px-2 py-1.5"
-            : "justify-between gap-2 w-[min(90vw,720px)] px-4 py-2.5"
+    <nav className="fixed top-4 inset-x-0 z-50 px-4">
+      <div
+        className={`glass container-page !max-w-[1100px] mx-auto flex items-center justify-between h-14 px-4 sm:px-6 rounded-2xl transition-shadow duration-300 ${
+          scrolled ? "shadow-lg" : ""
         }`}
       >
         <button
-          onClick={() => handleTabClick("hero")}
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           aria-label="Scroll to top"
-          className="shrink-0 flex items-center justify-center rounded-full p-1.5 hover:bg-white/10 transition-colors"
+          className="flex items-center gap-2 text-foreground"
         >
-          <Logo size={20} />
+          <Logo size={20} className="accent" />
         </button>
 
-        <div className="flex items-center gap-1">
-          <div className="w-px self-stretch bg-white/10 mr-1" />
-
-          <div className="flex items-center gap-1 overflow-x-auto scrollbar-hide max-w-[calc(100vw-96px)] md:max-w-none">
-            {tabs.map((tab) => (
-              <button
-                key={tab.id}
-                onClick={() => handleTabClick(tab.id)}
-                className={`relative px-4 py-2 text-sm font-medium rounded-full transition-colors whitespace-nowrap ${
-                  activeTab === tab.id
-                    ? "text-white"
-                    : "text-white/40 hover:text-white/80"
-                }`}
-              >
-                {activeTab === tab.id && (
-                  <motion.div
-                    layoutId="activeTab"
-                    className="absolute inset-0 bg-white/15 rounded-full shadow-[0_0_10px_rgba(255,255,255,0.1)]"
-                    transition={{ type: "spring", duration: 0.3 }}
-                  />
-                )}
-                <span className="relative z-10">{tab.label}</span>
-              </button>
-            ))}
-          </div>
+        <div className="hidden sm:flex items-center gap-8">
+          {tabs.map((tab) => (
+            <button
+              key={tab.id}
+              onClick={() => handleTabClick(tab.id)}
+              className={`text-sm transition-colors ${
+                activeTab === tab.id ? "text-foreground font-medium" : "text-muted-foreground hover:text-foreground"
+              }`}
+            >
+              {tab.label}
+            </button>
+          ))}
         </div>
-      </motion.div>
+
+        <button onClick={() => handleTabClick("contact")} className="btn-secondary !py-2 !px-4 text-sm !border-foreground/10">
+          Let&apos;s talk
+        </button>
+      </div>
     </nav>
   );
 };

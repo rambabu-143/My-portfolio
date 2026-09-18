@@ -2,122 +2,45 @@
 import { motion } from "framer-motion";
 
 const skillCategories = [
-  {
-    title: "Languages",
-    skills: ["Python", "TypeScript", "JavaScript"],
-    color: "sky",
-  },
-  {
-    title: "Agentic / GenAI",
-    skills: ["Vercel AI SDK", "Mastra AI", "LangChain", "LangGraph", "PydanticAI", "MCP Servers", "RAG Systems"],
-    color: "violet",
-  },
-  {
-    title: "Backend",
-    skills: ["Node.js", "Express.js", "FastAPI", "REST APIs"],
-    color: "emerald",
-  },
-  {
-    title: "Frontend",
-    skills: ["React", "Next.js", "Tailwind CSS", "React Native"],
-    color: "cyan",
-  },
-  {
-    title: "Databases",
-    skills: ["PostgreSQL", "Supabase", "Firebase", "MongoDB"],
-    color: "amber",
-  },
-  {
-    title: "DevOps",
-    skills: ["Docker", "Vercel", "Git"],
-    color: "pink",
-  },
-  {
-    title: "Automations",
-    skills: ["n8n", "Make.com", "Zapier"],
-    color: "orange",
-  },
+  { title: "AI & Agents", skills: ["LLM Integrations", "Prompt Engineering", "Tool Calling", "Agent Orchestration", "Structured Outputs", "Guardrails", "Multi-Agent Systems"] },
+  { title: "MCP, Tooling & Automation", skills: ["MCP Servers", "CLI Tooling", "n8n Workflows", "Webhook-Driven Pipelines", "Event-Based Orchestration", "API Integration"] },
+  { title: "Voice AI", skills: ["LiveKit Agents", "Sarvam AI", "Real-time STT/TTS", "Low-Latency Voice", "Turn Management"] },
+  { title: "RAG & Retrieval", skills: ["Hybrid Retrieval", "BM25", "Vector Search", "Graph Retrieval", "FalkorDB", "RRF Fusion", "Cross-Encoder Reranking"] },
+  { title: "AI Frameworks", skills: ["LangChain", "LangGraph", "Vercel AI SDK", "Claude Code", "Cursor"] },
+  { title: "Full-Stack", skills: ["FastAPI", "Node.js/Express", "REST APIs", "Webhooks", "Next.js", "React", "Tailwind CSS"] },
+  { title: "Data, Cloud & DevOps", skills: ["PostgreSQL", "Supabase", "AWS", "GCP", "Docker", "Vercel", "Git"] },
+  { title: "Languages", skills: ["Python", "TypeScript", "JavaScript"] },
 ];
-
-const colorConfig: Record<string, {
-  dot: string;
-  title: string;
-  leftBorder: string;
-  pillHover: string;
-  cardBorder: string;
-}> = {
-  sky:     { dot: "bg-white/60", title: "text-white/70", leftBorder: "border-l-white/25", pillHover: "hover:border-white/30 hover:text-white", cardBorder: "border-white/8 hover:border-white/20" },
-  violet:  { dot: "bg-white/60", title: "text-white/70", leftBorder: "border-l-white/25", pillHover: "hover:border-white/30 hover:text-white", cardBorder: "border-white/8 hover:border-white/20" },
-  emerald: { dot: "bg-white/60", title: "text-white/70", leftBorder: "border-l-white/25", pillHover: "hover:border-white/30 hover:text-white", cardBorder: "border-white/8 hover:border-white/20" },
-  cyan:    { dot: "bg-white/60", title: "text-white/70", leftBorder: "border-l-white/25", pillHover: "hover:border-white/30 hover:text-white", cardBorder: "border-white/8 hover:border-white/20" },
-  amber:   { dot: "bg-white/60", title: "text-white/70", leftBorder: "border-l-white/25", pillHover: "hover:border-white/30 hover:text-white", cardBorder: "border-white/8 hover:border-white/20" },
-  pink:    { dot: "bg-white/60", title: "text-white/70", leftBorder: "border-l-white/25", pillHover: "hover:border-white/30 hover:text-white", cardBorder: "border-white/8 hover:border-white/20" },
-  orange:  { dot: "bg-white/60", title: "text-white/70", leftBorder: "border-l-white/25", pillHover: "hover:border-white/30 hover:text-white", cardBorder: "border-white/8 hover:border-white/20" },
-};
 
 export default function Skills() {
   return (
-    <section className="w-full py-8">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-50px" }}
-        transition={{ duration: 0.5 }}
-        className="text-center mb-12"
-      >
-        <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
-          Core Skills
-        </h2>
-        <p className="text-white/50 max-w-xl mx-auto">
-          Production-grade expertise in GenAI, full-stack development, and modern tooling.
-        </p>
-      </motion.div>
-
-      <div className="max-w-5xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-        {skillCategories.map((category, catIndex) => {
-          const cfg = colorConfig[category.color];
-          return (
-            <motion.div
-              key={category.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-30px" }}
-              transition={{ delay: catIndex * 0.05, duration: 0.4 }}
-              className={`glass rounded-xl p-5 border-l-2 border ${cfg.leftBorder} ${cfg.cardBorder} transition-all duration-300`}
-            >
-              <h3 className={`text-sm font-semibold mb-4 flex items-center gap-2 uppercase tracking-wider ${cfg.title}`}>
-                <span className={`w-1.5 h-1.5 rounded-full ${cfg.dot}`} />
-                {category.title}
-              </h3>
-              <div className="flex flex-wrap gap-2">
-                {category.skills.map((skill) => (
-                  <span
-                    key={skill}
-                    className={`px-3 py-1.5 text-sm text-gray-400 bg-white/4 border border-white/8 rounded-lg transition-all duration-200 cursor-default ${cfg.pillHover}`}
-                  >
-                    {skill}
-                  </span>
-                ))}
-              </div>
-            </motion.div>
-          );
-        })}
+    <section className="w-full">
+      <div className="flex items-baseline justify-between mb-12">
+        <h2 className="font-display font-semibold text-3xl sm:text-4xl">Skills</h2>
+        <span className="eyebrow hidden sm:block">03</span>
       </div>
 
-      <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ delay: 0.3 }}
-        className="text-center mt-10"
-      >
-        <div className="inline-flex items-center gap-3 glass px-5 py-3 rounded-full border border-white/10">
-          <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
-          <span className="text-white/50 text-sm">
-            Currently deep in: <span className="text-white font-medium">AI Agents</span>, multi-agent systems, and voice AI pipelines
-          </span>
-        </div>
-      </motion.div>
+      <div className="grid sm:grid-cols-2 gap-4">
+        {skillCategories.map((category, index) => (
+          <motion.div
+            key={category.title}
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-40px" }}
+            transition={{ delay: index * 0.04, duration: 0.4 }}
+            className="glass rounded-2xl p-5"
+          >
+            <h3 className="eyebrow mb-3">{category.title}</h3>
+            <div className="flex flex-wrap gap-1.5">
+              {category.skills.map((skill) => (
+                <span key={skill} className="text-xs text-foreground/80 glass-tight rounded-full px-2.5 py-1">
+                  {skill}
+                </span>
+              ))}
+            </div>
+          </motion.div>
+        ))}
+      </div>
     </section>
   );
 }
