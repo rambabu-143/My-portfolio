@@ -1,16 +1,17 @@
 'use client';
-import { motion } from "framer-motion";
+import Reveal from "./reveal";
 
 const experiences = [
   {
     company: "Arohak Inc.",
     context: "J&J engagement via Cognizant · Hyderabad, India",
     role: "AI Engineer",
-    duration: "Mar 2026 - Present",
+    duration: "Mar 2026 - Sep 2026",
     bullets: [
       "Designed and shipped an internal Go CLI that scaffolds MCP servers end to end (project boilerplate, tool/resource registration, and config wiring), so engineers can stand up a new MCP integration in minutes",
       "Helped build a GraphRAG pipeline for internal knowledge retrieval, combining vector and graph-based retrieval to improve answer quality on complex, multi-hop queries",
       "Built and deployed n8n automation systems: multi-step data pipelines with webhook-driven agent triggers and event-based orchestration that replaced manual handoffs and ran unattended in production",
+      "Built an internal HRMS for Arohak from scratch and handed it over to the junior engineers who now own and maintain it",
     ],
   },
   {
@@ -46,14 +47,7 @@ const Experience = () => {
 
       <div className="space-y-5">
         {experiences.map((exp, index) => (
-          <motion.div
-            key={exp.company}
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-60px" }}
-            transition={{ delay: index * 0.08, duration: 0.5 }}
-            className="glass rounded-2xl grid sm:grid-cols-[180px_1fr] gap-3 sm:gap-10 p-6 sm:p-8"
-          >
+          <Reveal key={exp.company} delay={index * 0.08} className="glass rounded-3xl grid sm:grid-cols-[180px_1fr] gap-3 sm:gap-10 p-6 sm:p-8">
             <div className="text-sm text-muted-foreground">{exp.duration}</div>
 
             <div>
@@ -70,7 +64,7 @@ const Experience = () => {
                 ))}
               </ul>
             </div>
-          </motion.div>
+          </Reveal>
         ))}
       </div>
     </div>

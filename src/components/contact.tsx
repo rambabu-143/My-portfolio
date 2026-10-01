@@ -1,5 +1,5 @@
 'use client';
-import { motion } from "framer-motion";
+import Reveal from "./reveal";
 
 const socials = [
   { platform: "LinkedIn", handle: "rambabuarabandi", href: "https://www.linkedin.com/in/rambabuarabandi" },
@@ -11,25 +11,21 @@ const EMAIL = "rambabuarabandi2001@gmail.com";
 
 const Contact = () => {
   return (
-    <div className="w-full glass rounded-2xl p-10 sm:p-16 text-center">
+    <Reveal className="w-full glass rounded-[2rem] p-10 sm:p-16 text-center">
       <p className="eyebrow mb-6">Contact</p>
-      <h2 className="font-display font-semibold text-3xl sm:text-5xl mb-6 max-w-2xl mx-auto leading-tight">
+      <h2 className="font-display font-bold text-4xl sm:text-6xl mb-6 max-w-2xl mx-auto leading-[1.05] tracking-[-0.04em]">
         Open to AI Engineer roles. Let&apos;s talk.
       </h2>
       <p className="text-muted-foreground max-w-lg mx-auto mb-10">
         Based in Hyderabad, India. The fastest way to reach me is email, and I&apos;m also active on LinkedIn and GitHub.
       </p>
 
-      <motion.a
-        initial={{ opacity: 0, y: 10 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.4 }}
+      <a
         href={`mailto:${EMAIL}`}
         className="btn-primary !px-8 !py-4 text-base mb-10"
       >
         {EMAIL}
-      </motion.a>
+      </a>
 
       <div className="flex items-center justify-center gap-6">
         {socials.map((social) => (
@@ -44,7 +40,7 @@ const Contact = () => {
           </a>
         ))}
       </div>
-    </div>
+    </Reveal>
   );
 };
 

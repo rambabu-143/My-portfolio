@@ -1,5 +1,5 @@
 'use client';
-import { motion } from "framer-motion";
+import Reveal from "./reveal";
 
 const items = [
   {
@@ -25,20 +25,13 @@ const Education = () => {
 
       <div className="space-y-5">
         {items.map((item, index) => (
-          <motion.div
-            key={item.title}
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-60px" }}
-            transition={{ delay: index * 0.08, duration: 0.5 }}
-            className="glass rounded-2xl grid sm:grid-cols-[180px_1fr] gap-3 sm:gap-10 p-6 sm:p-8"
-          >
+          <Reveal key={item.title} delay={index * 0.08} className="glass rounded-3xl grid sm:grid-cols-[180px_1fr] gap-3 sm:gap-10 p-6 sm:p-8">
             <div className="text-sm text-muted-foreground">{item.duration}</div>
             <div>
               <h3 className="text-lg font-semibold mb-1">{item.title}</h3>
               <p className="text-[15px] leading-relaxed text-foreground/80">{item.description}</p>
             </div>
-          </motion.div>
+          </Reveal>
         ))}
       </div>
     </div>

@@ -11,6 +11,7 @@ export default function Home() {
   return (
     <main className="relative min-h-screen">
       <div className="bg-ambient" aria-hidden="true" />
+      <div className="scroll-edge" aria-hidden="true" />
 
       <Tabs />
 
