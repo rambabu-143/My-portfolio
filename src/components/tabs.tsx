@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import { Logo } from "./logo";
 
 const tabs = [
@@ -36,47 +37,58 @@ const Tabs = () => {
     };
 
     handleScroll();
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const handleTabClick = (tabId: string) => {
-    document.getElementById(tabId)?.scrollIntoView({ behavior: "smooth" });
+    const calm = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    document.getElementById(tabId)?.scrollIntoView({ behavior: calm ? "auto" : "smooth" });
   };
 
   return (
     <nav className="fixed top-4 inset-x-0 z-50 px-4">
-      <div
-        className={`glass container-page !max-w-[1100px] mx-auto flex items-center justify-between h-14 px-4 sm:px-6 rounded-2xl transition-shadow duration-300 ${
-          scrolled ? "shadow-lg" : ""
+      <motion.div
+        initial={{ opacity: 0, y: -12, scale: 0.98 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        transition={{ type: "spring", bounce: 0, duration: 0.6 }}
+        className={`glass container-page !max-w-[1100px] mx-auto flex items-center justify-between h-14 px-3 sm:px-4 rounded-full transition-shadow duration-300 ${
+          scrolled ? "shadow-xl" : ""
         }`}
       >
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           aria-label="Scroll to top"
-          className="flex items-center gap-2 text-foreground"
+          className="flex items-center gap-2 text-foreground pl-2 active:scale-90 transition-transform duration-100"
         >
-          <Logo size={20} className="accent" />
+          <Logo size={26} />
         </button>
 
-        <div className="hidden sm:flex items-center gap-8">
+        <div className="hidden sm:flex items-center gap-1">
           {tabs.map((tab) => (
             <button
               key={tab.id}
               onClick={() => handleTabClick(tab.id)}
-              className={`text-sm transition-colors ${
+              className={`relative px-4 py-1.5 rounded-full text-sm tracking-[0.005em] transition-colors ${
                 activeTab === tab.id ? "text-foreground font-medium" : "text-muted-foreground hover:text-foreground"
               }`}
             >
-              {tab.label}
+              {activeTab === tab.id && (
+                <motion.span
+                  layoutId="nav-pill"
+                  transition={{ type: "spring", bounce: 0, duration: 0.4 }}
+                  className="absolute inset-0 rounded-full bg-foreground/[0.08]"
+                />
+              )}
+              <span className="relative">{tab.label}</span>
             </button>
           ))}
         </div>
 
-        <button onClick={() => handleTabClick("contact")} className="btn-secondary !py-2 !px-4 text-sm !border-foreground/10">
+        <button onClick={() => handleTabClick("contact")} className="btn-primary !py-2 !px-4 text-sm">
           Let&apos;s talk
         </button>
-      </div>
+      </motion.div>
     </nav>
   );
 };

@@ -1,5 +1,5 @@
 'use client';
-import { motion } from "framer-motion";
+import Reveal from "./reveal";
 
 const projects = [
   {
@@ -41,24 +41,17 @@ const Projects = () => {
 
       <div className="space-y-5">
         {projects.map((project, index) => (
-          <motion.div
-            key={project.title}
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-60px" }}
-            transition={{ delay: index * 0.08, duration: 0.5 }}
-            className="glass rounded-2xl p-6 sm:p-8"
-          >
+          <Reveal key={project.title} delay={index * 0.08} className="glass rounded-3xl p-6 sm:p-8">
             <div className="flex items-center gap-3 mb-2">
               <h3 className="text-xl font-semibold">{project.title}</h3>
-              <span className="text-xs font-medium text-muted-foreground glass-tight rounded-full px-2.5 py-0.5">
+              <span className="text-xs font-medium chip rounded-full px-2.5 py-0.5">
                 {project.status}
               </span>
             </div>
             <p className="text-muted-foreground leading-relaxed max-w-2xl mb-4">{project.description}</p>
             <div className="flex flex-wrap items-center gap-2">
               {project.tags.map((tag) => (
-                <span key={tag} className="text-xs text-muted-foreground glass-tight rounded-full px-2.5 py-1">
+                <span key={tag} className="text-xs chip rounded-full px-2.5 py-1">
                   {tag}
                 </span>
               ))}
@@ -77,7 +70,7 @@ const Projects = () => {
                 </a>
               ))}
             </div>
-          </motion.div>
+          </Reveal>
         ))}
       </div>
     </div>

@@ -1,7 +1,7 @@
 'use client';
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, useMotionValue, useReducedMotion, useSpring, useTransform } from "framer-motion";
 
 const FOCUS_AREAS = ["Agentic systems", "MCP tooling", "n8n automation", "Voice AI", "Full-stack"];
 
@@ -11,23 +11,44 @@ const SOCIALS = [
   { href: "mailto:rambabuarabandi2001@gmail.com", label: "Email", icon: "email" },
 ];
 
+const spring = { type: "spring", bounce: 0, duration: 0.7 } as const;
+// damping ratio 1.0 (c = 2*sqrt(k)): follows the pointer with no wobble
+const tiltSpring = { stiffness: 170, damping: 26 };
+
 const Herosection = () => {
+  const reduce = useReducedMotion();
+  const px = useMotionValue(0);
+  const py = useMotionValue(0);
+  const rotateY = useSpring(useTransform(px, [-0.5, 0.5], [-8, 8]), tiltSpring);
+  const rotateX = useSpring(useTransform(py, [-0.5, 0.5], [8, -8]), tiltSpring);
+
+  const onPointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (reduce) return;
+    const r = e.currentTarget.getBoundingClientRect();
+    px.set((e.clientX - r.left) / r.width - 0.5);
+    py.set((e.clientY - r.top) / r.height - 0.5);
+  };
+  const onPointerLeave = () => {
+    px.set(0);
+    py.set(0);
+  };
+
   return (
     <section className="relative flex items-center min-h-screen pt-24 pb-16">
       <div className="container-page">
         <div className="grid lg:grid-cols-[1fr_auto] gap-16 items-center">
           <motion.div
-            initial={{ opacity: 0, y: 16 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
+            transition={spring}
           >
             <p className="eyebrow mb-6">AI Engineer · Hyderabad, India</p>
 
-            <h1 className="font-display font-semibold text-5xl sm:text-6xl lg:text-7xl leading-[1.05] mb-6">
+            <h1 className="display mb-6">
               Rambabu Arabandi
             </h1>
 
-            <p className="text-lg sm:text-xl text-muted-foreground max-w-xl leading-relaxed mb-8">
+            <p className="text-lg sm:text-xl text-muted-foreground max-w-xl leading-relaxed mb-8 tracking-[-0.01em]">
               I design and ship <span className="text-foreground font-medium">agentic systems</span> end to end:
               MCP tooling, n8n automation, hybrid RAG, and multi-agent workflows, plus a{" "}
               <span className="text-foreground font-medium">production voice AI deployment</span>.
@@ -35,7 +56,7 @@ const Herosection = () => {
 
             <div className="flex flex-wrap gap-2 mb-10">
               {FOCUS_AREAS.map((area) => (
-                <span key={area} className="glass-tight px-3 py-1.5 rounded-full text-sm text-muted-foreground">
+                <span key={area} className="glass-tight px-3.5 py-1.5 rounded-full text-sm text-foreground/75">
                   {area}
                 </span>
               ))}
@@ -71,7 +92,7 @@ const Herosection = () => {
                     target={social.href.startsWith("mailto") ? undefined : "_blank"}
                     rel="noopener noreferrer"
                     aria-label={social.label}
-                    className="w-10 h-10 rounded-full flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
+                    className="w-10 h-10 rounded-full flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-foreground/5 active:scale-90 transition-all duration-200"
                   >
                     {social.icon === "github" && (
                       <svg className="w-[18px] h-[18px]" fill="currentColor" viewBox="0 0 24 24">
@@ -95,20 +116,27 @@ const Herosection = () => {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, scale: 0.97 }}
+            initial={{ opacity: 0, scale: 0.96 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.15, ease: "easeOut" }}
+            transition={{ ...spring, delay: 0.1 }}
+            onPointerMove={onPointerMove}
+            onPointerLeave={onPointerLeave}
+            style={{ rotateX, rotateY, transformPerspective: 900 }}
             className="hidden lg:block"
           >
-            <div className="glass rounded-[28px] p-2">
-              <div className="relative w-64 h-80 rounded-2xl overflow-hidden">
-                <Image
-                  src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ''}/hero.png`}
-                  alt="Rambabu Arabandi"
-                  fill
-                  className="object-cover grayscale"
-                  priority
-                />
+            <div className="relative w-72 h-96 rounded-[32px] overflow-hidden border border-[color:var(--glass-border)] shadow-[0_24px_64px_-20px_hsl(222_40%_20%/0.45)]">
+              <Image
+                src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ''}/hero.png`}
+                alt="Rambabu Arabandi"
+                fill
+                className="object-cover grayscale"
+                priority
+              />
+              <div className="glass-tight absolute left-3 right-3 bottom-3 rounded-2xl px-4 py-3 flex items-center gap-2.5 text-sm font-medium text-foreground">
+                <span className="relative flex w-2 h-2">
+                  <span className="absolute inset-0 rounded-full bg-emerald-500" />
+                </span>
+                Open to AI Engineer roles
               </div>
             </div>
           </motion.div>

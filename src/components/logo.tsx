@@ -1,3 +1,5 @@
+import { useId } from "react";
+
 // Logo geometry, a static mark used in the nav.
 // Each entry: [x1, y1, x2, y2], derived by parsing the original SVG paths
 export const P1: [number, number, number, number][] = [
@@ -34,17 +36,26 @@ const toPath = (segs: [number, number, number, number][]) =>
   `M ${segs[0][0]} ${segs[0][1]} ` + segs.map(([, , x2, y2]) => `L ${x2} ${y2}`).join(" ");
 
 export function Logo({ className = "", size = 28 }: { className?: string; size?: number }) {
+  const id = useId();
   return (
     <svg
       width={size}
       height={size * (188 / 152)}
-      viewBox="0 0 152 188"
+      viewBox="-6 -6 164 200"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className={className}
+      aria-hidden="true"
     >
-      <path d={toPath(P1)} stroke="currentColor" strokeWidth={5} strokeLinecap="round" strokeLinejoin="round" fill="none" />
-      <path d={toPath(P2)} stroke="currentColor" strokeWidth={5} strokeLinecap="round" strokeLinejoin="round" fill="none" opacity={0.35} />
+      <defs>
+        <linearGradient id={id} x1="0" y1="0" x2="152" y2="188" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stopColor="#0A84FF" />
+          <stop offset="0.55" stopColor="#BF5AF2" />
+          <stop offset="1" stopColor="#30D5C8" />
+        </linearGradient>
+      </defs>
+      <path d={toPath(P1)} stroke={`url(#${id})`} strokeWidth={9} strokeLinecap="round" strokeLinejoin="round" />
+      <path d={toPath(P2)} stroke={`url(#${id})`} strokeWidth={7} strokeLinecap="round" strokeLinejoin="round" opacity={0.6} />
     </svg>
   );
 }

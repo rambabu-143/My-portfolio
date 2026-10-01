@@ -1,5 +1,5 @@
 'use client';
-import { motion } from "framer-motion";
+import Reveal from "./reveal";
 
 const skillCategories = [
   { title: "AI & Agents", skills: ["LLM Integrations", "Prompt Engineering", "Tool Calling", "Agent Orchestration", "Structured Outputs", "Guardrails", "Multi-Agent Systems"] },
@@ -22,23 +22,16 @@ export default function Skills() {
 
       <div className="grid sm:grid-cols-2 gap-4">
         {skillCategories.map((category, index) => (
-          <motion.div
-            key={category.title}
-            initial={{ opacity: 0, y: 12 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-40px" }}
-            transition={{ delay: index * 0.04, duration: 0.4 }}
-            className="glass rounded-2xl p-5"
-          >
+          <Reveal key={category.title} delay={index * 0.04} className="glass rounded-3xl p-6">
             <h3 className="eyebrow mb-3">{category.title}</h3>
             <div className="flex flex-wrap gap-1.5">
               {category.skills.map((skill) => (
-                <span key={skill} className="text-xs text-foreground/80 glass-tight rounded-full px-2.5 py-1">
+                <span key={skill} className="text-xs chip rounded-full px-2.5 py-1">
                   {skill}
                 </span>
               ))}
             </div>
-          </motion.div>
+          </Reveal>
         ))}
       </div>
     </section>
