@@ -350,7 +350,7 @@ button,
 }
 
 /* liquid glass: refraction, rim light, cursor-tracked specular (Chromium refracts; others keep plain blur) */
-.glass,
+/* refraction only on small controls: an SVG displacement over every big card is costly to scroll */
 .glass-tight,
 .btn-secondary {
   backdrop-filter: blur(14px) url(#liquid-refract) saturate(190%) brightness(1.04);
