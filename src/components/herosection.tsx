@@ -132,7 +132,7 @@ const Herosection = () => {
                 className="object-cover grayscale"
                 priority
               />
-              <div className="glass-tight absolute left-3 right-3 bottom-3 rounded-2xl px-4 py-3 flex items-center gap-2.5 text-sm font-medium text-foreground">
+              <div className="glass-tight !bg-white/85 dark:!bg-white/10 absolute left-3 right-3 bottom-3 rounded-2xl px-4 py-3 flex items-center gap-2.5 text-sm font-medium text-foreground">
                 <span className="relative flex w-2 h-2">
                   <span className="absolute inset-0 rounded-full bg-emerald-500" />
                 </span>

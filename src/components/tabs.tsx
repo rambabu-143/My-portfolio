@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Logo } from "./logo";
+import ThemeToggle from "./theme-toggle";
 
 const tabs = [
   { id: "experience", label: "Experience" },
@@ -15,10 +16,18 @@ const tabs = [
 const Tabs = () => {
   const [activeTab, setActiveTab] = useState("");
   const [scrolled, setScrolled] = useState(false);
+  const [compact, setCompact] = useState(true);
 
   useEffect(() => {
+    let lastY = window.scrollY;
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+      const y = window.scrollY;
+      setScrolled(y > 20);
+      // small at the top, grows while scrolling down, shrinks back on scroll up
+      if (Math.abs(y - lastY) > 4) {
+        setCompact(!(y > 80 && y > lastY));
+        lastY = y;
+      }
 
       const sections = tabs.map((tab) => ({
         id: tab.id,
@@ -52,9 +61,9 @@ const Tabs = () => {
         initial={{ opacity: 0, y: -12, scale: 0.98 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
         transition={{ type: "spring", bounce: 0, duration: 0.6 }}
-        className={`glass container-page !max-w-[1100px] mx-auto flex items-center justify-between h-14 px-3 sm:px-4 rounded-full transition-shadow duration-300 ${
-          scrolled ? "shadow-xl" : ""
-        }`}
+        className={`glass container-page mx-auto flex items-center justify-between px-3 sm:px-4 rounded-full transition-[max-width,height,box-shadow] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+          compact ? "!max-w-[820px] h-12" : "!max-w-[1100px] h-14"
+        } ${scrolled ? "shadow-xl" : ""}`}
       >
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
@@ -77,7 +86,7 @@ const Tabs = () => {
                 <motion.span
                   layoutId="nav-pill"
                   transition={{ type: "spring", bounce: 0, duration: 0.4 }}
-                  className="absolute inset-0 rounded-full bg-foreground/[0.08]"
+                  className="nav-pill absolute inset-0 rounded-full"
                 />
               )}
               <span className="relative">{tab.label}</span>
@@ -85,9 +94,12 @@ const Tabs = () => {
           ))}
         </div>
 
-        <button onClick={() => handleTabClick("contact")} className="btn-primary !py-2 !px-4 text-sm">
-          Let&apos;s talk
-        </button>
+        <div className="flex items-center gap-2">
+          <ThemeToggle />
+          <button onClick={() => handleTabClick("contact")} className="btn-primary liquid-dark !py-2 !px-4 text-sm">
+            Let&apos;s talk
+          </button>
+        </div>
       </motion.div>
     </nav>
   );
