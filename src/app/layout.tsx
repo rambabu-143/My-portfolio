@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import Ripple from "@/components/ripple";
 
 export const metadata: Metadata = {
   title: "Rambabu Arabandi | AI Engineer",
@@ -49,8 +50,22 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en" className="scroll-smooth" suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `try{var t=localStorage.getItem("theme");if(t!=="light")document.documentElement.classList.add("dark")}catch(e){}`,
+          }}
+        />
+      </head>
       <body className="font-sans bg-background text-foreground antialiased">
+        <svg width="0" height="0" className="absolute" aria-hidden="true">
+          <filter id="liquid-refract" x="0" y="0" width="100%" height="100%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.012 0.02" numOctaves="2" seed="3" result="n" />
+            <feDisplacementMap in="SourceGraphic" in2="n" scale="26" xChannelSelector="R" yChannelSelector="G" />
+          </filter>
+        </svg>
+        <Ripple />
         {children}
       </body>
     </html>
