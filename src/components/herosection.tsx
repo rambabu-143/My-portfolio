@@ -126,7 +126,7 @@ const Herosection = () => {
           >
             <div className="relative w-72 h-96 rounded-[32px] overflow-hidden border border-[color:var(--glass-border)] shadow-[0_24px_64px_-20px_hsl(222_40%_20%/0.45)]">
               <Image
-                src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ''}/hero.png`}
+                src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ''}/hero.jpg`}
                 alt="Rambabu Arabandi"
                 fill
                 className="object-cover grayscale"
