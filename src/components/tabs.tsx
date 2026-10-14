@@ -6,7 +6,6 @@ import { Logo } from "./logo";
 import ThemeToggle from "./theme-toggle";
 
 const tabs = [
-  { id: "experience", label: "Experience" },
   { id: "work", label: "Work" },
   { id: "skills", label: "Skills" },
   { id: "education", label: "Education" },

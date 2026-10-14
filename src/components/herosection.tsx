@@ -1,9 +1,12 @@
 'use client';
 import Image from "next/image";
 import Link from "next/link";
-import { motion, useMotionValue, useReducedMotion, useSpring, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
+import HeroLaptop from "./hero-laptop";
 
 const FOCUS_AREAS = ["Agentic systems", "MCP tooling", "n8n automation", "Voice AI", "Full-stack"];
+
+const STATS = [["500+", "daily calls on a production voice agent"], ["<400ms", "voice latency target"]];
 
 const SOCIALS = [
   { href: "https://github.com/rambabu-143", label: "GitHub", icon: "github" },
@@ -12,39 +15,26 @@ const SOCIALS = [
 ];
 
 const spring = { type: "spring", bounce: 0, duration: 0.7 } as const;
-// damping ratio 1.0 (c = 2*sqrt(k)): follows the pointer with no wobble
-const tiltSpring = { stiffness: 170, damping: 26 };
 
 const Herosection = () => {
-  const reduce = useReducedMotion();
-  const px = useMotionValue(0);
-  const py = useMotionValue(0);
-  const rotateY = useSpring(useTransform(px, [-0.5, 0.5], [-8, 8]), tiltSpring);
-  const rotateX = useSpring(useTransform(py, [-0.5, 0.5], [8, -8]), tiltSpring);
-
-  const onPointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
-    if (reduce) return;
-    const r = e.currentTarget.getBoundingClientRect();
-    px.set((e.clientX - r.left) / r.width - 0.5);
-    py.set((e.clientY - r.top) / r.height - 0.5);
-  };
-  const onPointerLeave = () => {
-    px.set(0);
-    py.set(0);
-  };
-
   return (
-    <section className="relative flex items-center min-h-screen pt-24 pb-16">
-      <div className="container-page">
-        <div className="grid lg:grid-cols-[1fr_auto] gap-16 items-center">
+    <div className="relative flex items-center min-h-screen pt-24 pb-16 lg:sticky lg:top-0 lg:h-screen lg:overflow-hidden">
+      <HeroLaptop />
+      <div className="w-full px-6 lg:px-14 relative z-10 pointer-events-none">
+        <div className="grid gap-16 items-center">
+          <div className="hero-copy pointer-events-auto lg:w-1/2 flex justify-center" style={{ opacity: "calc(1 - var(--hp, 0) * 3.5)", transform: "translateY(calc(var(--hp, 0) * -80px))" }}>
           <motion.div
+            className="w-full max-w-[600px]"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={spring}
           >
-            <p className="eyebrow mb-6">AI Engineer · Hyderabad, India</p>
+            <div className="flex items-center gap-3 mb-6">
+              <Image src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ''}/hero.jpg`} alt="Rambabu Arabandi" width={44} height={44} className="w-11 h-11 rounded-full object-cover grayscale border border-[color:var(--glass-border)]" priority />
+              <p className="eyebrow">AI Engineer · Hyderabad, India</p>
+            </div>
 
-            <h1 className="display mb-6">
+            <h1 className="display mb-6 !text-[clamp(3rem,7.4vw,5.75rem)]">
               Rambabu Arabandi
             </h1>
 
@@ -54,7 +44,7 @@ const Herosection = () => {
               <span className="text-foreground font-medium">production voice AI deployment</span>.
             </p>
 
-            <div className="flex flex-wrap gap-2 mb-10">
+            <div className="flex flex-wrap gap-2 mb-8">
               {FOCUS_AREAS.map((area) => (
                 <span key={area} className="glass-tight px-3.5 py-1.5 rounded-full text-sm text-foreground/75">
                   {area}
@@ -113,36 +103,21 @@ const Herosection = () => {
                 ))}
               </div>
             </div>
+
+            <dl className="mt-8 flex gap-10 border-t border-[color:var(--glass-border)] pt-5">
+              {STATS.map(([v, l]) => (
+                <div key={l}>
+                  <dt className="font-display text-3xl font-semibold tracking-tight">{v}</dt>
+                  <dd className="eyebrow mt-1 !normal-case !tracking-normal">{l}</dd>
+                </div>
+              ))}
+            </dl>
           </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, scale: 0.96 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ ...spring, delay: 0.1 }}
-            onPointerMove={onPointerMove}
-            onPointerLeave={onPointerLeave}
-            style={{ rotateX, rotateY, transformPerspective: 900 }}
-            className="hidden lg:block"
-          >
-            <div className="relative w-72 h-96 rounded-[32px] overflow-hidden border border-[color:var(--glass-border)] shadow-[0_24px_64px_-20px_hsl(222_40%_20%/0.45)]">
-              <Image
-                src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ''}/hero.jpg`}
-                alt="Rambabu Arabandi"
-                fill
-                className="object-cover grayscale"
-                priority
-              />
-              <div className="glass-tight !bg-white/85 dark:!bg-white/10 absolute left-3 right-3 bottom-3 rounded-2xl px-4 py-3 flex items-center gap-2.5 text-sm font-medium text-foreground">
-                <span className="relative flex w-2 h-2">
-                  <span className="absolute inset-0 rounded-full bg-emerald-500" />
-                </span>
-                Open to AI Engineer roles
-              </div>
-            </div>
-          </motion.div>
+          </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 

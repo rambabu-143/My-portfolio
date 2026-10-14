@@ -610,3 +610,17 @@ nav .glass {
   backdrop-filter: blur(24px) saturate(160%);
   -webkit-backdrop-filter: blur(24px) saturate(160%);
 }
+
+/* light mode only: slow drifting pastel gradient blobs (dark mode keeps the stars) */
+.bg-aurora { position: fixed; inset: 0; z-index: -9; pointer-events: none; overflow: hidden; }
+.dark .bg-aurora { display: none; }
+.bg-aurora i { position: absolute; border-radius: 9999px; filter: blur(80px); opacity: 0.6; will-change: transform; }
+.bg-aurora i:nth-child(1) { width: 62vw; height: 62vw; left: -12vw; top: -18vw; background: radial-gradient(circle, #8ec5ff, transparent 66%); animation: aur1 24s ease-in-out infinite alternate; }
+.bg-aurora i:nth-child(2) { width: 56vw; height: 56vw; right: -14vw; top: 8vh; background: radial-gradient(circle, #c4b5fd, transparent 66%); animation: aur2 28s ease-in-out infinite alternate; }
+.bg-aurora i:nth-child(3) { width: 58vw; height: 58vw; left: 8vw; bottom: -24vw; background: radial-gradient(circle, #a5f3fc, transparent 66%); animation: aur3 26s ease-in-out infinite alternate; }
+.bg-aurora i:nth-child(4) { width: 40vw; height: 40vw; left: 38vw; top: 28vh; background: radial-gradient(circle, #fbcfe8, transparent 66%); animation: aur4 32s ease-in-out infinite alternate; }
+@keyframes aur1 { to { transform: translate(22vw, 18vh) scale(1.2); } }
+@keyframes aur2 { to { transform: translate(-24vw, 14vh) scale(0.85); } }
+@keyframes aur3 { to { transform: translate(20vw, -16vh) scale(1.15); } }
+@keyframes aur4 { to { transform: translate(-16vw, -12vh) scale(1.3); } }
+@media (prefers-reduced-motion: reduce) { .bg-aurora i { animation: none; } }

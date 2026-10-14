@@ -1,7 +1,6 @@
 'use client';
 import Reveal from "./reveal";
-
-const experiences = [
+export const experiences = [
   {
     company: "Arohak Inc.",
     context: "J&J engagement via Cognizant · Hyderabad, India",

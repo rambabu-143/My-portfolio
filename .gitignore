@@ -42,3 +42,9 @@ graphify-out/
 src/components/graphify-out/
 Profile (3).pdf
 
+
+# local tooling
+.claude/
+.agents/
+skills-lock.json
+graphify-out/
