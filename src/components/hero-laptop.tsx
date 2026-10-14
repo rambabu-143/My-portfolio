@@ -135,10 +135,12 @@ function paintGame(ctx: CanvasRenderingContext2D, t: number) {
 }
 
 // final screen: the zoom lands here. Each job is a dropdown: click a row to open it (one open at a time).
-const exOpen = experiences.map((_, i) => (i === 0 ? 1 : 0)); // 0..1 openness per job, animated
-let exTarget = 0; // job that is open, -1 for none
-let exRows: [number, number][] = []; // y-range of each row in the last paint, for click hit-testing
-const exSettled = () => exOpen.every((v, i) => Math.abs(v - (i === exTarget ? 1 : 0)) < 0.01);
+const exOpen = experiences.map(() => 1); // 0..1 openness per job, animated; all open on first visit
+const exWant = experiences.map(() => true); // which jobs are open; click toggles one
+let exScale = 1; // content is shrunk to fit when several jobs are open
+let exRows: [number, number][] = []; // y-range of each row in the last paint (in scaled content space), for click hit-testing
+const EX_TOP = 116;
+const exSettled = () => exOpen.every((v, i) => Math.abs(v - (exWant[i] ? 1 : 0)) < 0.01);
 const wrapCache: string[][] = [];
 function wrap(ctx: CanvasRenderingContext2D, text: string, maxW: number, maxLines: number) {
   const out: string[] = []; let line = "";
@@ -154,23 +156,27 @@ function paintExperience(ctx: CanvasRenderingContext2D, t: number) {
   const TX = 290, ROW = 62, LH = 20; // text column x, closed-row height, bullet line height
   ctx.font = `bold 40px ${MONO}`; ctx.fillStyle = "#e6edf3"; ctx.fillText("Experience", 40, 92);
   ctx.font = `20px ${MONO}`; ctx.fillStyle = "#484f58"; ctx.fillText("01", W - 70, 92);
-  let y = 116; exRows = [];
+  ctx.font = `16px ${MONO}`;
+  exOpen.forEach((v, i) => { exOpen[i] += ((exWant[i] ? 1 : 0) - v) * 0.22; });
+  const heights = experiences.map((e, i) => ROW + (22 + (wrapCache[i] ??= e.bullets.flatMap((b) => wrap(ctx, b, 670, 9).map((l, k) => (k === 0 ? "▸ " : "   ") + l))).length * LH) * exOpen[i]);
+  const total = heights.reduce((a, h) => a + h + 10, 0);
+  exScale = Math.min(1, (H - EX_TOP - 14) / total); // shrink so every open dropdown stays on the screen
+  ctx.save(); ctx.translate(0, EX_TOP); ctx.scale(exScale, exScale);
+  let y = 0; exRows = []; const Wl = W / exScale; // content space is shrunk, so rows are drawn wider to still span the screen
   experiences.forEach((e, i) => {
-    exOpen[i] += ((i === exTarget ? 1 : 0) - exOpen[i]) * 0.22;
     ctx.font = `16px ${MONO}`;
-    const bl = (wrapCache[i] ??= e.bullets.flatMap((b) => wrap(ctx, b, 670, 9).map((l, k) => (k === 0 ? "▸ " : "   ") + l))); // full text, no truncation
-    const full = 22 + bl.length * LH, o = exOpen[i], h = ROW + full * o;
+    const bl = wrapCache[i], o = exOpen[i], h = heights[i];
     const a = Math.min(1, Math.max(0, (t - 0.1 - i * 0.15) / 0.35));
     exRows.push([y, y + h]);
     ctx.globalAlpha = a;
-    ctx.fillStyle = "#161b22"; ctx.fillRect(30, y, W - 60, h);
+    ctx.fillStyle = "#161b22"; ctx.fillRect(30, y, Wl - 60, h);
     ctx.font = `16px ${MONO}`; ctx.fillStyle = "#8b949e"; ctx.fillText(e.duration, 50, y + 36);
     ctx.font = `bold 24px ${MONO}`; ctx.fillStyle = "#e6edf3"; ctx.fillText(e.company, TX, y + 28);
     ctx.font = `16px ${MONO}`; ctx.fillStyle = "#8b949e"; ctx.fillText(e.role, TX, y + 50);
-    ctx.save(); ctx.translate(W - 62, y + 31); ctx.rotate(o * Math.PI / 2); // chevron turns down when open
+    ctx.save(); ctx.translate(Wl - 62, y + 31); ctx.rotate(o * Math.PI / 2); // chevron turns down when open
     ctx.fillStyle = "#58a6ff"; ctx.beginPath(); ctx.moveTo(-6, -9); ctx.lineTo(8, 0); ctx.lineTo(-6, 9); ctx.fill(); ctx.restore();
     if (o > 0.02) {
-      ctx.save(); ctx.beginPath(); ctx.rect(30, y + ROW, W - 60, h - ROW); ctx.clip();
+      ctx.save(); ctx.beginPath(); ctx.rect(30, y + ROW, Wl - 60, h - ROW); ctx.clip();
       ctx.globalAlpha = a * o; ctx.fillStyle = "#79c0ff"; ctx.font = `16px ${MONO}`;
       bl.forEach((l, k) => ctx.fillText(l, TX, y + ROW + 18 + k * LH));
       ctx.restore();
@@ -178,6 +184,7 @@ function paintExperience(ctx: CanvasRenderingContext2D, t: number) {
     ctx.globalAlpha = 1;
     y += h + 10;
   });
+  ctx.restore();
 }
 
 type Scr = { tab: number; n: number; t: number; t0?: number }; // which screen, typed chars, seconds since it appeared
@@ -330,7 +337,7 @@ const HeroLaptop = () => {
           const uv = info.getTextureCoordinates();
           return uv ? { x: uv.x * 1024, y: (1 - uv.y) * 640 } : null;
         };
-        const rowAt = (q: { x: number; y: number } | null) => (q && tab === 4 && !(prev && time - t0 < SLIDE) ? exRows.findIndex(([a, b]) => q.y >= a && q.y <= b) : -1);
+        const rowAt = (q: { x: number; y: number } | null) => (q && tab === 4 && !(prev && time - t0 < SLIDE) ? exRows.findIndex(([a, b]) => (q.y - EX_TOP) / exScale >= a && (q.y - EX_TOP) / exScale <= b) : -1);
         const tabAt = (q: { x: number; y: number } | null) => (q && !(z > 0.05 || tab === 4) && q.y < 56 && q.x >= 140 && q.x < 140 + CYCLE * 130 ? Math.floor((q.x - 140) / 130) : -1); // locked on the experience screen; experience tab itself is never a click target
         if (pi.type === PointerEventTypes.POINTERMOVE) {
           const q = at(scene.pick(scene.pointerX, scene.pointerY));
@@ -338,7 +345,7 @@ const HeroLaptop = () => {
         } else if (pi.type === PointerEventTypes.POINTERPICK) {
           const q = at(pi.pickInfo), i = tabAt(q);
           if (i >= 0) { if (i !== tab) go(i); } // tab bar: jump straight to that screen
-          else if (rowAt(q) >= 0) exTarget = exTarget === rowAt(q) ? -1 : rowAt(q); // job row: open / close its dropdown
+          else if (rowAt(q) >= 0) exWant[rowAt(q)] = !exWant[rowAt(q)]; // job row: open / close its dropdown (several can be open)
           else if (q && tab !== 4 && z < 0.05) go((tab + 1) % CYCLE); // elsewhere on the screen: next screen
         }
       });

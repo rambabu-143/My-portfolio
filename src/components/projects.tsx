@@ -42,9 +42,9 @@ const Projects = () => {
       <div className="space-y-5">
         {projects.map((project, index) => (
           <Reveal key={project.title} delay={index * 0.08} className="glass rounded-3xl p-6 sm:p-8">
-            <div className="flex items-center gap-3 mb-2">
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-2 mb-2">
               <h3 className="text-xl font-semibold">{project.title}</h3>
-              <span className="text-xs font-medium chip rounded-full px-2.5 py-0.5">
+              <span className="text-xs font-medium chip rounded-full px-2.5 py-0.5 whitespace-nowrap">
                 {project.status}
               </span>
             </div>

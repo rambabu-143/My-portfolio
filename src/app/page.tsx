@@ -1,4 +1,5 @@
 import Herosection from "@/components/herosection";
+import Experience from "@/components/experience";
 import Skills from "@/components/skills";
 import Projects from "@/components/projects";
 import Education from "@/components/education";
@@ -22,19 +23,25 @@ export default function Home() {
       </section>
 
       <div className="container-page">
-        <section id="work" className="py-16">
+        {/* below lg there is no laptop, so Experience shows as normal cards; on desktop the laptop screen is the Experience section */}
+        <section id="experience" className="relative py-16 scroll-mt-20 lg:hidden">
+          <div className="exp-blobs" aria-hidden="true"><i /><i /><i /></div>
+          <div className="relative z-10"><Experience /></div>
+        </section>
+
+        <section id="work" className="py-16 scroll-mt-20">
           <Projects />
         </section>
 
-        <section id="skills" className="py-16">
+        <section id="skills" className="py-16 scroll-mt-20">
           <Skills />
         </section>
 
-        <section id="education" className="py-16">
+        <section id="education" className="py-16 scroll-mt-20">
           <Education />
         </section>
 
-        <section id="contact" className="py-16">
+        <section id="contact" className="py-16 scroll-mt-20">
           <Contact />
         </section>
       </div>

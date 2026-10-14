@@ -624,3 +624,15 @@ nav .glass {
 @keyframes aur3 { to { transform: translate(20vw, -16vh) scale(1.15); } }
 @keyframes aur4 { to { transform: translate(-16vw, -12vh) scale(1.3); } }
 @media (prefers-reduced-motion: reduce) { .bg-aurora i { animation: none; } }
+
+/* Experience: colour blobs drifting behind the glass cards (both themes) */
+.exp-blobs { position: absolute; inset: -4rem 0; overflow: hidden; pointer-events: none; z-index: 0; }
+.exp-blobs i { position: absolute; width: 70vw; height: 70vw; max-width: 520px; max-height: 520px; border-radius: 9999px; filter: blur(60px); opacity: 0.85; will-change: transform; }
+.dark .exp-blobs i { opacity: 0.45; }
+.exp-blobs i:nth-child(1) { left: -20%; top: 4%; background: radial-gradient(circle, #3b82f6, transparent 68%); animation: expA 14s ease-in-out infinite alternate; }
+.exp-blobs i:nth-child(2) { right: -25%; top: 38%; background: radial-gradient(circle, #a855f7, transparent 68%); animation: expB 17s ease-in-out infinite alternate; }
+.exp-blobs i:nth-child(3) { left: 5%; bottom: 0; background: radial-gradient(circle, #06b6d4, transparent 68%); animation: expC 19s ease-in-out infinite alternate; }
+@keyframes expA { to { transform: translate(45%, 70%) scale(1.25); } }
+@keyframes expB { to { transform: translate(-50%, -60%) scale(0.85); } }
+@keyframes expC { to { transform: translate(55%, -75%) scale(1.2); } }
+@media (prefers-reduced-motion: reduce) { .exp-blobs i { animation: none; } }

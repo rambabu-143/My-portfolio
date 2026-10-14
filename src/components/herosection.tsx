@@ -31,7 +31,7 @@ const Herosection = () => {
           >
             <div className="flex items-center gap-3 mb-6">
               <Image src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ''}/hero.jpg`} alt="Rambabu Arabandi" width={44} height={44} className="w-11 h-11 rounded-full object-cover grayscale border border-[color:var(--glass-border)]" priority />
-              <p className="eyebrow">AI Engineer · Hyderabad, India</p>
+              <p className="eyebrow !text-[11px] sm:!text-xs !tracking-[0.1em] sm:!tracking-[0.16em]">AI Engineer · Hyderabad, India</p>
             </div>
 
             <h1 className="display mb-6 !text-[clamp(3rem,7.4vw,5.75rem)]">
