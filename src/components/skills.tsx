@@ -5,10 +5,10 @@ const skillCategories = [
   { title: "AI & Agents", skills: ["LLM Integrations", "Prompt Engineering", "Tool Calling", "Agent Orchestration", "Structured Outputs", "Guardrails", "Multi-Agent Systems"] },
   { title: "MCP, Tooling & Automation", skills: ["MCP Servers", "CLI Tooling", "n8n Workflows", "Webhook-Driven Pipelines", "Event-Based Orchestration", "API Integration"] },
   { title: "Voice AI", skills: ["LiveKit Agents", "Sarvam AI", "Real-time STT/TTS", "Low-Latency Voice", "Turn Management"] },
-  { title: "RAG & Retrieval", skills: ["Hybrid Retrieval", "BM25", "Vector Search", "Graph Retrieval", "FalkorDB", "RRF Fusion", "Cross-Encoder Reranking"] },
+  { title: "RAG & Retrieval", skills: ["Hybrid Retrieval", "GraphRAG", "BM25", "Vector Search", "Graph Retrieval", "FalkorDB", "RRF Fusion", "Cross-Encoder Reranking"] },
   { title: "AI Frameworks", skills: ["LangChain", "LangGraph", "Vercel AI SDK", "Claude Code", "Cursor"] },
   { title: "Full-Stack", skills: ["FastAPI", "Node.js/Express", "REST APIs", "Webhooks", "Next.js", "React", "Tailwind CSS"] },
-  { title: "Data, Cloud & DevOps", skills: ["PostgreSQL", "Supabase", "AWS", "GCP", "Docker", "Vercel", "Git"] },
+  { title: "Data, Cloud & DevOps", skills: ["MongoDB", "PostgreSQL", "Supabase", "AWS", "GCP", "Docker", "Vercel", "Git"] },
   { title: "Languages", skills: ["Python", "TypeScript", "JavaScript"] },
 ];
 
