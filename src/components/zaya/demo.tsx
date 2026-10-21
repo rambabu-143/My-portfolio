@@ -156,12 +156,19 @@ export default function ZayaDemo() {
       const dt = last ? Math.min((now - last) / 1000, 1 / 20) : 0;
       last = now;
       const r = run.current;
+      if (asksForStillness()) {
+        r.t = END[r.sc]!;
+        setT(r.t);
+        frame = requestAnimationFrame(tick);
+        return;
+      }
+      const before = r.t;
       if (r.t < END[r.sc]!) r.t += dt;
       else {
         r.hold += dt;
         if (r.hold > 3.2) { r.sc = (r.sc + 1) % SCENES.length; r.t = 0; r.hold = 0; setSc(r.sc); }
       }
-      setT(r.t);
+      if (r.t !== before) setT(r.t);
       frame = requestAnimationFrame(tick);
     };
     frame = requestAnimationFrame(tick);

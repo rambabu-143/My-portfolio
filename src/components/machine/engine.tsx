@@ -117,7 +117,8 @@ export function MachineLive<S>({ machine }: { machine: Machine<S> }) {
     (next: number) => {
       const r = run.current;
       r.pending = (next + machine.choices) % machine.choices;
-      if (r.t >= machine.end) r.hold = machine.hold;
+      r.t = machine.end;
+      r.hold = machine.hold;
       kick();
     },
     [kick, machine],
@@ -125,8 +126,8 @@ export function MachineLive<S>({ machine }: { machine: Machine<S> }) {
 
   const onKey = (event: React.KeyboardEvent) => {
     const base = run.current.pending ?? run.current.choice;
-    if (["ArrowRight", "ArrowUp", " ", "Enter"].includes(event.key)) choose(base + 1);
-    else if (["ArrowLeft", "ArrowDown"].includes(event.key)) choose(base - 1);
+    if (["ArrowRight", "Enter"].includes(event.key)) choose(base + 1);
+    else if (event.key === "ArrowLeft") choose(base - 1);
     else return;
     event.preventDefault();
   };

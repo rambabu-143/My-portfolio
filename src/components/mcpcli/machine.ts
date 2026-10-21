@@ -30,7 +30,7 @@ const ROBOT_FAR = 150;
 const SEL = { x: -110, y: 60 };
 const FIRST = 1.0;
 const CYCLE = 1.9;
-const END = 13.6;
+const END = 14.4;
 const LEAD = 0.8;
 
 const P = k.fitProjection(
