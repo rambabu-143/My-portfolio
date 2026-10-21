@@ -36,6 +36,15 @@ export const experiences = [
       "Reduced production defects through systematic edge-case handling and improved test coverage",
     ],
   },
+  {
+    company: "Gymclan Fitness Services Pvt Ltd",
+    context: "FitPaa, Gymclan's fitness product · Hyderabad, India",
+    role: "Software Development Intern",
+    duration: "Jan 2024 - Apr 2024",
+    bullets: [
+      "Worked across the full MERN stack (MongoDB, Express, React, Node.js) on the FitPaa website, covering both frontend and backend",
+    ],
+  },
 ];
 
 // Mobile timeline: a line draws down the left as you scroll, each job is a card on it, tap to expand.

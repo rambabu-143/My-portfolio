@@ -1,0 +1,127 @@
+.mx-wrap {
+  --anatomy-card: transparent;
+}
+
+.mx-wrap .iso-plate {
+  background: transparent;
+  box-shadow: none;
+}
+
+.mx-wrap .iso-figure {
+  margin: 0;
+}
+
+.mx {
+  cursor: pointer;
+  border-radius: 12px;
+  touch-action: pan-y;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.mx:focus-visible {
+  outline: 1px solid var(--anatomy-muted);
+  outline-offset: 6px;
+}
+
+.mx .iso-svg {
+  overflow: visible;
+}
+
+.mx [data-needle] {
+  stroke-width: 1.1;
+}
+
+@media (max-width: 640px) {
+  .mx {
+    overflow: hidden;
+  }
+
+  .iso-plate .mx .iso-svg {
+    width: 128%;
+    margin: -6% -14% -4%;
+  }
+}
+
+.mx-story {
+  margin-top: 8px;
+  padding: 0 4px;
+  color: var(--anatomy-text);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.mx-story b {
+  color: var(--anatomy-strong);
+  font-weight: 600;
+}
+
+.mx-lead,
+.mx-parts {
+  margin: 0 0 16px;
+  max-width: 62ch;
+}
+
+.mx-steps {
+  list-style: none;
+  margin: 0 0 16px;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.mx-steps li {
+  display: flex;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  box-shadow: inset 0 0 0 1px var(--anatomy-faint);
+  opacity: 0.55;
+  transition: opacity 300ms var(--anatomy-ease), box-shadow 300ms var(--anatomy-ease);
+}
+
+.mx-body {
+  display: block;
+  margin-top: 2px;
+  color: var(--anatomy-muted);
+}
+
+.mx-num {
+  flex: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font: 600 11px var(--anatomy-mono);
+  box-shadow: inset 0 0 0 1px var(--anatomy-mid);
+}
+
+.mx-wrap[data-step="1"] li[data-n="1"],
+.mx-wrap[data-step="2"] li[data-n="2"],
+.mx-wrap[data-step="3"] li[data-n="3"],
+.mx-wrap[data-step="4"] li[data-n="4"],
+.mx-wrap[data-step="5"] li[data-n="5"],
+.mx-wrap[data-step="6"] li[data-n="6"] {
+  opacity: 1;
+  box-shadow: inset 0 0 0 1px var(--anatomy-hi);
+}
+
+.mx-wrap[data-step="1"] li[data-n="1"] .mx-num,
+.mx-wrap[data-step="2"] li[data-n="2"] .mx-num,
+.mx-wrap[data-step="3"] li[data-n="3"] .mx-num,
+.mx-wrap[data-step="4"] li[data-n="4"] .mx-num,
+.mx-wrap[data-step="5"] li[data-n="5"] .mx-num,
+.mx-wrap[data-step="6"] li[data-n="6"] .mx-num {
+  background: var(--anatomy-hi);
+  color: var(--anatomy-page);
+  box-shadow: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mx-steps li {
+    transition: none;
+  }
+}

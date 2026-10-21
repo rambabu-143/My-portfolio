@@ -1,7 +1,7 @@
 import Herosection from "@/components/herosection";
 import Experience from "@/components/experience";
 import Skills from "@/components/skills";
-import Projects from "@/components/projects";
+import ProjectsExplained from "@/components/projects-explained";
 import Education from "@/components/education";
 import Contact from "@/components/contact";
 import Footer from "@/components/footer";
@@ -30,7 +30,7 @@ export default function Home() {
         </section>
 
         <section id="work" className="py-16 scroll-mt-20">
-          <Projects />
+          <ProjectsExplained />
         </section>
 
         <section id="skills" className="py-16 scroll-mt-20">
