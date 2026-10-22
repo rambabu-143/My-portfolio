@@ -5,14 +5,14 @@ import { useEffect, useState } from "react";
 // fades in once the hero is behind you, shows fewer pieces on phones, stills under reduced motion.
 const css = `
 .hw{position:fixed;inset:0;z-index:-8;pointer-events:none;overflow:hidden;color:hsl(var(--foreground));opacity:0;transition:opacity 1.2s ease}
-.hw.on{opacity:.09}
-.hw svg{position:absolute;fill:none;stroke:currentColor;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round;animation:hw-float var(--d,18s) ease-in-out var(--s,0s) infinite alternate;will-change:transform}
+.hw.on{opacity:.28}
+.hw svg{position:absolute;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;animation:hw-float var(--d,18s) ease-in-out var(--s,0s) infinite alternate;will-change:transform}
 .hw .trace{stroke-dasharray:6 10;animation:hw-flow 14s linear infinite}
 .hw .dot{fill:currentColor;stroke:none}
 @keyframes hw-float{from{transform:translateY(-10px) rotate(var(--r0,-2deg))}to{transform:translateY(12px) rotate(var(--r1,2deg))}}
 @keyframes hw-flow{to{stroke-dashoffset:-64}}
 @media (prefers-reduced-motion:reduce){.hw svg,.hw .trace{animation:none}}
-@media (max-width:767px){.hw .md-only{display:none}.hw svg{max-width:20vw;height:auto}.hw.on{opacity:.07}}
+@media (max-width:767px){.hw .md-only{display:none}.hw svg{max-width:20vw;height:auto}.hw.on{opacity:.2}}
 `;
 
 const Phone = () => (
@@ -77,12 +77,12 @@ const HardwareBg = () => {
   return (
     <div className={on ? "hw on" : "hw"} aria-hidden="true">
       <style>{css}</style>
-      <svg viewBox="0 0 80 156" width="92" style={{ left: "2%", top: "14%", ["--d" as string]: "19s", ["--r0" as string]: "-4deg", ["--r1" as string]: "1deg" }}><Phone /></svg>
-      <svg viewBox="0 0 200 124" width="210" style={{ right: "2%", top: "42%", ["--d" as string]: "23s", ["--s" as string]: "-6s" }}><Laptop /></svg>
-      <svg className="md-only" viewBox="0 0 100 100" width="120" style={{ right: "8%", top: "8%", ["--d" as string]: "17s", ["--s" as string]: "-3s" }}><Chip /></svg>
-      <svg className="md-only" viewBox="0 0 144 104" width="190" style={{ left: "3%", bottom: "12%", ["--d" as string]: "26s", ["--s" as string]: "-9s" }}><Board /></svg>
-      <svg viewBox="0 0 80 156" width="70" style={{ right: "6%", bottom: "6%", ["--d" as string]: "21s", ["--s" as string]: "-12s", ["--r0" as string]: "3deg", ["--r1" as string]: "-3deg" }}><Phone /></svg>
-      <svg className="md-only" viewBox="0 0 200 124" width="150" style={{ left: "6%", top: "52%", ["--d" as string]: "28s", ["--s" as string]: "-15s" }}><Laptop /></svg>
+      <svg viewBox="0 0 80 156" width="140" style={{ left: "2%", top: "14%", ["--d" as string]: "19s", ["--r0" as string]: "-4deg", ["--r1" as string]: "1deg" }}><Phone /></svg>
+      <svg viewBox="0 0 200 124" width="300" style={{ right: "2%", top: "42%", ["--d" as string]: "23s", ["--s" as string]: "-6s" }}><Laptop /></svg>
+      <svg className="md-only" viewBox="0 0 100 100" width="170" style={{ right: "8%", top: "8%", ["--d" as string]: "17s", ["--s" as string]: "-3s" }}><Chip /></svg>
+      <svg className="md-only" viewBox="0 0 144 104" width="260" style={{ left: "3%", bottom: "12%", ["--d" as string]: "26s", ["--s" as string]: "-9s" }}><Board /></svg>
+      <svg viewBox="0 0 80 156" width="100" style={{ right: "6%", bottom: "6%", ["--d" as string]: "21s", ["--s" as string]: "-12s", ["--r0" as string]: "3deg", ["--r1" as string]: "-3deg" }}><Phone /></svg>
+      <svg className="md-only" viewBox="0 0 200 124" width="220" style={{ left: "6%", top: "52%", ["--d" as string]: "28s", ["--s" as string]: "-15s" }}><Laptop /></svg>
     </div>
   );
 };
