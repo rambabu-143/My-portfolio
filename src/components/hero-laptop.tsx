@@ -152,7 +152,21 @@ function wrap(ctx: CanvasRenderingContext2D, text: string, maxW: number, maxLine
   if (out.length > maxLines) { out.length = maxLines; out[maxLines - 1] = out[maxLines - 1].replace(/.{0,2}$/, "…"); }
   return out;
 }
+// same drifting blue / purple / cyan glow as the Experience section on mobile, so the cards read as glass
+function glassBg(ctx: CanvasRenderingContext2D, t: number) {
+  const d = Math.min(t, 3) / 3; // drifts while the zoom lands, then holds (the screen stops repainting once settled)
+  ctx.fillStyle = "#05070d"; ctx.fillRect(0, 56, W, H - 56);
+  const blob = (x: number, y: number, r: number, c: string) => {
+    const g = ctx.createRadialGradient(x, y, 0, x, y, r);
+    g.addColorStop(0, c); g.addColorStop(1, "rgba(0,0,0,0)");
+    ctx.fillStyle = g; ctx.fillRect(0, 56, W, H - 56);
+  };
+  blob(120 + d * 70, 170 + d * 90, 400, "rgba(59,130,246,0.55)");
+  blob(900 - d * 80, 340 - d * 70, 420, "rgba(168,85,247,0.5)");
+  blob(300 + d * 90, 600 - d * 80, 380, "rgba(6,182,212,0.45)");
+}
 function paintExperience(ctx: CanvasRenderingContext2D, t: number) {
+  glassBg(ctx, t);
   const TX = 290, ROW = 62, LH = 20; // text column x, closed-row height, bullet line height
   ctx.font = `bold 40px ${MONO}`; ctx.fillStyle = "#e6edf3"; ctx.fillText("Experience", 40, 92);
   ctx.font = `20px ${MONO}`; ctx.fillStyle = "#484f58"; ctx.fillText("01", W - 70, 92);
@@ -169,14 +183,16 @@ function paintExperience(ctx: CanvasRenderingContext2D, t: number) {
     const a = Math.min(1, Math.max(0, (t - 0.1 - i * 0.15) / 0.35));
     exRows.push([y, y + h]);
     ctx.globalAlpha = a;
-    ctx.fillStyle = "#161b22"; ctx.fillRect(30, y, Wl - 60, h);
+    ctx.beginPath(); ctx.roundRect(30, y, Wl - 60, h, 18); // glass card: translucent fill, light edge
+    ctx.fillStyle = "rgba(255,255,255,0.07)"; ctx.fill();
+    ctx.strokeStyle = "rgba(255,255,255,0.2)"; ctx.lineWidth = 1.2; ctx.stroke();
     ctx.font = `16px ${MONO}`; ctx.fillStyle = "#8b949e"; ctx.fillText(e.duration, 50, y + 36);
     ctx.font = `bold 24px ${MONO}`; ctx.fillStyle = "#e6edf3"; ctx.fillText(e.company, TX, y + 28);
     ctx.font = `16px ${MONO}`; ctx.fillStyle = "#8b949e"; ctx.fillText(e.role, TX, y + 50);
     ctx.save(); ctx.translate(Wl - 62, y + 31); ctx.rotate(o * Math.PI / 2); // chevron turns down when open
     ctx.fillStyle = "#58a6ff"; ctx.beginPath(); ctx.moveTo(-6, -9); ctx.lineTo(8, 0); ctx.lineTo(-6, 9); ctx.fill(); ctx.restore();
     if (o > 0.02) {
-      ctx.save(); ctx.beginPath(); ctx.rect(30, y + ROW, Wl - 60, h - ROW); ctx.clip();
+      ctx.save(); ctx.beginPath(); ctx.roundRect(30, y + ROW, Wl - 60, h - ROW, 18); ctx.clip();
       ctx.globalAlpha = a * o; ctx.fillStyle = "#79c0ff"; ctx.font = `16px ${MONO}`;
       bl.forEach((l, k) => ctx.fillText(l, TX, y + ROW + 18 + k * LH));
       ctx.restore();
