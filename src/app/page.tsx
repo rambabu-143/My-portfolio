@@ -6,6 +6,7 @@ import Education from "@/components/education";
 import Contact from "@/components/contact";
 import Footer from "@/components/footer";
 import Tabs from "@/components/tabs";
+import HackerBg from "@/components/hacker-bg";
 import Stars3D from "@/components/stars-3d";
 
 export default function Home() {
@@ -15,6 +16,7 @@ export default function Home() {
       <div className="bg-aurora" aria-hidden="true"><i /><i /><i /><i /></div>
       <div className="scroll-edge" aria-hidden="true" />
 
+      <HackerBg />
       <Stars3D />
       <Tabs />
 
