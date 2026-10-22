@@ -7,6 +7,7 @@ const Loading = () => <p className="text-sm text-muted-foreground p-6">Loading d
 
 const Zaya = dynamic(() => import("./zaya/demo"), { ssr: false, loading: Loading });
 const RagProject = dynamic(() => import("./ragproject/figure"), { ssr: false, loading: Loading });
+const TrendingPost = dynamic(() => import("./trendingpost/figure"), { ssr: false, loading: Loading });
 const McpCli = dynamic(() => import("./mcpcli/figure"), { ssr: false, loading: Loading });
 
 const projects = [
@@ -71,6 +72,26 @@ const projects = [
     },
     Demo: McpCli,
   },
+  {
+    n: "04",
+    title: "Trending AI Post",
+    subtitle: "A bot that posts to LinkedIn every day",
+    status: "Open source",
+    summary:
+      "A scheduled Python bot that finds a trending GitHub repo, summarizes it with a local model, and posts it to LinkedIn, unattended.",
+    tags: ["Python", "LinkedIn API", "Ollama", "launchd"],
+    detail: {
+      problem: "Posting about new AI repos every day is repetitive work that is easy to skip.",
+      built: [
+        "A launchd job starts the Python script on a daily schedule, with nobody at the keyboard.",
+        "It finds a trending GitHub repo for the day.",
+        "A local Ollama model summarizes it, so there is no paid AI API in the loop.",
+        "It posts the result to LinkedIn through the LinkedIn API.",
+      ],
+      result: "Runs unattended every day. Open source: github.com/rambabu-143/Trending-AI-Post.",
+    },
+    Demo: TrendingPost,
+  },
 ];
 
 const ProjectsExplained = () => {
@@ -96,10 +117,10 @@ const ProjectsExplained = () => {
         <span className="eyebrow hidden sm:block">02</span>
       </div>
       <p className="text-muted-foreground leading-relaxed max-w-2xl mb-10">
-        Three things I built. Open one to watch it run as a small working machine.
+        Four things I built. Open one to watch it run as a small working machine.
       </p>
 
-      <div className="grid gap-5 md:grid-cols-3">
+      <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
         {projects.map((p, i) => (
           <Reveal key={p.n} delay={i * 0.08} className="h-full">
             <button
