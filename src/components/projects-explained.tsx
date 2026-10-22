@@ -3,9 +3,11 @@ import { useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import Reveal from "./reveal";
 
-const Zaya = dynamic(() => import("./zaya/demo"), { ssr: false });
-const RagProject = dynamic(() => import("./ragproject/figure"), { ssr: false });
-const McpCli = dynamic(() => import("./mcpcli/figure"), { ssr: false });
+const Loading = () => <p className="text-sm text-muted-foreground p-6">Loading demo…</p>;
+
+const Zaya = dynamic(() => import("./zaya/demo"), { ssr: false, loading: Loading });
+const RagProject = dynamic(() => import("./ragproject/figure"), { ssr: false, loading: Loading });
+const McpCli = dynamic(() => import("./mcpcli/figure"), { ssr: false, loading: Loading });
 
 const projects = [
   {
@@ -95,22 +97,23 @@ const ProjectsExplained = () => {
       {/* demo mounts only while open, so nothing animates in the background */}
       <dialog
         ref={dialog}
+        aria-labelledby="project-dialog-title"
         onClose={() => setOpen(null)}
         onClick={(e) => e.target === dialog.current && setOpen(null)}
-        className="m-auto w-[min(1000px,94vw)] max-h-[92vh] overflow-auto rounded-3xl p-0 bg-transparent text-foreground backdrop:bg-black/60 backdrop:backdrop-blur-sm"
+        className="m-auto w-[min(1000px,94vw)] max-h-[92vh] overflow-auto overscroll-contain rounded-3xl p-0 bg-transparent text-foreground backdrop:bg-black/60 backdrop:backdrop-blur-sm"
       >
         {active && (
           <div className="glass rounded-3xl p-4 sm:p-6">
             <div className="flex items-start justify-between gap-4 mb-4">
               <div>
-                <h3 className="font-display font-semibold text-2xl">{active.title}</h3>
+                <h3 id="project-dialog-title" className="font-display font-semibold text-2xl">{active.title}</h3>
                 <p className="text-sm text-muted-foreground">{active.subtitle}</p>
               </div>
               <button
                 type="button"
-                onClick={() => setOpen(null)}
+                onClick={() => dialog.current?.close()}
                 aria-label="Close"
-                className="chip rounded-full w-9 h-9 shrink-0"
+                className="chip rounded-full w-9 h-9 shrink-0 focus-visible:outline focus-visible:outline-2"
               >
                 ✕
               </button>
