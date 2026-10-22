@@ -18,6 +18,17 @@ const projects = [
     summary:
       "A phone assistant that answers 500+ calls a day for a US auto dealership. It listens, thinks, looks up live inventory and scheduling, and speaks back in real time, with a safe fallback to a person.",
     tags: ["LiveKit Agents", "Sarvam AI", "FastAPI", "Python"],
+    detail: {
+      problem: "A dealership phone line needs real answers (stock, scheduling) fast enough to feel like talking to a person, and it can't leave a caller hanging when a system is slow.",
+      built: [
+        "Full pipeline: speech-to-text, LLM tool-calling, text-to-speech, streamed end to end on LiveKit Agents with Sarvam AI.",
+        "Real-time turn management, so the agent stops when the caller talks over it.",
+        "A sub-400 ms target from the caller stopping to the first words heard.",
+        "Resilience in the call path: timeouts, retries and safe fallback routing to a person.",
+        "The auth and webhook layer that connects the agent to the dealership's APIs (FastAPI).",
+      ],
+      result: "Live in production, handling 500+ calls a day.",
+    },
     Demo: Zaya,
   },
   {
@@ -28,6 +39,17 @@ const projects = [
     summary:
       "A support chatbot that finds the most relevant pieces of the docs, hands only those to the AI, and says “I don't know” instead of guessing.",
     tags: ["Next.js", "Vertex AI", "Firestore vector search", "Gemini 2.5 Flash"],
+    detail: {
+      problem: "A normal chatbot answers from memory and guesses. A support bot has to answer from the company's own documents, and admit when they don't cover the question.",
+      built: [
+        "Documents are cut into 1,000-character chunks with 150 characters of overlap so no sentence is split.",
+        "Each chunk is embedded with Vertex text-embedding-005 and stored in Firestore.",
+        "A question is embedded the same way; Firestore vector search returns the 5 nearest chunks by cosine similarity.",
+        "Gemini 2.5 Flash answers using only those 5 chunks, and says “I don't know” when none match.",
+        "The app is Next.js, running on Google Cloud.",
+      ],
+      result: "Answers stay grounded in the source documents instead of invented.",
+    },
     Demo: RagProject,
   },
   {
@@ -38,6 +60,15 @@ const projects = [
     summary:
       "An internal Go command-line tool. What used to be a multi-day manual setup now takes minutes, and every team starts from the same working project.",
     tags: ["Go", "Model Context Protocol", "CLI", "AI agents"],
+    detail: {
+      problem: "Setting up a new MCP server by hand took days, and every team ended up with a slightly different project.",
+      built: [
+        "An internal command-line tool written in Go, built during the Johnson & Johnson engagement.",
+        "One command creates a complete, working MCP server project.",
+        "Every team starts from the same standard layout, so servers are consistent and easier to maintain.",
+      ],
+      result: "What used to be a multi-day manual setup now takes minutes.",
+    },
     Demo: McpCli,
   },
 ];
@@ -117,6 +148,22 @@ const ProjectsExplained = () => {
               >
                 ✕
               </button>
+            </div>
+            <div className="grid gap-4 md:grid-cols-[1fr_1.4fr] mb-5 text-sm leading-relaxed">
+              <div>
+                <p className="eyebrow mb-1">The problem</p>
+                <p className="text-muted-foreground mb-3">{active.detail.problem}</p>
+                <p className="eyebrow mb-1">Result</p>
+                <p className="text-muted-foreground">{active.detail.result}</p>
+              </div>
+              <div>
+                <p className="eyebrow mb-1">What I built</p>
+                <ul className="list-disc pl-5 text-muted-foreground space-y-1">
+                  {active.detail.built.map((b) => (
+                    <li key={b}>{b}</li>
+                  ))}
+                </ul>
+              </div>
             </div>
             <active.Demo />
           </div>
