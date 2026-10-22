@@ -152,18 +152,34 @@ function wrap(ctx: CanvasRenderingContext2D, text: string, maxW: number, maxLine
   if (out.length > maxLines) { out.length = maxLines; out[maxLines - 1] = out[maxLines - 1].replace(/.{0,2}$/, "…"); }
   return out;
 }
-// same drifting blue / purple / cyan glow as the Experience section on mobile, so the cards read as glass
+// the page's dark-mode glass: a black field with soft, low colour behind frosted cards (same tokens as .glass in globals.css)
 function glassBg(ctx: CanvasRenderingContext2D, t: number) {
   const d = Math.min(t, 3) / 3; // drifts while the zoom lands, then holds (the screen stops repainting once settled)
-  ctx.fillStyle = "#05070d"; ctx.fillRect(0, 56, W, H - 56);
+  ctx.fillStyle = "#000"; ctx.fillRect(0, 56, W, H - 56);
   const blob = (x: number, y: number, r: number, c: string) => {
     const g = ctx.createRadialGradient(x, y, 0, x, y, r);
     g.addColorStop(0, c); g.addColorStop(1, "rgba(0,0,0,0)");
     ctx.fillStyle = g; ctx.fillRect(0, 56, W, H - 56);
   };
-  blob(120 + d * 70, 170 + d * 90, 400, "rgba(59,130,246,0.55)");
-  blob(900 - d * 80, 340 - d * 70, 420, "rgba(168,85,247,0.5)");
-  blob(300 + d * 90, 600 - d * 80, 380, "rgba(6,182,212,0.45)");
+  blob(90 + d * 60, 200 + d * 80, 460, "rgba(30,90,200,0.2)");
+  blob(940 - d * 70, 360 - d * 60, 480, "rgba(110,60,190,0.16)");
+  blob(320 + d * 80, 620 - d * 70, 440, "rgba(10,120,150,0.15)");
+}
+function glassCard(ctx: CanvasRenderingContext2D, x: number, y: number, w: number, h: number) {
+  const r = 18;
+  ctx.save();
+  ctx.shadowColor = "rgba(0,0,0,0.65)"; ctx.shadowBlur = 28; ctx.shadowOffsetY = 12; // drop shadow under the glass
+  ctx.beginPath(); ctx.roundRect(x, y, w, h, r);
+  ctx.fillStyle = "rgba(255,255,255,0.07)"; ctx.fill();
+  ctx.restore();
+  ctx.beginPath(); ctx.roundRect(x, y, w, h, r);
+  const sheen = ctx.createLinearGradient(x, y, x + w * 0.5, y + h * 0.9); // diagonal sheen fading out by 45%
+  sheen.addColorStop(0, "rgba(255,255,255,0.1)"); sheen.addColorStop(0.45, "rgba(255,255,255,0)");
+  ctx.fillStyle = sheen; ctx.fill();
+  ctx.strokeStyle = "rgba(255,255,255,0.12)"; ctx.lineWidth = 1.2; ctx.stroke();
+  // bright top edge, like the inset highlight on .glass
+  ctx.beginPath(); ctx.moveTo(x + r, y + 0.8); ctx.lineTo(x + w - r, y + 0.8);
+  ctx.strokeStyle = "rgba(255,255,255,0.28)"; ctx.lineWidth = 1.2; ctx.stroke();
 }
 function paintExperience(ctx: CanvasRenderingContext2D, t: number) {
   glassBg(ctx, t);
@@ -183,9 +199,7 @@ function paintExperience(ctx: CanvasRenderingContext2D, t: number) {
     const a = Math.min(1, Math.max(0, (t - 0.1 - i * 0.15) / 0.35));
     exRows.push([y, y + h]);
     ctx.globalAlpha = a;
-    ctx.beginPath(); ctx.roundRect(30, y, Wl - 60, h, 18); // glass card: translucent fill, light edge
-    ctx.fillStyle = "rgba(255,255,255,0.07)"; ctx.fill();
-    ctx.strokeStyle = "rgba(255,255,255,0.2)"; ctx.lineWidth = 1.2; ctx.stroke();
+    glassCard(ctx, 30, y, Wl - 60, h);
     ctx.font = `16px ${MONO}`; ctx.fillStyle = "#8b949e"; ctx.fillText(e.duration, 50, y + 36);
     ctx.font = `bold 24px ${MONO}`; ctx.fillStyle = "#e6edf3"; ctx.fillText(e.company, TX, y + 28);
     ctx.font = `16px ${MONO}`; ctx.fillStyle = "#8b949e"; ctx.fillText(e.role, TX, y + 50);
