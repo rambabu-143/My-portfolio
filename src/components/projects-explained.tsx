@@ -1,13 +1,7 @@
 'use client';
 import { useEffect, useRef, useState } from "react";
-import dynamic from "next/dynamic";
+import AtmosphereScene from "./atmosphere-scene";
 import Reveal from "./reveal";
-
-const Loading = () => <p className="text-sm text-muted-foreground p-6">Loading demo…</p>;
-
-const Zaya = dynamic(() => import("./zaya/demo"), { ssr: false, loading: Loading });
-const RagProject = dynamic(() => import("./ragproject/figure"), { ssr: false, loading: Loading });
-const McpCli = dynamic(() => import("./mcpcli/figure"), { ssr: false, loading: Loading });
 
 const projects = [
   {
@@ -23,34 +17,32 @@ const projects = [
       built: [
         "Full pipeline: speech-to-text, LLM tool-calling, text-to-speech, streamed end to end on LiveKit Agents with Sarvam AI.",
         "Real-time turn management, so the agent stops when the caller talks over it.",
-        "A sub-400 ms target from the caller stopping to the first words heard.",
         "Resilience in the call path: timeouts, retries and safe fallback routing to a person.",
         "The auth and webhook layer that connects the agent to the dealership's APIs (FastAPI).",
       ],
       result: "Live in production, handling 500+ calls a day.",
     },
-    Demo: Zaya,
+    kind: "voice" as const,
   },
   {
     n: "02",
-    title: "RAG Support Agent",
-    subtitle: "Answers from a company's own documents",
-    status: "Built on Google Cloud",
+    title: "GraphRAG Knowledge Retrieval",
+    subtitle: "Connected context for multi-hop questions",
+    status: "Enterprise engagement",
     summary:
-      "A support chatbot that finds the most relevant pieces of the docs, hands only those to the AI, and says “I don't know” instead of guessing.",
-    tags: ["Next.js", "Vertex AI", "Firestore vector search", "Gemini 2.5 Flash"],
+      "Contributed to an internal retrieval pipeline that combines vector search with graph traversal across related documents, with evaluation using RAGAS and DeepEval.",
+    tags: ["GraphRAG", "Vector search", "RAGAS", "DeepEval"],
     detail: {
-      problem: "A normal chatbot answers from memory and guesses. A support bot has to answer from the company's own documents, and admit when they don't cover the question.",
+      problem: "Internal knowledge queries can span several related documents. Vector similarity alone may miss the relationships needed to assemble useful context.",
       built: [
-        "Documents are cut into 1,000-character chunks with 150 characters of overlap so no sentence is split.",
-        "Each chunk is embedded with Vertex text-embedding-005 and stored in Firestore.",
-        "A question is embedded the same way; Firestore vector search returns the 5 nearest chunks by cosine similarity.",
-        "Gemini 2.5 Flash answers using only those 5 chunks, and says “I don't know” when none match.",
-        "The app is Next.js, running on Google Cloud.",
+        "Contributed to retrieval and answer-generation components during the Johnson & Johnson engagement.",
+        "Combined vector similarity results with graph traversal to assemble context through entity relationships.",
+        "Iterated on how graph and vector results were combined before passing context to the LLM.",
+        "Evaluated the pipeline with RAGAS and DeepEval alongside implementation contributions.",
       ],
-      result: "Answers stay grounded in the source documents instead of invented.",
+      result: "A retrieval and evaluation workflow for internal knowledge questions spanning related documents.",
     },
-    Demo: RagProject,
+    kind: "knowledge" as const,
   },
   {
     n: "03",
@@ -58,23 +50,24 @@ const projects = [
     subtitle: "Scaffold a new MCP server in one command",
     status: "Johnson & Johnson engagement",
     summary:
-      "An internal Go command-line tool. What used to be a multi-day manual setup now takes minutes, and every team starts from the same working project.",
-    tags: ["Go", "Model Context Protocol", "CLI", "AI agents"],
+      "An internal Go command-line tool. It generates a runnable baseline with tool registration and configuration, so teams can focus on integration-specific functionality.",
+    tags: ["Go", "Model Context Protocol", "CLI", "DeepEval"],
     detail: {
-      problem: "Setting up a new MCP server by hand took days, and every team ended up with a slightly different project.",
+      problem: "Internal teams needed a consistent, runnable starting point for new MCP integrations.",
       built: [
         "An internal command-line tool written in Go, built during the Johnson & Johnson engagement.",
         "One command creates a complete, working MCP server project.",
         "Every team starts from the same standard layout, so servers are consistent and easier to maintain.",
       ],
-      result: "What used to be a multi-day manual setup now takes minutes.",
+      result: "A consistent runnable baseline, with MCP tooling tested using DeepEval.",
     },
-    Demo: McpCli,
+    kind: "mcp" as const,
   },
 ];
 
 const ProjectsExplained = () => {
   const [open, setOpen] = useState<number | null>(null);
+  const [paused, setPaused] = useState(false);
   const dialog = useRef<HTMLDialogElement>(null);
 
   useEffect(() => {
@@ -96,9 +89,10 @@ const ProjectsExplained = () => {
         <span className="eyebrow hidden sm:block">02</span>
       </div>
       <p className="text-muted-foreground leading-relaxed max-w-2xl mb-10">
-        Three things I built. Open one to watch it run as a small working machine.
+        Production voice AI, enterprise retrieval, and developer tooling. Explore the problem, my contribution, and the outcome behind each project.
       </p>
 
+      <button type="button" onClick={() => setPaused(!paused)} className="chip rounded-full px-4 py-2 text-xs mb-5">{paused ? "Play project previews" : "Pause project previews"}</button>
       <div className="grid gap-5 md:grid-cols-3">
         {projects.map((p, i) => (
           <Reveal key={p.n} delay={i * 0.08} className="h-full">
@@ -107,7 +101,8 @@ const ProjectsExplained = () => {
               onClick={() => setOpen(i)}
               className="glass rounded-3xl p-6 text-left h-full w-full flex flex-col transition-transform hover:-translate-y-1"
             >
-              <div className="flex items-center justify-between mb-4">
+              <div className="w-full mb-5"><AtmosphereScene kind={p.kind} compact paused={paused || open !== null} /></div>
+              <div className="flex flex-wrap gap-2 items-center justify-between mb-4">
                 <span className="eyebrow">{p.n}</span>
                 <span className="text-xs font-medium chip rounded-full px-2.5 py-0.5">{p.status}</span>
               </div>
@@ -119,13 +114,13 @@ const ProjectsExplained = () => {
                   <span key={t} className="text-xs chip rounded-full px-2.5 py-1">{t}</span>
                 ))}
               </div>
-              <span className="text-sm font-medium">Watch it run ↗</span>
+              <span className="text-sm font-medium">Explore case study ↗</span>
             </button>
           </Reveal>
         ))}
       </div>
 
-      {/* demo mounts only while open, so nothing animates in the background */}
+      {/* Native dialog preserves keyboard navigation and returns focus on close. */}
       <dialog
         ref={dialog}
         aria-labelledby="project-dialog-title"
@@ -165,7 +160,7 @@ const ProjectsExplained = () => {
                 </ul>
               </div>
             </div>
-            <active.Demo />
+            <AtmosphereScene kind={active.kind} />
           </div>
         )}
       </dialog>

@@ -100,7 +100,7 @@ function view(t: number, sc: number): View {
   } else if (sc === 0 && t >= 5.4) {
     v.step = 5;
     v.ms = 370;
-    v.banner = "First words heard in 370 ms, under the 400 ms goal. Fast enough to feel like a real conversation.";
+    v.banner = "This example shows the reply streaming back to the caller. Timings are illustrative, not production measurements.";
   }
   return v;
 }
@@ -119,7 +119,7 @@ const STEPS = [
   { title: "Ears: voice becomes words", body: "While they speak, speech-to-text (Sarvam AI) writes down the words live, like fast subtitles. A computer can't read sound, but it can read words." },
   { title: "Brain: think, and use a tool", body: "The LLM reads the words and decides what it needs. If the question needs real facts, like what is in stock, it calls a tool: a request to the dealership's own system. This is “tool calling”." },
   { title: "The reply streams out as voice", body: "The LLM doesn't write the whole answer first. It sends words one by one, and text-to-speech turns each word into sound immediately. So the caller starts hearing the answer while it is still being written." },
-  { title: "The clock: under 400 ms", body: "People feel a pause after about half a second. The whole path from “caller stops” to “first words heard” has a goal of under 400 milliseconds, less than a blink." },
+  { title: "The clock: an illustrative response budget", body: "People feel a pause after about half a second. This simulation uses a 400 ms example budget to explain response timing; it does not report a measured production result." },
   { title: "When real life gets messy", body: "Try the other two calls. If the caller talks over the AI, it stops and listens. If the dealership's system is slow, it retries, and if that fails it safely passes the call to a real person instead of leaving the caller hanging." },
 ];
 
@@ -219,20 +219,20 @@ export default function ZayaDemo() {
       </div>
 
       <div className="zd-clock">
-        <div className="zd-head"><span>Speed: caller stops → first words heard</span><span className="zd-ms" style={{ color: v.late ? "var(--zd-bad)" : undefined }}>{Math.round(v.ms)} ms</span></div>
+        <div className="zd-head"><span>Illustrative timing: caller stops → first words</span><span className="zd-ms" style={{ color: v.late ? "var(--zd-bad)" : undefined }}>{Math.round(v.ms)} ms</span></div>
         <div className="zd-bar">
           <div className="zd-zone" />
           <div className="zd-fill" data-late={v.late ? "" : undefined} style={{ width: `${Math.min(100, (v.ms / 500) * 100)}%` }} />
           <div className="zd-goal" />
         </div>
-        <div className="zd-scale"><span>0</span><span>goal 400 ms</span><span>500</span></div>
+        <div className="zd-scale"><span>0</span><span>example budget 400 ms</span><span>500</span></div>
       </div>
 
       <div className="zd-banner" aria-live="polite">{v.banner}</div>
 
       <div className="mx-story">
         <p className="mx-lead">
-          <b>What is Zaya?</b> A phone assistant for a car dealership. It answers 500+ calls every day, in real time, like a very fast receptionist who never gets tired. To work, it has to <b>listen</b>, <b>think</b> and <b>speak</b> in under half a second, and stay safe when something breaks. The call above uses an example question and invented timings. The real thing runs on LiveKit Agents with Sarvam AI and FastAPI.
+          <b>What is Zaya?</b> A phone assistant for a car dealership. It answers 500+ calls every day, in real time, like a very fast receptionist who never gets tired. To work, it has to <b>listen</b>, <b>think</b> and <b>speak</b> responsively, and stay safe when something breaks. The call above uses an example question and invented timings. The real thing runs on LiveKit Agents with Sarvam AI and FastAPI.
         </p>
         <ol className="mx-steps">
           {STEPS.map((step, i) => (

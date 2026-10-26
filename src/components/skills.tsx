@@ -6,10 +6,11 @@ const skillCategories = [
   { title: "MCP, Tooling & Automation", skills: ["MCP Servers", "CLI Tooling", "n8n Workflows", "Webhook-Driven Pipelines", "Event-Based Orchestration", "API Integration"] },
   { title: "Voice AI", skills: ["LiveKit Agents", "Sarvam AI", "Real-time STT/TTS", "Low-Latency Voice", "Turn Management"] },
   { title: "RAG & Retrieval", skills: ["Hybrid Retrieval", "GraphRAG", "BM25", "Vector Search", "Graph Retrieval", "FalkorDB", "RRF Fusion", "Cross-Encoder Reranking"] },
+  { title: "AI Evaluation", skills: ["RAGAS", "DeepEval", "RAG Pipeline Evaluation", "MCP Tooling Evaluation"] },
   { title: "AI Frameworks", skills: ["LangChain", "LangGraph", "Vercel AI SDK", "Claude Code", "Cursor"] },
   { title: "Full-Stack", skills: ["FastAPI", "Node.js/Express", "REST APIs", "Webhooks", "Next.js", "React", "Tailwind CSS"] },
   { title: "Data, Cloud & DevOps", skills: ["MongoDB", "PostgreSQL", "Supabase", "AWS", "GCP", "Docker", "Vercel", "Git"] },
-  { title: "Languages", skills: ["Python", "TypeScript", "JavaScript"] },
+  { title: "Languages", skills: ["Python", "TypeScript", "JavaScript", "Go"] },
 ];
 
 export default function Skills() {

@@ -9,19 +9,18 @@ export const experiences = [
     role: "AI Engineer",
     duration: "Mar 2026 - Sep 2026",
     bullets: [
-      "Designed and shipped an internal Go CLI that scaffolds MCP servers end to end (project boilerplate, tool/resource registration, and config wiring), so engineers can stand up a new MCP integration in minutes",
-      "Helped build a GraphRAG pipeline for internal knowledge retrieval, combining vector and graph-based retrieval to improve answer quality on complex, multi-hop queries",
+      "Built an internal Go CLI that generates runnable MCP server projects, including boilerplate, tool and resource registration, and configuration wiring; tested the tooling with DeepEval",
+      "Contributed to an internal GraphRAG pipeline combining vector similarity search and graph traversal for related-document queries; evaluated the pipeline with RAGAS and DeepEval",
       "Built and deployed n8n automation systems: multi-step data pipelines with webhook-driven agent triggers and event-based orchestration that replaced manual handoffs and ran unattended in production",
-      "Built an internal HRMS for Arohak from scratch and handed it over to the junior engineers who now own and maintain it",
     ],
   },
   {
     company: "Cyepro Solutions",
-    context: "Generative AI Engineer (Contract) · Hyderabad, India",
-    role: "US auto dealership DMS platform",
+    context: "US auto dealership DMS platform · Hyderabad, India",
+    role: "Generative AI Engineer (Contract)",
     duration: "Jul 2025 - Feb 2026",
     bullets: [
-      "Architected and shipped Zaya, a production real-time voice AI agent handling 500+ daily dealership calls, with a full STT to LLM tool-calling to TTS pipeline on LiveKit Agents, engineered for a sub-400ms latency target",
+      "Architected and shipped Zaya, a production real-time voice AI agent handling 500+ daily dealership calls, with a full STT to LLM tool-calling to TTS pipeline on LiveKit Agents with real-time turn management",
       "Built multi-tool agentic workflows with dynamic routing, memory-driven conversations, and structured tool contracts",
       "Owned the DMS integration layer: auth flows, webhook handling, and structured data exchange with dealership APIs",
     ],
@@ -47,8 +46,7 @@ export const experiences = [
   },
 ];
 
-// Mobile timeline: a line draws down the left as you scroll, each job is a card on it, tap to expand.
-// (Desktop shows Experience on the laptop screen instead; page.tsx only renders this below lg.)
+// Readable timeline on every screen; the laptop also uses the same experience data.
 const Experience = () => {
   const ref = useRef<HTMLDivElement>(null);
   const reduce = useReducedMotion();
