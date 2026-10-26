@@ -6,6 +6,7 @@ import { Logo } from "./logo";
 import ThemeToggle from "./theme-toggle";
 
 const tabs = [
+  { id: "experience", label: "Experience" },
   { id: "work", label: "Work" },
   { id: "skills", label: "Skills" },
   { id: "education", label: "Education" },
@@ -55,7 +56,7 @@ const Tabs = () => {
   };
 
   return (
-    <nav className="fixed top-4 inset-x-0 z-50 px-4">
+    <nav aria-label="Main navigation" className="fixed top-4 inset-x-0 z-50 px-4">
       <motion.div
         initial={{ opacity: 0, y: -12, scale: 0.98 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -72,12 +73,13 @@ const Tabs = () => {
           <Logo size={26} />
         </button>
 
-        <div className="hidden sm:flex items-center gap-1">
+        <div className="hidden lg:flex items-center gap-1">
           {tabs.map((tab) => (
-            <button
+            <a
               key={tab.id}
-              onClick={() => handleTabClick(tab.id)}
-              className={`relative px-4 py-1.5 rounded-full text-sm tracking-[0.005em] transition-colors ${
+              href={`#${tab.id}`}
+              aria-current={activeTab === tab.id ? "location" : undefined}
+              className={`relative px-3 py-1.5 rounded-full text-sm tracking-[0.005em] transition-colors ${
                 activeTab === tab.id ? "text-foreground font-medium" : "text-muted-foreground hover:text-foreground"
               }`}
             >
@@ -89,11 +91,12 @@ const Tabs = () => {
                 />
               )}
               <span className="relative">{tab.label}</span>
-            </button>
+            </a>
           ))}
         </div>
 
         <div className="flex items-center gap-2">
+          <a href={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/resume.pdf`} target="_blank" rel="noopener noreferrer" className="text-sm px-2 py-2 link-underline">Resume</a>
           <ThemeToggle />
           <button onClick={() => handleTabClick("contact")} className="btn-primary liquid-dark !py-2 !px-4 text-sm">
             Let&apos;s talk

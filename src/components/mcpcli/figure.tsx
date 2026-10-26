@@ -4,7 +4,7 @@ import { MachineFigure } from "../machine/figure";
 import { mcpCli } from "./machine";
 
 const STEPS = [
-  { title: "A developer runs one command", body: "Setting up an MCP server by hand used to take days, and every team did it a little differently. Now the developer runs one command in the terminal. The key on the hut is that command." },
+  { title: "A developer runs one command", body: "Teams needed a consistent starting point for setting up MCP servers. Now the developer runs one command in the terminal. The key on the hut is that command." },
   { title: "The standard modules are ready", body: "Every MCP server needs the same four things: a project structure, a place to register its tools and resources, its settings, and a working starting point. The tool keeps them ready as modules on pallets, so nobody rebuilds them from nothing." },
   { title: "The crane builds it on a scaffold", body: "The crane lifts the modules, one by one, onto a scaffold and stacks them. That is exactly what “scaffolding” means: a temporary frame that helps you build something properly, fast." },
   { title: "The scaffold comes down: a working server", body: "When the last module is on, the scaffold is taken away and a working server stands there. The developer starts with something that runs, not an empty folder, and adds only their own logic. New tools and resources plug in without touching the scaffolding." },

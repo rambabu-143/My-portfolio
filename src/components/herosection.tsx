@@ -4,9 +4,9 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import HeroLaptop from "./hero-laptop";
 
-const FOCUS_AREAS = ["Agentic systems", "MCP tooling", "n8n automation", "Voice AI", "Full-stack"];
+const FOCUS_AREAS = ["Agentic systems", "MCP tooling", "GraphRAG & evaluation", "Voice AI", "Full-stack"];
 
-const STATS = [["500+", "daily calls on a production voice agent"], ["<400ms", "voice latency target"]];
+const STATS = [["500+", "daily calls on a production voice agent"], ["End to end", "from API integration to AI evaluation"]];
 
 const SOCIALS = [
   { href: "https://github.com/rambabu-143", label: "GitHub", icon: "github" },
@@ -34,14 +34,14 @@ const Herosection = () => {
               <p className="eyebrow !text-[11px] sm:!text-xs !tracking-[0.1em] sm:!tracking-[0.16em]">AI Engineer · Hyderabad, India</p>
             </div>
 
+            <p className="text-sm text-muted-foreground mb-4">Open to AI Engineer roles · Voice AI, agents & developer tooling</p>
             <h1 className="display mb-6 !text-[clamp(3rem,7.4vw,5.75rem)]">
               Rambabu Arabandi
             </h1>
 
             <p className="text-lg sm:text-xl text-muted-foreground max-w-xl leading-relaxed mb-8 tracking-[-0.01em]">
-              I design and ship <span className="text-foreground font-medium">agentic systems</span> end to end:
-              MCP tooling, n8n automation, hybrid RAG, and multi-agent workflows, plus a{" "}
-              <span className="text-foreground font-medium">production voice AI deployment</span>.
+              I build <span className="text-foreground font-medium">AI that works in production</span>: voice agents handling 500+ daily calls,
+              MCP developer tools, and enterprise GraphRAG workflows evaluated with RAGAS and DeepEval.
             </p>
 
             <div className="flex flex-wrap gap-2 mb-8">
@@ -54,13 +54,13 @@ const Herosection = () => {
 
             <div className="flex flex-wrap items-center gap-4">
               <Link href="#work" className="btn-primary">
-                View work
+                Explore projects
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
               </Link>
               <Link href="#contact" className="btn-secondary">
-                Get in touch
+                Contact me
               </Link>
               <a
                 href={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ''}/resume.pdf`}
@@ -68,7 +68,7 @@ const Herosection = () => {
                 rel="noopener noreferrer"
                 className="btn-secondary"
               >
-                Resume
+                View resume
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v12m0 0l-4-4m4 4l4-4M4 20h16" />
                 </svg>

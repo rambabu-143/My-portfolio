@@ -636,3 +636,13 @@ nav .glass {
 @keyframes expB { to { transform: translate(-50%, -60%) scale(0.85); } }
 @keyframes expC { to { transform: translate(55%, -75%) scale(1.2); } }
 @media (prefers-reduced-motion: reduce) { .exp-blobs i { animation: none; } }
+
+/* Keyboard access and readable anchor navigation. */
+.skip-link { position: fixed; top: 1rem; left: 1rem; z-index: 100; padding: .75rem 1rem; background: hsl(var(--background)); color: hsl(var(--foreground)); border: 1px solid hsl(var(--border)); transform: translateY(-180%); }
+.skip-link:focus { transform: translateY(0); }
+h1, h2, h3 { text-wrap: balance; }
+@media (prefers-reduced-motion: reduce) {
+  html.scroll-smooth { scroll-behavior: auto; }
+  #hero { height: auto; }
+  #hero > div { position: relative; }
+}
