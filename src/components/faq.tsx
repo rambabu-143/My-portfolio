@@ -4,7 +4,7 @@ import { Hub } from "./ui/hairline";
 const about = [
   "I'm Rambabu Arabandi, an AI Engineer in Hyderabad, India. I build AI that works in production: voice agents, GraphRAG retrieval workflows and MCP developer tooling, on a full-stack background in Next.js, TypeScript, Python (FastAPI) and Go.",
   "Zaya, a voice agent I built, answers 500+ calls a day for a US auto dealership. I also built a GraphRAG pipeline that combines vector search with graph traversal, evaluated with RAGAS and DeepEval, and a Go CLI that scaffolds runnable MCP servers in one command.",
-  "I've worked at Arohak (on a Johnson & Johnson engagement via Cognizant), Cyepro Solutions, Ordermatic Technologies and Gymclan Fitness Services. I spoke at NOVA 2026 (ACM GRIET) on MCP and A2A protocols, and I'm open to AI Engineer roles: say hello at rambabuarabandi2001@gmail.com or on LinkedIn.",
+  "I've worked at Arohak (on a Johnson & Johnson engagement via Cognizant), Cyepro Solutions, Ordermatic Technologies and Gymclan Fitness Services. I spoke at NOVA 2026 (ACM GRIET) on MCP and A2A protocols, and I'm open to AI Engineer roles.",
 ];
 
 const Faq = () => (
