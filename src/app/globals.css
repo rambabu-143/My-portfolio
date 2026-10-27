@@ -684,11 +684,8 @@ h1, h2, h3 { text-wrap: balance; }
 .cs-intro-meta { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; max-width: 840px; margin-top: 2rem; }
 .cs-intro-meta span { color: hsl(var(--muted-foreground)); text-transform: uppercase; letter-spacing: .13em; font-size: 9px; }
 .cs-intro-meta p { margin-top: .4rem; font-size: 12px; line-height: 1.6; }
-.cs-walkthrough { padding: 0 2.5rem 2rem; }
 .cs-story-label { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 1.2rem; }
 .cs-story-label .eyebrow { font-size: 10px; }
-.cs-story-label > button { display: inline-flex; align-items: center; gap: .35rem; font-size: 11px; color: hsl(var(--muted-foreground)); padding-block: .5rem; }
-.cs-story-label > button:hover { color: hsl(var(--foreground)); }
 .cs-walkthrough-note { font-size: 10px; color: hsl(var(--muted-foreground)); line-height: 1.7; margin-top: .8rem; }
 .cs-written { padding: 0 2.5rem 2.5rem; scroll-margin-top: 80px; }
 .cs-section-label { display: flex; justify-content: space-between; align-items: center; gap: 1rem; border-top: 1px solid hsl(var(--border)); padding-top: 1.5rem; margin-bottom: 1.5rem; color: hsl(var(--muted-foreground)); }
@@ -722,10 +719,8 @@ h1, h2, h3 { text-wrap: balance; }
   .cs-topbar { padding: .7rem 1rem; }
   .cs-intro { padding: 1.6rem 1.1rem; }
   .cs-intro-meta { grid-template-columns: 1fr; gap: 1rem; margin-top: 1.5rem; }
-  .cs-walkthrough { padding: 0 1.1rem 1.5rem; }
   .cs-story-label { align-items: flex-start; gap: .5rem; }
   .cs-story-label .eyebrow { font-size: 8px; margin-top: .5rem; }
-  .cs-story-label > button { font-size: 9px; }
   .cs-written { padding: 0 1.1rem 1.5rem; }
   .cs-problem { grid-template-columns: 1fr; gap: .8rem; }
   .cs-problem h4 { font-size: 1.4rem; }
@@ -735,12 +730,6 @@ h1, h2, h3 { text-wrap: balance; }
   .cs-footer { padding: 1rem 1.1rem; flex-wrap: wrap; }
 }
 
-.cs-continuous-scene { border: 1px solid hsl(var(--border)); border-radius: 1rem; overflow: hidden; }
-.cs-continuous-scene canvas { border-radius: 0; }
-.cs-workflow-prose { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem 2.5rem; margin-bottom: 2.5rem; }
-.cs-workflow-prose h5 { font-size: 15px; font-weight: 500; margin-bottom: .5rem; letter-spacing: -.015em; }
-.cs-workflow-prose p { font-size: 13px; color: hsl(var(--muted-foreground)); line-height: 1.9; }
-@media (max-width: 640px) { .cs-workflow-prose { grid-template-columns: 1fr; gap: 1.2rem; } }
 
 /* Case study: live system map beside scroll-spied steps */
 .cs-flow { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 2.5rem; padding: 0 2.5rem 2rem; align-items: start; }

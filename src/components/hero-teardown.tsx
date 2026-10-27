@@ -44,7 +44,7 @@ const HeroTeardown = () => {
       const a = p < 0.18 ? -1 : p < 0.55 ? Math.min(4, Math.floor(((p - 0.18) / 0.37) * 5)) : 5 + Math.min(3, Math.floor(((p - 0.55) / 0.4) * 4));
       if (a !== last.current) { last.current = a; setActive(a); }
       const copy = hero.querySelector<HTMLElement>(".hero-copy");
-      if (copy) copy.style.pointerEvents = p > 0.1 ? "none" : "";
+      if (copy) { copy.style.pointerEvents = p > 0.1 ? "none" : ""; copy.toggleAttribute("inert", p > 0.1); }
     };
     const onScroll = () => { raf ||= requestAnimationFrame(update); };
     update();

@@ -19,7 +19,7 @@ export default function ProjectCaseStudy({ project, onClose }: { project: Portfo
     const root = steps.current[0]?.closest('dialog') ?? null;
     const io = new IntersectionObserver(
       (entries) => entries.forEach((e) => e.isIntersecting && setActive(steps.current.indexOf(e.target as HTMLElement))),
-      { root, rootMargin: '-45% 0px -50% 0px' },
+      { root, rootMargin: '-40% 0px -40% 0px' },
     );
     steps.current.forEach((el) => el && io.observe(el));
     return () => io.disconnect();
