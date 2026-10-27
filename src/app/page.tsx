@@ -19,7 +19,7 @@ export default function Home() {
       <AmbientBackground />
       <Tabs />
 
-      <section id="hero" className="relative h-[460vh]">
+      <section id="hero" className="relative h-[340vh]">
         <Herosection />
       </section>
 
