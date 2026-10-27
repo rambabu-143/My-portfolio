@@ -18,6 +18,7 @@ export const projects = [
       result: "Live in production, handling 500+ calls a day.",
     },
     kind: "voice" as const,
+    slug: "zaya-voice-ai-agent",
   },
   {
     n: "02",
@@ -38,6 +39,7 @@ export const projects = [
       result: "A retrieval and evaluation workflow for internal knowledge questions spanning related documents.",
     },
     kind: "knowledge" as const,
+    slug: "graphrag-knowledge-retrieval",
   },
   {
     n: "03",
@@ -57,6 +59,7 @@ export const projects = [
       result: "A consistent runnable baseline, with MCP tooling tested using DeepEval.",
     },
     kind: "mcp" as const,
+    slug: "mcp-server-cli",
   },
 ];
 
