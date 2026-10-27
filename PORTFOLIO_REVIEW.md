@@ -37,3 +37,15 @@ Project cards and case-study dialogs now use new canvas scenes: a voice orb, a d
 Animation respects reduced-motion settings, pauses while offscreen or the document is hidden, and includes user-facing pause controls. Project previews pause while a case study is open.
 
 Production build and lint passed with the existing warnings. Browser checks confirmed the homepage loads, manual laptop selection works, scrolling advances to GraphRAG and MCP, case-study dialogs open and close, and animation pause works. A 390px viewport check found no horizontal overflow. Development uses .next-dev to avoid conflicts with production builds in .next.
+
+## Featured project case studies — 27 October 2026
+
+The section is now titled Featured projects. Hairline previews remain on the cards. Opening a card displays a continuous project animation with the detailed written case study underneath: challenge, workflow, contribution, engineering decisions, and outcome. There are no chapter timelines, playback buttons, or Anatomy machine figures in these dialogs. All examples are labeled illustrative.
+
+Browser checks on the existing local development server confirmed the MCP and GraphRAG dialogs open, and the Zaya case study renders in light and dark themes. The 390px MCP viewport had equal dialog scroll/client widths (344px), so no horizontal overflow was found. The browser reported no console errors during this check.
+
+## Final animation direction — Anatomy + Hairline
+
+The case-study header animation now uses a warm paper-and-ink physical mechanism: a telephone exchange, library sorting machine, or scaffold press. Anatomy supplies the solid geometry; Hairline supplies the shared animation clock, pointer handling and spring response. Motions run continuously with no chapter timeline, phase labels, timed holds or hover slowdown. The written case study stays below. The Featured projects heading and Hairline card previews remain.
+
+The latest production build and browser checks passed. Full line-audit and 4x capture limitations are recorded in src/components/case-machines/README.md.

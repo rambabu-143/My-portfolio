@@ -2,7 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import HeroLaptop from "./hero-laptop";
+import HeroTeardown from "./hero-teardown";
 
 const FOCUS_AREAS = ["Agentic systems", "MCP tooling", "GraphRAG & evaluation", "Voice AI", "Full-stack"];
 
@@ -18,11 +18,11 @@ const spring = { type: "spring", bounce: 0, duration: 0.7 } as const;
 
 const Herosection = () => {
   return (
-    <div className="relative flex items-center min-h-screen pt-24 pb-16 lg:sticky lg:top-0 lg:h-screen lg:overflow-hidden">
-      <HeroLaptop />
+    <div className="sticky top-0 flex items-start lg:items-center h-screen pt-20 pb-6 lg:pt-24 overflow-hidden">
+      <HeroTeardown />
       <div className="w-full px-6 lg:px-14 relative z-10 pointer-events-none">
         <div className="grid gap-16 items-center">
-          <div className="hero-copy pointer-events-auto lg:w-1/2 flex justify-center" style={{ opacity: "calc(1 - var(--hp, 0) * 3.5)", transform: "translateY(calc(var(--hp, 0) * -80px))" }}>
+          <div className="hero-copy pointer-events-auto lg:w-1/2 flex justify-center" style={{ opacity: "calc(1 - var(--hp, 0) * 9)", transform: "translateY(calc(var(--hp, 0) * -120px))" }}>
           <motion.div
             className="w-full max-w-[600px]"
             initial={{ opacity: 0, y: 20 }}
@@ -39,12 +39,12 @@ const Herosection = () => {
               Rambabu Arabandi
             </h1>
 
-            <p className="text-lg sm:text-xl text-muted-foreground max-w-xl leading-relaxed mb-8 tracking-[-0.01em]">
+            <p className="hidden sm:block text-lg sm:text-xl text-muted-foreground max-w-xl leading-relaxed mb-8 tracking-[-0.01em]">
               I build <span className="text-foreground font-medium">AI that works in production</span>: voice agents handling 500+ daily calls,
               MCP developer tools, and enterprise GraphRAG workflows evaluated with RAGAS and DeepEval.
             </p>
 
-            <div className="flex flex-wrap gap-2 mb-8">
+            <div className="hidden sm:flex flex-wrap gap-2 mb-8">
               {FOCUS_AREAS.map((area) => (
                 <span key={area} className="glass-tight px-3.5 py-1.5 rounded-full text-sm text-foreground/75">
                   {area}
@@ -104,7 +104,7 @@ const Herosection = () => {
               </div>
             </div>
 
-            <dl className="mt-8 flex gap-10 border-t border-[color:var(--glass-border)] pt-5">
+            <dl className="mt-8 hidden sm:flex gap-10 border-t border-[color:var(--glass-border)] pt-5">
               {STATS.map(([v, l]) => (
                 <div key={l}>
                   <dt className="font-display text-3xl font-semibold tracking-tight">{v}</dt>
