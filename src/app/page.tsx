@@ -3,6 +3,7 @@ import Experience from "@/components/experience";
 import Skills from "@/components/skills";
 import ProjectsExplained from "@/components/projects-explained";
 import Education from "@/components/education";
+import Hobbies from "@/components/hobbies";
 import Contact from "@/components/contact";
 import Footer from "@/components/footer";
 import Tabs from "@/components/tabs";
@@ -17,7 +18,7 @@ export default function Home() {
       <AmbientBackground />
       <Tabs />
 
-      <section id="hero" className="relative lg:h-[320vh]">
+      <section id="hero" className="relative h-[460vh]">
         <Herosection />
       </section>
 
@@ -38,6 +39,10 @@ export default function Home() {
 
         <section id="education" className="py-16 scroll-mt-20">
           <Education />
+        </section>
+
+        <section id="hobbies" className="py-16 scroll-mt-20">
+          <Hobbies />
         </section>
 
         <section id="contact" className="py-16 scroll-mt-20">
