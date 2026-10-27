@@ -1,10 +1,9 @@
 'use client';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 
 export default function AmbientBackground() {
   const canvas = useRef<HTMLCanvasElement>(null);
   const clock = useRef(0);
-  const [paused, setPaused] = useState(false);
   useEffect(() => {
     const el=canvas.current, ctx=el?.getContext('2d');
     if(!el||!ctx)return;
@@ -55,20 +54,19 @@ export default function AmbientBackground() {
       }
     };
     const tick=(now:number)=>{
-      if(document.hidden||paused||media.matches)return;
+      if(document.hidden||media.matches)return;
       clock.current+=Math.min((now-last)/1000,.06);last=now;
       if(now-painted>40){draw();painted=now;}
       frame=requestAnimationFrame(tick);
     };
-    const sync=()=>{cancelAnimationFrame(frame);draw();if(!document.hidden&&!paused&&!media.matches){last=performance.now();frame=requestAnimationFrame(tick);}};
+    const sync=()=>{cancelAnimationFrame(frame);draw();if(!document.hidden&&!media.matches){last=performance.now();frame=requestAnimationFrame(tick);}};
     const resize=()=>{w=innerWidth;h=innerHeight;const dpr=Math.min(devicePixelRatio||1,1.5);el.width=w*dpr;el.height=h*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);draw();};
     const onScroll=()=>{scroll=scrollY;};
     const theme=new MutationObserver(sync);theme.observe(document.documentElement,{attributes:true,attributeFilter:['class']});
     resize();sync();addEventListener('resize',resize);addEventListener('scroll',onScroll,{passive:true});document.addEventListener('visibilitychange',sync);media.addEventListener('change',sync);
     return ()=>{cancelAnimationFrame(frame);theme.disconnect();removeEventListener('resize',resize);removeEventListener('scroll',onScroll);document.removeEventListener('visibilitychange',sync);media.removeEventListener('change',sync);};
-  },[paused]);
+  },[]);
   return <>
     <canvas ref={canvas} aria-hidden="true" className="fixed inset-0 w-full h-full pointer-events-none -z-[8]" />
-    <button type="button" onClick={()=>setPaused(!paused)} aria-pressed={paused} className="fixed bottom-3 right-3 z-40 rounded-full border border-border bg-background/80 px-3 py-2 text-[10px] text-muted-foreground backdrop-blur-md hover:text-foreground">{paused?'Play background':'Pause background'}</button>
   </>;
 }

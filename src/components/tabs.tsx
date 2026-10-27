@@ -96,7 +96,6 @@ const Tabs = () => {
         </div>
 
         <div className="flex items-center gap-2">
-          <a href={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/resume.pdf`} target="_blank" rel="noopener noreferrer" className="text-sm px-2 py-2 link-underline">Resume</a>
           <ThemeToggle />
           <button onClick={() => handleTabClick("contact")} className="btn-primary liquid-dark !py-2 !px-4 text-sm">
             Let&apos;s talk
