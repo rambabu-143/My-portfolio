@@ -28,13 +28,19 @@ const HeroTeardown = () => {
     const hero = document.getElementById("hero");
     if (!hero) return;
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    let raf = 0;
+    const stage = hero.querySelector<HTMLElement>(".hx-stage");
+    const copy = hero.querySelector<HTMLElement>(".hero-copy");
+    if (!stage) return;
+    let raf = 0, lastP = -1;
     const update = () => {
       raf = 0;
       const r = hero.getBoundingClientRect();
       const p = reduce ? 0 : clamp(-r.top / Math.max(1, r.height - window.innerHeight));
-      const s = hero.style;
-      s.setProperty("--hp", String(p));
+      if (Math.abs(p - lastP) < 0.0008) return;
+      lastP = p;
+      // Only --hp (intro fade) lives on the hero; the scene vars go on the stage so a scroll tick restyles just the laptop.
+      hero.style.setProperty("--hp", String(p));
+      const s = stage.style;
       s.setProperty("--zoom", String(1 + 0.15 * smooth(p / 0.55) - 0.36 * smooth((p - 0.5) / 0.3)));
       s.setProperty("--shift", String(1 - smooth(p / 0.2)));
       s.setProperty("--open", String(1 - smooth(p / 0.14)));
@@ -43,7 +49,8 @@ const HeroTeardown = () => {
       s.setProperty("--sw", String(smooth((p - 0.5) / 0.3)));
       const a = p < 0.18 ? -1 : p < 0.55 ? Math.min(4, Math.floor(((p - 0.18) / 0.37) * 5)) : 5 + Math.min(3, Math.floor(((p - 0.55) / 0.4) * 4));
       if (a !== last.current) { last.current = a; setActive(a); }
-      const copy = hero.querySelector<HTMLElement>(".hero-copy");
+      // The showreel only runs while the lid is open; once it folds shut nobody can see the screen.
+      stage.dataset.reel = p < 0.14 ? "on" : "off";
       if (copy) { copy.style.pointerEvents = p > 0.1 ? "none" : ""; copy.toggleAttribute("inert", p > 0.1); }
     };
     const onScroll = () => { raf ||= requestAnimationFrame(update); };
