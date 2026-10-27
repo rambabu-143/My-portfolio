@@ -2,6 +2,7 @@
 
 import { ArrowRight, Check, GitBranch, Layers3, ShieldCheck, X } from 'lucide-react';
 import { caseStudies, type PortfolioProject } from '@/lib/project-case-studies';
+import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 import { Phone, Branches, Terminal } from './ui/hairline';
 import FlowScene from './case-flow/scene';
@@ -71,6 +72,6 @@ export default function ProjectCaseStudy({ project, onClose }: { project: Portfo
       <div className="cs-result"><div><span className="eyebrow">Outcome</span><h4>{project.detail.result}</h4></div><Check size={25} strokeWidth={1.3} /></div>
       <div className="cs-evidence"><ShieldCheck size={18} /><div><h5>What this walkthrough represents</h5><p>{story.evidence}</p></div></div>
     </section>
-    <footer className="cs-footer"><span>{project.title} / Rambabu Arabandi</span><button type="button" onClick={onClose}>Back to featured projects <ArrowRight size={14} /></button></footer>
+    <footer className="cs-footer"><span>{project.title} / Rambabu Arabandi · <Link href={`/work/${project.slug}`} className="underline">Read as a page</Link></span><button type="button" onClick={onClose}>Back to featured projects <ArrowRight size={14} /></button></footer>
   </article>;
 }

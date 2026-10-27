@@ -1,62 +1,82 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Ripple from "@/components/ripple";
+import JsonLd from "@/components/json-ld";
+import { description, person, siteUrl } from "@/lib/site";
 
-const siteUrl = "https://rambabu-143.github.io/My-portfolio/";
+const title = "Rambabu Arabandi | AI Engineer & Full-Stack Developer";
 const socialImage = {
-  url: `${siteUrl}social-preview.png`,
+  url: `${siteUrl}/social-preview.png`,
   width: 1200,
   height: 630,
   alt: "Rambabu Arabandi — AI Engineer building production voice AI, GraphRAG and MCP developer tooling",
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
-  alternates: { canonical: siteUrl },
-  title: "Rambabu Arabandi | AI Engineer",
-  description:
-    "AI Engineer building production voice agents handling 500+ daily calls, MCP developer tooling, and GraphRAG workflows evaluated with RAGAS and DeepEval.",
+  metadataBase: new URL(`${siteUrl}/`),
+  alternates: { canonical: `${siteUrl}/` },
+  title,
+  description,
   keywords: [
     "AI Engineer",
+    "AI Engineer Hyderabad",
+    "Full-Stack Developer",
+    "Generative AI Engineer",
     "Agentic Systems",
-    "MCP Servers",
-    "n8n Automation",
     "Voice AI",
     "LiveKit Agents",
+    "MCP Servers",
+    "Model Context Protocol",
     "RAG",
     "GraphRAG",
     "RAGAS",
     "DeepEval",
-    "Go",
     "LangGraph",
     "LangChain",
-    "Full-Stack Developer",
+    "n8n Automation",
+    "Go",
+    "Python",
+    "FastAPI",
     "Next.js",
     "TypeScript",
+    "Rambabu Arabandi",
   ],
-  authors: [{ name: "Rambabu Arabandi" }],
-  creator: "Rambabu Arabandi",
+  authors: [{ name: person.name, url: `${siteUrl}/` }],
+  creator: person.name,
   openGraph: {
-    type: "website",
+    type: "profile",
     locale: "en_US",
-    url: "https://rambabu-143.github.io/My-portfolio/",
-    title: "Rambabu Arabandi | AI Engineer",
-    description:
-      "AI Engineer building production voice agents handling 500+ daily calls, MCP developer tooling, and GraphRAG workflows evaluated with RAGAS and DeepEval.",
+    url: `${siteUrl}/`,
+    title,
+    description,
     siteName: "Rambabu Arabandi Portfolio",
     images: [socialImage],
   },
-  twitter: {
-    card: "summary_large_image",
-    images: [socialImage],
-    title: "Rambabu Arabandi | AI Engineer",
-    description:
-      "AI Engineer building production voice agents handling 500+ daily calls, MCP developer tooling, and GraphRAG workflows evaluated with RAGAS and DeepEval.",
-  },
-  robots: {
-    index: true,
-    follow: true,
-  },
+  twitter: { card: "summary_large_image", images: [socialImage], title, description, creator: "@rambabu_143" },
+  robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 } },
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": `${siteUrl}/#person`,
+      name: person.name,
+      alternateName: person.alternateName,
+      jobTitle: person.jobTitle,
+      description,
+      url: `${siteUrl}/`,
+      image: `${siteUrl}/hero.jpg`,
+      email: `mailto:${person.email}`,
+      address: { "@type": "PostalAddress", addressLocality: person.city, addressCountry: person.country },
+      alumniOf: { "@type": "CollegeOrUniversity", name: "Bharat Institute of Engineering and Technology" },
+      knowsAbout: person.knowsAbout,
+      sameAs: person.sameAs,
+    },
+    { "@type": "WebSite", "@id": `${siteUrl}/#website`, url: `${siteUrl}/`, name: "Rambabu Arabandi Portfolio", inLanguage: "en", publisher: { "@id": `${siteUrl}/#person` } },
+    { "@type": "ProfilePage", "@id": `${siteUrl}/#profile`, url: `${siteUrl}/`, name: title, mainEntity: { "@id": `${siteUrl}/#person` }, isPartOf: { "@id": `${siteUrl}/#website` } },
+  ],
 };
 
 export default function RootLayout({
@@ -81,6 +101,7 @@ export default function RootLayout({
             <feDisplacementMap in="SourceGraphic" in2="n" scale="26" xChannelSelector="R" yChannelSelector="G" />
           </filter>
         </svg>
+        <JsonLd data={jsonLd} />
         <Ripple />
         {children}
       </body>

@@ -39,12 +39,12 @@ const Herosection = () => {
               Rambabu Arabandi
             </h1>
 
-            <p className="hidden sm:block text-lg sm:text-xl text-muted-foreground max-w-xl leading-relaxed mb-8 tracking-[-0.01em]">
+            <p className="sr-only sm:not-sr-only text-lg sm:text-xl text-muted-foreground max-w-xl leading-relaxed mb-8 tracking-[-0.01em]">
               I build <span className="text-foreground font-medium">AI that works in production</span>: voice agents handling 500+ daily calls,
               MCP developer tools, and enterprise GraphRAG workflows evaluated with RAGAS and DeepEval.
             </p>
 
-            <div className="hidden sm:flex flex-wrap gap-2 mb-8">
+            <div className="sr-only sm:not-sr-only sm:flex flex-wrap gap-2 mb-8">
               {FOCUS_AREAS.map((area) => (
                 <span key={area} className="glass-tight px-3.5 py-1.5 rounded-full text-sm text-foreground/75">
                   {area}
@@ -104,7 +104,7 @@ const Herosection = () => {
               </div>
             </div>
 
-            <dl className="mt-8 hidden sm:flex gap-10 border-t border-[color:var(--glass-border)] pt-5">
+            <dl className="sr-only sm:not-sr-only mt-8 sm:flex gap-10 border-t border-[color:var(--glass-border)] pt-5">
               {STATS.map(([v, l]) => (
                 <div key={l}>
                   <dt className="font-display text-3xl font-semibold tracking-tight">{v}</dt>

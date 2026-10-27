@@ -1,0 +1,29 @@
+# Rambabu Arabandi
+
+> AI Engineer in Hyderabad, India. Builds production voice AI agents, enterprise GraphRAG retrieval workflows evaluated with RAGAS and DeepEval, and Model Context Protocol (MCP) developer tooling. Full-stack with Next.js, TypeScript, Python (FastAPI) and Go. Open to AI Engineer roles.
+
+Also written Arabandi Rambabu. Contact: rambabuarabandi2001@gmail.com
+
+## Profiles
+- [Portfolio](https://rambabu-143.github.io/My-portfolio/): projects, experience, skills and FAQ
+- [LinkedIn](https://www.linkedin.com/in/rambabuarabandi)
+- [GitHub](https://github.com/rambabu-143)
+- [X](https://x.com/rambabu_143)
+- [Resume (PDF)](https://rambabu-143.github.io/My-portfolio/resume.pdf)
+
+## Projects
+- [Zaya: voice AI agent for auto dealerships](https://rambabu-143.github.io/My-portfolio/work/zaya-voice-ai-agent/): live in production, 500+ calls a day. LiveKit Agents, Sarvam AI, FastAPI, Python.
+- [GraphRAG knowledge retrieval](https://rambabu-143.github.io/My-portfolio/work/graphrag-knowledge-retrieval/): vector search plus graph traversal for multi-hop questions, evaluated with RAGAS and DeepEval.
+- [MCP server CLI](https://rambabu-143.github.io/My-portfolio/work/mcp-server-cli/): internal Go tool that scaffolds a runnable MCP server in one command.
+
+## Experience
+- AI Engineer, Arohak Inc. (Johnson & Johnson engagement via Cognizant), Mar 2026 to Sep 2026
+- Generative AI Engineer (Contract), Cyepro Solutions
+- Software Development Engineer, Ordermatic Technologies
+- Software Development Intern, Gymclan Fitness Services
+
+## Skills
+Python, Go, TypeScript, FastAPI, Next.js, React, LiveKit Agents, LangGraph, LangChain, GraphRAG, vector search, MCP, n8n, RAGAS, DeepEval.
+
+## Speaking
+NOVA 2026 (ACM GRIET): MCP, A2A protocols and AI-native development.
