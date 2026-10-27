@@ -21,7 +21,7 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
     description: p.summary,
     alternates: { canonical: url },
     openGraph: { type: "article", url, title, description: p.summary, images: [`${siteUrl}/social-preview.png`] },
-    twitter: { card: "summary_large_image", title, description: p.summary },
+    twitter: { card: "summary_large_image", title, description: p.summary, images: [`${siteUrl}/social-preview.png`] },
   };
 }
 
@@ -40,7 +40,7 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
         headline: s.headline,
         description: p.summary,
         url,
-        author: { "@id": `${siteUrl}/#person` },
+        author: { "@type": "Person", name: person.name, url: `${siteUrl}/` },
         keywords: p.tags.join(", "),
         about: p.tags,
       }} />

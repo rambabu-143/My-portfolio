@@ -6,6 +6,7 @@ const nextConfig = {
     distDir: isProd ? ".next" : ".next-dev",
     ...(isProd && {
         output: "export",
+        trailingSlash: true,
         basePath: "/My-portfolio",
         assetPrefix: "/My-portfolio",
     }),
