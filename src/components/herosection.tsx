@@ -29,22 +29,22 @@ const Herosection = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={spring}
           >
-            <div className="flex items-center gap-3 mb-6">
+            <div className="flex items-center gap-3 mb-7">
               <Image src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ''}/hero.jpg`} alt="Rambabu Arabandi" width={44} height={44} className="w-11 h-11 rounded-full object-cover grayscale border border-[color:var(--glass-border)]" priority />
               <p className="eyebrow !text-[11px] sm:!text-xs !tracking-[0.1em] sm:!tracking-[0.16em]">AI Engineer · Hyderabad, India</p>
             </div>
 
-            <p className="text-sm text-muted-foreground mb-4">Open to AI Engineer roles · Voice AI, agents & developer tooling</p>
-            <h1 className="display mb-6 !text-[clamp(3rem,7.4vw,5.75rem)]">
+            <p className="text-sm text-muted-foreground mb-5">Open to AI Engineer roles · Voice AI, agents & developer tooling</p>
+            <h1 className="display mb-7 !text-[clamp(3rem,7.4vw,5.75rem)]">
               Rambabu Arabandi
             </h1>
 
-            <p className="sr-only sm:not-sr-only text-lg sm:text-xl text-muted-foreground max-w-xl leading-relaxed mb-8 tracking-[-0.01em]">
+            <p className="sr-only sm:not-sr-only sm:!mb-6 text-lg sm:text-xl text-muted-foreground max-w-xl leading-relaxed tracking-[-0.01em]">
               I build <span className="text-foreground font-medium">AI that works in production</span>: voice agents handling 500+ daily calls,
               MCP developer tools, and enterprise GraphRAG workflows evaluated with RAGAS and DeepEval.
             </p>
 
-            <div className="sr-only sm:not-sr-only sm:flex flex-wrap gap-2 mb-8">
+            <div className="sr-only sm:not-sr-only sm:flex sm:!mb-7 flex-wrap gap-2.5">
               {FOCUS_AREAS.map((area) => (
                 <span key={area} className="glass-tight px-3.5 py-1.5 rounded-full text-sm text-foreground/75">
                   {area}
@@ -104,7 +104,7 @@ const Herosection = () => {
               </div>
             </div>
 
-            <dl className="sr-only sm:not-sr-only mt-8 sm:flex gap-10 border-t border-[color:var(--glass-border)] pt-5">
+            <dl className="sr-only sm:not-sr-only sm:!mt-7 sm:flex gap-10 border-t border-[color:var(--glass-border)] pt-5">
               {STATS.map(([v, l]) => (
                 <div key={l}>
                   <dt className="font-display text-3xl font-semibold tracking-tight">{v}</dt>
