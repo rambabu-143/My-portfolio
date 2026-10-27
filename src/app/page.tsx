@@ -4,6 +4,7 @@ import Skills from "@/components/skills";
 import ProjectsExplained from "@/components/projects-explained";
 import Education from "@/components/education";
 import Hobbies from "@/components/hobbies";
+import Faq from "@/components/faq";
 import Contact from "@/components/contact";
 import Footer from "@/components/footer";
 import Tabs from "@/components/tabs";
@@ -43,6 +44,10 @@ export default function Home() {
 
         <section id="hobbies" className="py-16 scroll-mt-20">
           <Hobbies />
+        </section>
+
+        <section id="faq" className="py-16 scroll-mt-20">
+          <Faq />
         </section>
 
         <section id="contact" className="py-16 scroll-mt-20">
