@@ -4,11 +4,11 @@ import { AiPane, Battery, Chassis, Lid, FrameworksPane, Keyboard, LanguagesPane,
 
 // Bottom to top. k = stacking index inside its group.
 const HW = [
-  { name: "Chassis", note: "The frame everything bolts onto. Vents and rails keep it cool and rigid.", Art: Chassis },
-  { name: "Battery", note: "A pack of lithium cells that powers the machine. The heaviest part you can replace.", Art: Battery },
-  { name: "Mainboard", note: "CPU, RAM, storage and the traces between them. Where every signal is routed.", Art: Mainboard },
-  { name: "Keyboard", note: "Key switches over a flex membrane, wired into the board by a thin ribbon.", Art: Keyboard },
-  { name: "Display", note: "Panel, backlight and the cable that carries every pixel.", Art: Lid },
+  { name: "Chassis", Art: Chassis },
+  { name: "Battery", Art: Battery },
+  { name: "Mainboard", Art: Mainboard },
+  { name: "Keyboard", Art: Keyboard },
+  { name: "Display", Art: Lid },
 ];
 const SW = [
   { name: "Operating system", note: "macOS and Linux. Processes, files, networking and permissions.", Art: OsPane },
@@ -53,7 +53,7 @@ const HeroTeardown = () => {
     return () => { window.removeEventListener("scroll", onScroll); window.removeEventListener("resize", onScroll); cancelAnimationFrame(raf); };
   }, []);
 
-  const info = active < 0 ? null : active < 5 ? { phase: "Hardware", ...HW[active] } : { phase: "Software", ...SW[active - 5] };
+  const info = active < 0 ? null : active < 5 ? { phase: `Hardware · ${HW[active].name}`, name: "I take these apart for fun.", note: "" } : { phase: "Software", ...SW[active - 5] };
 
   return (
     <>
@@ -72,7 +72,7 @@ const HeroTeardown = () => {
           <div key={active}>
             <span className="eyebrow">{info.phase} · {String(active + 1).padStart(2, "0")} / 09</span>
             <h3 className="font-display font-semibold text-2xl mt-1">{info.name}</h3>
-            <p className="text-sm text-muted-foreground leading-relaxed mt-1 max-w-xs">{info.note}</p>
+            {info.note && <p className="text-sm text-muted-foreground leading-relaxed mt-1 max-w-xs">{info.note}</p>}
           </div>
         )}
         <div className="hx-dots">{Array.from({ length: 9 }, (_, i) => <i key={i} className={i === active ? "on" : i < active ? "done" : ""} />)}</div>
