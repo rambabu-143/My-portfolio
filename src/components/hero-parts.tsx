@@ -118,7 +118,14 @@ const Screen = () => (
       <g className="hx-line" style={{ animationDelay: ".5s" }}><rect x="26" y="60" width="200" height="24" rx="12" fill="#2b3f73" /><text x="38" y="76" fontSize="9" fill="#dce8ff" fontFamily={sans}>Do you have a 2024 Camry in stock?</text></g>
       <g className="hx-line" style={{ animationDelay: "1.4s" }}><rect x="170" y="92" width="238" height="24" rx="12" fill="#4f8cff" /><text x="182" y="108" fontSize="9" fill="#fff" fontFamily={sans}>Checking inventory… 3 available today.</text></g>
       <g className="hx-line" style={{ animationDelay: "2.4s" }}><rect x="26" y="124" width="170" height="24" rx="12" fill="#2b3f73" /><text x="38" y="140" fontSize="9" fill="#dce8ff" fontFamily={sans}>Book a test drive Saturday?</text></g>
-      {Array.from({ length: 40 }, (_, i) => <rect key={i} className="hx-bar" x={50 + i * 8.6} y="196" width="4" height="50" rx="2" fill="#8db4ff" style={{ animationDelay: `${-((i * 37) % 10) / 10}s` }} />)}
+      {[0, 1, 2, 3].map((g) => (
+        <g key={g} className="hx-wave" style={{ animationDelay: `${-g * 0.3}s` }}>
+          {Array.from({ length: 10 }, (_, k) => {
+            const i = k * 4 + g, h = 14 + ((i * 37) % 11) * 4;
+            return <rect key={i} x={50 + i * 8.6} y={221 - h / 2} width="4" height={h} rx="2" fill="#8db4ff" />;
+          })}
+        </g>
+      ))}
     </g>
     {/* GraphRAG: traversal across connected sources */}
     <g {...scene(2)}>
